@@ -1,0 +1,52 @@
+# $Id: redhat5_i386.repo 222 2014-10-24 18:18:28Z ohare2 $
+# $URL: https://corbin.llnl.gov/repos/admin/repotools/redhat5_i386.repo $
+
+[epel-llnl]
+name=epel-llnl $releasever - $basearch
+baseurl=https://corbin.llnl.gov/software/redhat/$releasever/$basearch/epel-llnl/
+enabled=1
+gpgcheck=0
+sslverify=false
+
+[llnl-rhn-rhel-i386-desktop-5]
+name=llnl-rhn-rhel-i386-desktop-5 $releasever - $basearch
+baseurl=https://corbin.llnl.gov/software/redhat/$releasever/$basearch/llnl-rhn-rhel-i386-desktop-5/getPackage
+enabled=1
+gpgcheck=0
+sslverify=false
+
+[rhel-i386-client-5]
+name=rhel-i386-client-5 $releasever - $basearch
+baseurl=https://corbin.llnl.gov/software/redhat/$releasever/$basearch/rhel-i386-client-5/getPackage
+enabled=1
+gpgcheck=0
+sslverify=false
+
+[rhel-i386-client-5-thirdparty-oracle-java]
+name=rhel-i386-client-5-thirdparty-oracle-java $releasever - $basearch
+baseurl=https://corbin.llnl.gov/software/redhat/$releasever/$basearch/rhel-i386-client-5-thirdparty-oracle-java/getPackage
+enabled=1
+gpgcheck=0
+sslverify=false
+
+[rhel-i386-client-supplementary-5]
+name=rhel-i386-client-supplementary-5 $releasever - $basearch
+baseurl=https://corbin.llnl.gov/software/redhat/$releasever/$basearch/rhel-i386-client-supplementary-5/getPackage
+enabled=1
+gpgcheck=0
+sslverify=false
+
+[rhel-i386-client-workstation-5]
+name=rhel-i386-client-workstation-5 $releasever - $basearch
+baseurl=https://corbin.llnl.gov/software/redhat/$releasever/$basearch/rhel-i386-client-workstation-5/getPackage
+enabled=1
+gpgcheck=0
+sslverify=false
+
+[rhn-tools-rhel-i386-client-5]
+name=rhn-tools-rhel-i386-client-5 $releasever - $basearch
+baseurl=https://corbin.llnl.gov/software/redhat/$releasever/$basearch/rhn-tools-rhel-i386-client-5/getPackage
+enabled=1
+gpgcheck=0
+sslverify=false
+

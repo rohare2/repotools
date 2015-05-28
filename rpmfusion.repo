@@ -1,0 +1,18 @@
+#$Id: rpmfusion.repo 222 2014-10-24 18:18:28Z ohare2 $
+# $URL: https://corbin.llnl.gov/repos/admin/repotools/rpmfusion.repo $
+#
+
+[rpmfusion-free-updates]
+name=rpmfusion-free-updates $releasever - $basearch
+baseurl=https://corbin.llnl.gov/software/rpmfusion/free/el/updates/$releasever/$basearch/
+enabled=1
+gpgcheck=0
+sslverify=false
+
+[rpmfusion-nonfree-updates]
+name=rpmfusion-nonfree-updates $releasever - $basearch
+baseurl=https://corbin.llnl.gov/software/rpmfusion/nonfree/el/updates/$releasever/$basearch/
+enabled=0
+gpgcheck=0
+sslverify=false
+

@@ -1,0 +1,17 @@
+#$Id: lsi.repo 222 2014-10-24 18:18:28Z ohare2 $
+# $URL: https://corbin.llnl.gov/repos/admin/repotools/lsi.repo $
+#
+
+[LSI]
+name=lsi
+baseurl=https://corbin.llnl.gov/software/VendorSoftware/LSI/$releasever/$basearch
+enabled=1
+gpgcheck=0
+sslverify=false
+
+[LSI-noarch]
+name=lsi - noarch
+baseurl=https://corbin.llnl.gov/software/VendorSoftware/LSI/$releasever/noarch
+enabled=1
+gpgcheck=0
+sslverify=false
