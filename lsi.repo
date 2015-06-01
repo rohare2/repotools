@@ -1,0 +1,17 @@
+#$Id: lsi.repo 187 2014-10-23 03:21:38Z rohare $
+# $URL: file:///usr/local/svn/admin/repotools/lsi.repo $
+#
+
+[LSI]
+name=lsi
+baseurl=https://www.ohares.us/software/VendorSoftware/LSI/$releasever/$basearch
+enabled=1
+gpgcheck=0
+sslverify=false
+
+[LSI-noarch]
+name=lsi - noarch
+baseurl=https://www.ohares.us/software/VendorSoftware/LSI/$releasever/noarch
+enabled=1
+gpgcheck=0
+sslverify=false

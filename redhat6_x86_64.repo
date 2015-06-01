@@ -1,0 +1,59 @@
+# $Id: redhat6_x86_64.repo 187 2014-10-23 03:21:38Z rohare $
+# $URL: file:///usr/local/svn/admin/repotools/redhat6_x86_64.repo $
+
+[epel-llnl]
+name=epel-llnl $releasever - $basearch
+baseurl=https://www.ohares.us/software/redhat/$releasever/$basearch/epel-llnl/
+enabled=1
+gpgcheck=0
+sslverify=false
+
+[llnl-prod]
+name=llnl-prod $releasever - $basearch
+baseurl=https://www.ohares.us/software/redhat/$releasever/$basearch/llnl-prod/
+enabled=1
+gpgcheck=0
+sslverify=false
+
+[llnl-prod-noarch]
+name=llnl-prod-noarch $releasever - $basearch
+baseurl=https://www.ohares.us/software/redhat/$releasever/$basearch/llnl-prod-noarch/
+enabled=1
+gpgcheck=0
+sslverify=false
+
+[llnl-test-noarch]
+name=llnl-test-noarch $releasever - $basearch
+baseurl=https://www.ohares.us/software/redhat/$releasever/$basearch/llnl-test-noarch/
+enabled=0
+gpgcheck=0
+sslverify=false
+
+[rhel6-workstation]
+name=rhel6-workstation $releasever - $basearch
+baseurl=https://www.ohares.us/software/redhat/$releasever/$basearch/rhel-x86_64-workstation-6/getPackage
+enabled=1
+gpgcheck=0
+sslverify=false
+
+[rhel6-optional]
+name=rhel6-optional $releasever - $basearch
+baseurl=https://www.ohares.us/software/redhat/$releasever/$basearch/rhel-x86_64-workstation-optional-6/getPackage
+enabled=1
+gpgcheck=0
+sslverify=false
+
+[rhel6-supplementary]
+name=rhel6-supplementary $releasever - $basearch
+baseurl=https://www.ohares.us/software/redhat/$releasever/$basearch/rhel-x86_64-workstation-supplementary-6/getPackage
+enabled=1
+gpgcheck=0
+sslverify=false
+
+[rhn-tools]
+name=rhn-tools $releasever - $basearch
+baseurl=https://www.ohares.us/software/redhat/$releasever/$basearch/rhn-tools-rhel-x86_64-workstation-6/getPackage
+enabled=1
+gpgcheck=0
+sslverify=false
+

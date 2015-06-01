@@ -1,0 +1,205 @@
+<!-- $Id: sw_src.xml 180 2014-10-22 17:50:04Z rohare $ -->
+<!-- $URL: file:///usr/local/svn/admin/repotools/sw_src.xml $ -->
+<records forceCreateRepo="0">
+	<source url = "mirrors.kernel.org" hosts = "corbin.llnl.gov,slave.llnl.gov">
+		<distro name = "centos5_i386" createRepo="1" updateRepo="1" args="-s sha">
+			<repo>centos/5/os/i386</repo>
+			<repo>centos/5/updates/i386</repo>
+			<repo>centos/5/extras/i386</repo>
+			<repo>centos/5/centosplus/i386</repo>
+		</distro>
+		<distro name = "centos5_x86_64" createRepo="1" updateRepo="1" args="-s sha">
+			<repo>centos/5/os/x86_64</repo>
+			<repo>centos/5/updates/x86_64</repo>
+			<repo>centos/5/extras/x86_64</repo>
+			<repo>centos/5/centosplus/x86_64</repo>
+			<repo>centos/5/isos/x86_64</repo>
+		</distro>
+		<distro name = "centos6_i386" createRepo="1" updateRepo="1">
+			<repo>centos/6/os/i386</repo>
+			<repo>centos/6/updates/i386</repo>
+			<repo>centos/6/extras/i386</repo>
+			<repo>centos/6/centosplus/i386</repo>
+			<repo>centos/6/isos/x86_64</repo>
+		</distro>
+		<distro name = "centos6_x86_64" createRepo="1" updateRepo="1">
+			<repo>centos/6/os/x86_64</repo>
+			<repo>centos/6/updates/x86_64</repo>
+			<repo>centos/6/extras/x86_64</repo>
+			<repo>centos/6/centosplus/x86_64</repo>
+		</distro>
+		<distro name = "centos7_x86_64" createRepo="1" updateRepo="1">
+			<repo>centos/7/centosplus/x86_64</repo>
+			<repo>centos/7/extras/x86_64</repo>
+			<repo>centos/7/fasttrack/x86_64</repo>
+			<repo>centos/7/os/x86_64</repo>
+			<repo>centos/7/updates/x86_64</repo>
+			<repo>centos/7/isos/x86_64</repo>
+		</distro>
+	</source>
+	<source url = "linux.mirrors.es.net" hosts = "corbin.llnl.gov,slave.llnl.gov">
+		<distro name = "epel5" createRepo="1" updateRepo="1" args="-s sha">
+			<repo>fedora-epel/5/i386</repo>
+			<repo>fedora-epel/5/x86_64</repo>
+		</distro>
+		<distro name = "epel6" createRepo="1" updateRepo="1">
+			<repo>fedora-epel/6/i386</repo>
+			<repo>fedora-epel/6/x86_64</repo>
+		</distro>
+		<distro name = "epel7" createRepo="1" updateRepo="1">
+			<repo>fedora-epel/7/x86_64</repo>
+		</distro>
+	</source>
+	<source url = "download1.rpmfusion.org" hosts = "corbin.llnl.gov,slave.llnl.gov">
+		<distro name = "rpmfusion5" createRepo="1" updateRepo="1" args="-s sha">
+			<repo>rpmfusion/free/el/updates/5/i386</repo>
+			<repo>rpmfusion/free/el/updates/5/x86_64</repo>
+			<repo>rpmfusion/nonfree/el/updates/5/i386</repo>
+			<repo>rpmfusion/nonfree/el/updates/5/x86_64</repo>
+		</distro>
+		<distro name = "rpmfusion6" createRepo="1" updateRepo="1">
+			<repo>rpmfusion/free/el/updates/6/i386</repo>
+			<repo>rpmfusion/free/el/updates/6/x86_64</repo>
+			<repo>rpmfusion/nonfree/el/updates/6/i386</repo>
+			<repo>rpmfusion/nonfree/el/updates/6/x86_64</repo>
+		</distro>
+	</source>
+	<source url = "www.splunk.com" hosts = "corbin.llnl.gov,slave.llnl.gov">
+		<distro name = "splunk5" createRepo="1" updateRepo="0" args="-s sha">
+			<repo>VendorSoftware/Splunk/5/i386</repo>
+			<repo>VendorSoftware/Splunk/5/x86_64</repo>
+		</distro>
+		<distro name = "splunk6" createRepo="1" updateRepo="0">
+			<repo>VendorSoftware/Splunk/6/i386</repo>
+			<repo>VendorSoftware/Splunk/6/x86_64</repo>
+		</distro>
+	</source>
+	<source url = "www.ohares.us" hosts = "www.ohares.us">
+		<distro name = "ohares-centos5" createRepo="1" updateRepo="0" args="-s sha">
+			<repo>ohares/centos/5/i386</repo>
+			<repo>ohares/centos/5/noarch</repo>
+			<repo>ohares/centos/5/x86_64</repo>
+		</distro>
+		<distro name = "ohares-centos6" createRepo="1" updateRepo="0">
+			<repo>ohares/centos/6/i386</repo>
+			<repo>ohares/centos/6/noarch</repo>
+			<repo>ohares/centos/6/x86_64</repo>
+		</distro>
+	</source>
+        <source url = "corbin.llnl.gov" hosts = "corbin.llnl.gov">
+		<distro name = "gs-centos5" createRepo="1" updateRepo="0" args="-s sha">
+			<repo>gs/centos/5/i386</repo>
+			<repo>gs/centos/5/noarch</repo>
+			<repo>gs/centos/5/x86_64</repo>
+		</distro>
+		<distro name = "gs-centos6" createRepo="1" updateRepo="0">
+			<repo>gs/centos/6/i386</repo>
+			<repo>gs/centos/6/noarch</repo>
+			<repo>gs/centos/6/x86_64</repo>
+		</distro>
+		<distro name = "gs-centos7" createRepo="1" updateRepo="0">
+			<repo>gs/centos/7/i386</repo>
+			<repo>gs/centos/7/noarch</repo>
+			<repo>gs/centos/7/x86_64</repo>
+		</distro>
+		<distro name = "gs-redhat5" createRepo="1" updateRepo="0" args="-s sha">
+			<repo>gs/redhat/5/i386</repo>
+			<repo>gs/redhat/5/noarch</repo>
+			<repo>gs/redhat/5/x86_64</repo>
+		</distro>
+		<distro name = "gs-redhat6" createRepo="1" updateRepo="0">
+			<repo>gs/redhat/6/i386</repo>
+			<repo>gs/redhat/6/noarch</repo>
+			<repo>gs/redhat/6/x86_64</repo>
+		</distro>
+		<distro name = "jwics-centos5" createRepo="1" updateRepo="0" args="-s sha">
+			<repo>jwics/centos/5/i386</repo>
+			<repo>jwics/centos/5/noarch</repo>
+			<repo>jwics/centos/5/x86_64</repo>
+		</distro>
+		<distro name = "jwics-centos6" createRepo="1" updateRepo="0">
+			<repo>jwics/centos/6/i386</repo>
+			<repo>jwics/centos/6/noarch</repo>
+			<repo>jwics/centos/6/x86_64</repo>
+		</distro>
+		<distro name = "jwics-centos7" createRepo="1" updateRepo="0">
+			<repo>jwics/centos/7/i386</repo>
+			<repo>jwics/centos/7/noarch</repo>
+			<repo>jwics/centos/7/x86_64</repo>
+		</distro>
+		<distro name = "jwics-redhat5" createRepo="1" updateRepo="0" args="-s sha">
+			<repo>jwics/redhat/5/i386</repo>
+			<repo>jwics/redhat/5/noarch</repo>
+			<repo>jwics/redhat/5/x86_64</repo>
+		</distro>
+		<distro name = "jwics-redhat6" createRepo="1" updateRepo="0">
+			<repo>jwics/redhat/6/i386</repo>
+			<repo>jwics/redhat/6/noarch</repo>
+			<repo>jwics/redhat/6/x86_64</repo>
+		</distro>
+		<distro name = "hal-centos5" createRepo="1" updateRepo="0" args="-s sha">
+			<repo>hal/centos/5/i386</repo>
+			<repo>hal/centos/5/noarch</repo>
+			<repo>hal/centos/5/x86_64</repo>
+		</distro>
+		<distro name = "hal-centos6" createRepo="1" updateRepo="0">
+			<repo>hal/centos/6/i386</repo>
+			<repo>hal/centos/6/noarch</repo>
+			<repo>hal/centos/6/x86_64</repo>
+		</distro>
+		<distro name = "hal-centos7" createRepo="1" updateRepo="0">
+			<repo>hal/centos/7/i386</repo>
+			<repo>hal/centos/7/noarch</repo>
+			<repo>hal/centos/7/x86_64</repo>
+		</distro>
+		<distro name = "hal-redhat5" createRepo="1" updateRepo="0" args="-s sha">
+			<repo>hal/redhat/5/i386</repo>
+			<repo>hal/redhat/5/noarch</repo>
+			<repo>hal/redhat/5/x86_64</repo>
+		</distro>
+		<distro name = "hal-redhat6" createRepo="1" updateRepo="0">
+			<repo>hal/redhat/6/i386</repo>
+			<repo>hal/redhat/6/noarch</repo>
+			<repo>hal/redhat/6/x86_64</repo>
+		</distro>
+		<distro name = "redhat5_i386" createRepo="1" updateRepo="0" args="-s sha">
+			<repo>redhat/5/i386/epel-llnl</repo>
+			<repo>redhat/5/i386/llnl-rhn-rhel-i386-desktop-5/getPackage</repo>
+			<repo>redhat/5/i386/rhel-i386-client-5/getPackage</repo>
+			<repo>redhat/5/i386/rhel-i386-client-5-thirdparty-oracle-java/getPackage</repo>
+			<repo>redhat/5/i386/rhel-i386-client-supplementary-5/getPackage</repo>
+			<repo>redhat/5/i386/rhel-i386-client-workstation-5/getPackage</repo>
+			<repo>redhat/5/i386/rhn-tools-rhel-i386-client-5/getPackage</repo>
+		</distro>
+		<distro name = "redhat5_x86_64" createRepo="1" updateRepo="0" args="-s sha">
+			<repo>redhat/5/x86_64/epel-llnl</repo>
+			<repo>redhat/5/x86_64/llnl-rhn-rhel-x86_64-desktop-5/getPackage</repo>
+			<repo>redhat/5/x86_64/rhel-x86_64-client-5/getPackage</repo>
+			<repo>redhat/5/x86_64/rhel-x86_64-client-5-thirdparty-oracle-java/getPackage</repo>
+			<repo>redhat/5/x86_64/rhel-x86_64-client-supplementary-5/getPackage</repo>
+			<repo>redhat/5/x86_64/rhel-x86_64-client-workstation-5/getPackage</repo>
+			<repo>redhat/5/x86_64/rhn-tools-rhel-x86_64-client-5/getPackage</repo>
+		</distro>
+		<distro name = "redhat6_x86_64" createRepo="1" updateRepo="0">
+			<repo>redhat/6/x86_64/epel-llnl</repo>
+			<repo>redhat/6/x86_64/llnl-prod</repo>
+			<repo>redhat/6/x86_64/llnl-prod-noarch</repo>
+			<repo>redhat/6/x86_64/llnl-test-noarch</repo>
+			<repo>redhat/6/x86_64/rhel-x86_64-workstation-6/getPackage</repo>
+			<repo>redhat/6/x86_64/rhel-x86_64-workstation-optional-6/getPackage</repo>
+			<repo>redhat/6/x86_64/rhel-x86_64-workstation-supplementary-6/getPackage</repo>
+			<repo>redhat/6/x86_64/rhn-tools-rhel-x86_64-workstation-6/getPackage</repo>
+		</distro>
+		<distro name = "lsi5" createRepo="1" updateRepo="0" args="-s sha">
+			<repo>VendorSoftware/LSI/5/i386</repo>
+			<repo>VendorSoftware/LSI/5/noarch</repo>
+			<repo>VendorSoftware/LSI/5/x86_64</repo>
+		</distro>
+		<distro name = "lsi6" createRepo="1" updateRepo="0">
+			<repo>VendorSoftware/LSI/6/i386</repo>
+			<repo>VendorSoftware/LSI/6/noarch</repo>
+			<repo>VendorSoftware/LSI/6/x86_64</repo>
+		</distro>
+	</source>
+</records>
+

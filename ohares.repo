@@ -1,0 +1,18 @@
+# $Id: ohares.repo 187 2014-10-23 03:21:38Z rohare $
+# $URL: file:///usr/local/svn/admin/repotools/ohares.repo $
+#
+
+[ohares]
+name=ohares $releasever - $basearch
+baseurl=https://www.ohares.us/software/ohares/centos/$releasever/$basearch/
+gpgcheck=0
+enabled=1
+sslverify=false
+
+[ohares-noarch]
+name=ohares-noarch $releasever
+baseurl=https://www.ohares.us/software/ohares/centos/$releasever/noarch/
+gpgcheck=0
+enabled=1
+sslverify=false
+

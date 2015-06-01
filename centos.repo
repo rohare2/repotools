@@ -1,0 +1,37 @@
+#$Id: centos.repo 187 2014-10-23 03:21:38Z rohare $
+# $URL: file:///usr/local/svn/admin/repotools/centos.repo $
+#
+# !!!! IMPORTANT !!!!
+# Repo located on server identified by environment variable "YUM0".
+#
+
+[base]
+name=centos-base $releasever - $basearch
+baseurl=https://www.ohares.us/software/centos/$releasever/os/$basearch/
+enabled=1
+priority=1
+gpgcheck=0
+sslverify=false
+
+[updates]
+name=centos-updates $releasever - $basearch
+baseurl=https://www.ohares.us/software/centos/$releasever/updates/$basearch/
+enabled=1
+priority=1
+gpgcheck=0
+sslverify=false
+
+[centosplus]
+name=centosplus $releasever - $basearch
+baseurl=https://www.ohares.us/software/centos/$releasever/centosplus/$basearch/
+enabled=0
+priority=2
+gpgcheck=0
+sslverify=false
+
+[extras]
+name=centos-extras $releasever - $basearch
+baseurl=https://www.ohares.us/software/centos/$releasever/extras/$basearch/
+enabled=1
+gpgcheck=0
+sslverify=false
