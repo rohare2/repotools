@@ -7,7 +7,7 @@
 
 use strict;
 use Net::Ping;
-use File::Path;
+use File::Path::Tiny;
 use XML::Simple;
 
 $ENV{PATH} = "/bin:/usr/bin";    # Ensure a secure PATH
@@ -145,13 +145,12 @@ sub processRepo() {
 			}
 			print "\t\t$repo\n";
 		} else {
-			unless (-e "$dir") {
-				File::Path::Tiny::mk("$dir") || &unlock &&
+				if(!File::Path::Tiny::mk("$dir")) {
+					&unlock;
 					die "Could not make path '$dir': $!";
-
+				}
 				chmod 0755, "$dir";
 				chown -1, $gid, "$dir";
-			}
 
 			my $command = "rsync $options rsync://${url}/${repo}/ $dir";
 
