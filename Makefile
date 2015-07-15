@@ -38,7 +38,7 @@ source:
 		mkdir ${RPMBUILD}/SOURCES/${Name}; \
 	fi
 	rsync -av * ${RPMBUILD}/SOURCES/${Name}
-	tar czvf ${RPMBUILD}/SOURCES/${Source} --exclude=.svn -C ${RPMBUILD}/SOURCES ${Name}
+	tar czvf ${RPMBUILD}/SOURCES/${Source} --exclude=.git -C ${RPMBUILD}/SOURCES ${Name}
 	rm -fr ${RPMBUILD}/SOURCES/${Name}
 
 install: make_path etc repo usr_etc usr_sbin localinstall

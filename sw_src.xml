@@ -1,7 +1,7 @@
 <!-- $Id: sw_src.xml 180 2014-10-22 17:50:04Z rohare $ -->
 <!-- $URL: https://corbin.llnl.gov/repos/admin/repotools/sw_src.xml $ -->
 <records forceCreateRepo="0">
-	<source url = "mirrors.kernel.org" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.llnl-doe.ic.gov">
+	<source url = "mirrors.kernel.org" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.ipa.llnl-doe.ic.gov">
 		<distro name = "centos5_i386" createRepo="1" updateRepo="1" args="-s sha">
 			<repo>centos/5/os/i386</repo>
 			<repo>centos/5/updates/i386</repo>
@@ -37,7 +37,7 @@
 			<repo>centos/7/isos/x86_64</repo>
 		</distro>
 	</source>
-	<source url = "linux.mirrors.es.net" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.llnl-doe.ic.gov">
+	<source url = "linux.mirrors.es.net" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.ipa.llnl-doe.ic.gov">
 		<distro name = "epel5" createRepo="1" updateRepo="1" args="-s sha">
 			<repo>fedora-epel/5/i386</repo>
 			<repo>fedora-epel/5/x86_64</repo>
@@ -50,7 +50,7 @@
 			<repo>fedora-epel/7/x86_64</repo>
 		</distro>
 	</source>
-	<source url = "download1.rpmfusion.org" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.llnl-doe.ic.gov">
+	<source url = "download1.rpmfusion.org" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.ipa.llnl-doe.ic.gov">
 		<distro name = "rpmfusion5" createRepo="1" updateRepo="1" args="-s sha">
 			<repo>rpmfusion/free/el/updates/5/i386</repo>
 			<repo>rpmfusion/free/el/updates/5/x86_64</repo>
@@ -64,7 +64,7 @@
 			<repo>rpmfusion/nonfree/el/updates/6/x86_64</repo>
 		</distro>
 	</source>
-	<source url = "www.splunk.com" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.llnl-doe.ic.gov">
+	<source url = "www.splunk.com" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.ipa.llnl-doe.ic.gov">
 		<distro name = "splunk5" createRepo="1" updateRepo="0" args="-s sha">
 			<repo>VendorSoftware/Splunk/5/i386</repo>
 			<repo>VendorSoftware/Splunk/5/x86_64</repo>
@@ -78,7 +78,7 @@
 			<repo>VendorSoftware/Splunk/7/x86_64</repo>
 		</distro>
 	</source>
-     <source url = "corbin.llnl.gov" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.llnl-doe.ic.gov">
+     <source url = "corbin.llnl.gov" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.ipa.llnl-doe.ic.gov">
 		<distro name = "gs-centos5" createRepo="1" updateRepo="0" args="-s sha">
 			<repo>gs/centos/5/i386</repo>
 			<repo>gs/centos/5/noarch</repo>

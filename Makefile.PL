@@ -60,12 +60,11 @@ sub evalRelease {
 	my $net = shift;
 	my $distro = shift;
 
-	my $SvnVersion = `svnversion`;
-	chomp $SvnVersion;
-	$SvnVersion =~ s/:.*//;
-	$SvnVersion =~ s/M//;
-	$SvnVersion =~ s/\..*$//g;
-	my $release = $SvnVersion . '.' . $distro . '.' . $net;
+	my $releaseNo = 1;
+	$releaseNo =~ s/:.*//;
+	$releaseNo =~ s/M//;
+	$releaseNo =~ s/\..*$//g;
+	my $release = $releaseNo . '.' . $distro . '.' . $net;
 
 	return $release;
 }
