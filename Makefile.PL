@@ -60,7 +60,7 @@ sub evalRelease {
 	my $net = shift;
 	my $distro = shift;
 
-	my $releaseNo = 1;
+	my $releaseNo = 2;
 	$releaseNo =~ s/:.*//;
 	$releaseNo =~ s/M//;
 	$releaseNo =~ s/\..*$//g;

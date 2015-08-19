@@ -3,7 +3,7 @@
 #
 Name= zdiv-release
 Version= 1.2
-Release= 1.redhat7_x86_64.jwics
+Release= 2.redhat7_x86_64.jwics
 Distro= redhat7_x86_64
 Source= ${Name}-${Version}-${Release}.tgz
 BASE= $(shell pwd)
