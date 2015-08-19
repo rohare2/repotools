@@ -23,6 +23,7 @@ REPO_FILES= jwics.repo fedora-epel.repo lsi.repo redhat7_x86_64.repo splunk.repo
 USR_ETC_FILES= sw_src.xml
 
 USR_SBIN_FILES= repocreate.pl \
+	reposign.pl \
 	reposyncWrapper.pl \
 	repotransfer.pl \
 	repoupdate.pl

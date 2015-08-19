@@ -1,3 +1,12 @@
+#!/usr/bin/perl -w
+# $Id: $
+# $Date: $
+#
+# Sign rpm files
+
+$ENV{PATH} = "/bin:/usr/bin";    # Ensure a secure PATH
+$| = 1;
+	
 my $release = `lsb_release -sr`;
 chomp $release;
 $release =~ s/\..*//;
