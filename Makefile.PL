@@ -8,10 +8,7 @@ use Cwd;
 use XML::Simple;
 require "repotools.conf";
 
-our ($version,%baseurl,%vendor,%packager,%zdivDistroRepoList,%gsDistroRepoList);
-
-# Release number
-my $releaseNo = 3;
+our ($version,$releaseNo,%baseurl,%vendor,%packager,%zdivDistroRepoList,%gsDistroRepoList);
 
 # repo software location
 my $BASE_DIR = "/var/www/html/software";

@@ -7,7 +7,7 @@
 #
 %define Name zdiv-release
 %define Version 1.2
-%define Release 2.redhat7_x86_64.jwics
+%define Release 3.redhat7_x86_64.jwics
 
 Name: %{Name}
 Version: %{Version}

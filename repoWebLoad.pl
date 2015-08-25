@@ -10,12 +10,7 @@ use Cwd;
 use XML::Simple;
 require "repotools.conf";
 
-if ($< != 0) {
-	print "This script must be run as root\n";
-	exit (0);
-}
-
-our ($version,%baseurl,%vendor,%packager,%zdivDistroRepoList,%gsDistroRepoList);
+our ($version,$releaseNo,%baseurl,%vendor,%packager,%zdivDistroRepoList,%gsDistroRepoList);
 
 # repo software location
 my $BASE_DIR = "/var/www/html/software";
@@ -67,13 +62,35 @@ sub evalRelease {
 	my $net = shift;
 	my $distro = shift;
 
-	my $releaseNo = 2;
 	$releaseNo =~ s/:.*//;
 	$releaseNo =~ s/M//;
 	$releaseNo =~ s/\..*$//g;
 	my $release = $releaseNo . '.' . $distro . '.' . $net;
 
 	return $release;
+}
+
+sub fixRepoBaseurl {
+     my $net = shift;
+     my $url = $baseurl{$net};
+
+     opendir (DIR, ".") or die $!;
+     while (my $file = readdir(DIR)) {
+          if ($file =~ /.*\.repo/) {
+               open (INPUT, "$file") or die;
+               my @input_array=<INPUT>;
+               my $input_scalar=join("",@input_array);
+               close(INPUT);
+
+               if ($input_scalar =~ /^baseurl=https?:.*\/software/m) {
+                    $input_scalar =~ s/^baseurl=https?:.*\/software/baseurl=https:\/\/${url}\/software/gm;
+               }
+
+               open (OUTPUT, "> $file") or die;
+               print OUTPUT "$input_scalar";
+               close OUTPUT;
+          }
+     }
 }
 
 sub loadWebServer {
@@ -142,7 +159,25 @@ sub loadWebServer {
 
 # Push rpms to web server
 foreach my $net (sort @net) {
-	my ($name,$distroRepoList);
+	my ($name,$repofile,$distroRepoList);
+	fixRepoBaseurl($net);
+
+     # network definitions
+     if ($net eq 'gs') {
+		$name = 'gs-release';
+		$repofile = 'gs.repo';
+		$distroRepoList = "gsDistroRepoList";
+	}
+	if ($net eq 'hal') {
+		$name = 'zdiv-release';
+		$repofile = 'hal.repo';
+		$distroRepoList = "zdivDistroRepoList";
+	}
+	if ($net eq 'jwics') {
+		$name = 'zdiv-release';
+		$repofile = 'jwics.repo';
+		$distroRepoList = "zdivDistroRepoList";
+	}
 
 	no strict "refs";
 	foreach my $distro (sort keys %{$distroRepoList}) {
