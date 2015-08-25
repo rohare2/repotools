@@ -10,6 +10,9 @@ require "repotools.conf";
 
 our ($version,%baseurl,%vendor,%packager,%zdivDistroRepoList,%gsDistroRepoList);
 
+# Release number
+my $releaseNo = 3;
+
 # repo software location
 my $BASE_DIR = "/var/www/html/software";
 my $xmlFile = "/usr/local/etc/sw_src.xml";
@@ -60,7 +63,6 @@ sub evalRelease {
 	my $net = shift;
 	my $distro = shift;
 
-	my $releaseNo = 2;
 	$releaseNo =~ s/:.*//;
 	$releaseNo =~ s/M//;
 	$releaseNo =~ s/\..*$//g;
