@@ -21,13 +21,6 @@ if ($domainname eq "corbin.llnl.gov") {
 	die "Must be executed from a valid yum server\n";
 }
 
-# Request transfer disk location
-print "Copy to transfer disk (Y/n): ";
-my $ans = <STDIN>;
-chomp $ans;
-$ans =~ tr/a-z/A-Z/;
-$ans eq 'Y' || exit;
-
 print "Transfer disk mount point: ";
 my $mtPoint = <STDIN>;
 chomp $mtPoint;
