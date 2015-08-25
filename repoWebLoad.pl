@@ -10,6 +10,11 @@ use Cwd;
 use XML::Simple;
 require "repotools.conf";
 
+if ($< != 0) {
+	print "This script must be run as root\n";
+	exit (0);
+}
+
 our ($version,%baseurl,%vendor,%packager,%zdivDistroRepoList,%gsDistroRepoList);
 
 # repo software location

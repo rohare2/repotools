@@ -201,70 +201,6 @@ sub editSpecFile {
 	close OUTPUT;
 }
 
-sub loadWebServer {
-	my $name = shift;
-	my $release = shift;
-	my $net = shift;
-	my $dir = $ENV{"HOME"} . "/rpmbuild/RPMS/noarch";
-	my $file = sprintf("%s-%s-%s.noarch.rpm", $name,$version,$release);
-	my ($distro,$arch);
-
-	# copy to repo
-	my $repoPath = $BASE_DIR . "/" . $net;
-	my $dest = $repoPath;
-	if ($file =~ /centos5/) {
-		$distro = 'centos';
-		$arch = '5';
-		$dest = $dest . "/" . $distro . "/" . $arch;
-	}
-	if ($file =~ /centos6/) {
-		$distro = 'centos';
-		$arch = '6';
-		$dest = $dest . "/" . $distro . "/" . $arch;
-	}
-	if ($file =~ /centos7/) {
-		$distro = 'centos';
-		$arch = '7';
-		$dest = $dest . "/" . $distro . "/" . $arch;
-	}
-	if ($file =~ /redhat5/) {
-		$distro = 'redhat';
-		$arch = '5';
-		$dest = $dest . "/" . $distro . "/" . $arch;
-	}
-	if ($file =~ /redhat6/) {
-		$distro = 'redhat';
-		$arch = '6';
-		$dest = $dest . "/" . $distro . "/" . $arch;
-	}
-	if ($file =~ /redhat7/) {
-		$distro = 'redhat';
-		$arch = '7';
-		$dest = $dest . "/" . $distro . "/" . $arch;
-	}
-
-	if ($file =~ /_i386/ || $file =~ /_x86_64/) {
-		$file =~ /_i386/ && ($dest = $dest . "/i386");
-		$file =~ /_x86_64/ && ($dest = $dest . "/x86_64");
-	} else {
-		next;
-	}
-
-	`install -D -m 660 $dir/$file $dest/$file`;
-
-	# Make a link for this release
-	if ($distro eq 'redhat') {
-		my $cwd =  getcwd();
-		foreach my $version ('Server','Workstation') {
-			if ( ! -l "${repoPath}/${distro}/${arch}${version}") {
-				chdir "${repoPath}/${distro}";
-				system("ln -s $arch ${arch}${version}");
-				chdir $cwd;
-			}
-		}
-	}
-}
-
 sub fixRepoBaseurl {
 	my $net = shift;
 	my $url = $baseurl{$net};
@@ -365,7 +301,6 @@ foreach my $net (sort @net) {
 		editMakefile($name,$repofile,$net,$distro,$release,$distroRepoList);
 		editSpecFile($name,$repofile,$net,$distro,$release,$distroRepoList);
 		system("make rpmbuild");
-		loadWebServer($name,$release,$net);
 	}
 }
 
