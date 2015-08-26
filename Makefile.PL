@@ -108,6 +108,10 @@ sub editMakefile {
 		$input_scalar =~ s/^ETC_FILES=.*$/ETC_FILES= $name/m;
 	}
 
+	if ($input_scalar =~ /^GPG_FILES= /m) {
+		$input_scalar =~ s/^GPG_FILES=.*$/GPG_FILES= RPM-GPG-KEY-FIE-${systemVersion}/m;
+	}
+
 	if ($input_scalar =~ /^REPO_FILES=/m) {
 		$list = $list . " " . $repofile;
 		if ($distroRepoList eq 'gsDistroRepoList') {
@@ -172,8 +176,8 @@ sub editSpecFile {
 		$input_scalar =~ s/^Packager:.*$/Packager: $packager{$net}/gm;
 	}
 
-	if ($input_scalar =~ /RPM-GPG-KEY-FIE-/m {
-		$input_scalar =~ s/RPM-GIG-KEY-FIE-[0-9]+/RPM-GPG-KEY-FIE-${systemVersion}/gm;
+	if ($input_scalar =~ /RPM-GPG-KEY-FIE-/m) {
+		$input_scalar =~ s/RPM-GPG-KEY-FIE-.*$/RPM-GPG-KEY-FIE-${systemVersion}/gm;
 	}
 
 	open (OUTPUT, "> $file") or die;

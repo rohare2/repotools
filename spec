@@ -5,9 +5,9 @@
 #
 # Repo tools and release file
 #
-%define Name zdiv-release
+%define Name gs-release
 %define Version 1.2
-%define Release 3.redhat7_x86_64.jwics
+%define Release 5.redhat7_x86_64.gs
 
 Name: %{Name}
 Version: %{Version}
@@ -16,10 +16,10 @@ Source: %{Name}-%{Version}-%{Release}.tgz
 License: GPLv2
 Group: SystemEnvironment/Base
 BuildArch: noarch
-URL: https://leeloo.ipa.llnl-doe.ic.gov
+URL: https://corbin.llnl.gov
 Distribution: redhat7_x86_64
 Vendor: Lawrence Livermore National Laboratory
-Packager: Richard O'Hare <oharer@llnl-doe.ic.gov
+Packager: Rich O'Hare <ohare2@llnl.gov
 Provides: %{Name}, sw_src.xml
 Summary: YUM environment configuration
 %define _unpackaged_files_terminate_build 0
@@ -44,9 +44,8 @@ exit 0
 %defattr(644, root, root)
 /etc/%{Name}
 /usr/local/etc/sw_src.xml
-/etc/pki/rpm-gpg-keys/RPM-GPG-KEY-FIE-7
-/etc/yum.repos.d/jwics.repo
+/etc/pki/rpm-gpg/RPM-GPG-KEY-FIE-6
+/etc/yum.repos.d/gs.repo
 /etc/yum.repos.d/fedora-epel.repo
 /etc/yum.repos.d/lsi.repo
-/etc/yum.repos.d/redhat7_x86_64.repo
 /etc/yum.repos.d/splunk.repo

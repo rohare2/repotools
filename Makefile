@@ -1,9 +1,9 @@
 #$Id: Makefile 187 2014-10-23 03:21:38Z rohare $
 #$HeadURL: https://corbin.llnl.gov/repos/admin/repotools/Makefile $
 #
-Name= zdiv-release
+Name= gs-release
 Version= 1.2
-Release= 3.redhat7_x86_64.jwics
+Release= 5.redhat7_x86_64.gs
 Distro= redhat7_x86_64
 Source= ${Name}-${Version}-${Release}.tgz
 BASE= $(shell pwd)
@@ -17,11 +17,11 @@ REPO_DIR= /etc/yum.repos.d
 USR_ETC_DIR= /usr/local/etc
 USR_SBIN_DIR= /usr/local/sbin
 
-ETC_FILES= zdiv-release
+ETC_FILES= gs-release
 
 GPG_FILES= RPM-GPG-KEY-FIE-6
 
-REPO_FILES= jwics.repo fedora-epel.repo lsi.repo redhat7_x86_64.repo splunk.repo
+REPO_FILES= gs.repo fedora-epel.repo lsi.repo splunk.repo
 
 USR_ETC_FILES= sw_src.xml
 
@@ -44,7 +44,7 @@ source:
 	tar czvf ${RPMBUILD}/SOURCES/${Source} --exclude=.git -C ${RPMBUILD}/SOURCES ${Name}
 	rm -fr ${RPMBUILD}/SOURCES/${Name}
 
-install: make_path etc gpg repo usr_etc usr_sbin localinstall
+install: make_path etc gpg repo usr_etc usr_sbin
 
 make_path:
 	@if [ ! -d ${RPM_BUILD_ROOT}/${ETC_DIR} ]; then \
