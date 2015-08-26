@@ -65,17 +65,9 @@
 		</distro>
 	</source>
 	<source url = "www.splunk.com" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.ipa.llnl-doe.ic.gov">
-		<distro name = "splunk5" createRepo="1" updateRepo="0" args="-s sha">
-			<repo>VendorSoftware/Splunk/5/i386</repo>
-			<repo>VendorSoftware/Splunk/5/x86_64</repo>
-		</distro>
-		<distro name = "splunk6" createRepo="1" updateRepo="0">
-			<repo>VendorSoftware/Splunk/6/i386</repo>
-			<repo>VendorSoftware/Splunk/6/x86_64</repo>
-		</distro>
-		<distro name = "splunk7" createRepo="1" updateRepo="0">
-			<repo>VendorSoftware/Splunk/7/i386</repo>
-			<repo>VendorSoftware/Splunk/7/x86_64</repo>
+		<distro name = "splunk" createRepo="1" updateRepo="0" args="-s sha">
+			<repo>VendorSoftware/Splunk/i386</repo>
+			<repo>VendorSoftware/Splunk/x86_64</repo>
 		</distro>
 	</source>
      <source url = "corbin.llnl.gov" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.ipa.llnl-doe.ic.gov">
