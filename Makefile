@@ -12,11 +12,14 @@ RPMBUILD= ${HOME}/rpmbuild
 RPM_BUILD_ROOT= ${RPMBUILD}/BUILDROOT
 
 ETC_DIR= /etc
+GPG_DIR= /etc/pki/rpm-gpg
 REPO_DIR= /etc/yum.repos.d
 USR_ETC_DIR= /usr/local/etc
 USR_SBIN_DIR= /usr/local/sbin
 
 ETC_FILES= zdiv-release
+
+GPG_FILES= RPM-GPG-KEY-FIE-6
 
 REPO_FILES= jwics.repo fedora-epel.repo lsi.repo redhat7_x86_64.repo splunk.repo
 
@@ -41,11 +44,14 @@ source:
 	tar czvf ${RPMBUILD}/SOURCES/${Source} --exclude=.git -C ${RPMBUILD}/SOURCES ${Name}
 	rm -fr ${RPMBUILD}/SOURCES/${Name}
 
-install: make_path etc repo usr_etc usr_sbin localinstall
+install: make_path etc gpg repo usr_etc usr_sbin localinstall
 
 make_path:
 	@if [ ! -d ${RPM_BUILD_ROOT}/${ETC_DIR} ]; then \
 		mkdir -m 0755 -p ${RPM_BUILD_ROOT}/${ETC_DIR}; \
+	fi;
+	@if [ ! -d ${RPM_BUILD_ROOT}/${GPG_DIR} ]; then \
+		mkdir -m 0755 -p ${RPM_BUILD_ROOT}/${GPG_DIR}; \
 	fi;
 	@if [ ! -d ${RPM_BUILD_ROOT}/${REPO_DIR} ]; then \
 		mkdir -m 0755 -p ${RPM_BUILD_ROOT}/${REPO_DIR}; \
@@ -60,6 +66,11 @@ make_path:
 etc:
 	@for file in ${ETC_FILES}; do \
 		install -p $$file ${RPM_BUILD_ROOT}/${ETC_DIR}; \
+	done;
+
+gpg:
+	@for file in ${GPG_FILES}; do \
+		install -p $$file ${RPM_BUILD_ROOT}/${GPG_DIR}; \
 	done;
 
 repo:
@@ -89,6 +100,11 @@ localinstall:
 	done;
 	@chmod 640 /usr/local/etc/sw_src.xml
 	@chgrp wheel /usr/local/etc/sw_src.xml
+	@for file in ${GPG_FILES}; do \
+		install $$file ${GPG_DIR}; \
+	done;
+	@chmod 644 /etc/pki/rpm-gpg/RPM-GPG-KEY-FIE-*
+	@chgrp wheel /etc/pki/rpm-gpg/RPM-GPG-KEY-FIE-*
 	@for file in ${USR_SBIN_FILES}; do \
 		install $$file ${USR_SBIN_DIR}; \
 	done;

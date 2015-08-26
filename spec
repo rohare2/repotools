@@ -44,6 +44,7 @@ exit 0
 %defattr(644, root, root)
 /etc/%{Name}
 /usr/local/etc/sw_src.xml
+/etc/pki/rpm-gpg-keys/RPM-GPG-KEY-FIE-7
 /etc/yum.repos.d/jwics.repo
 /etc/yum.repos.d/fedora-epel.repo
 /etc/yum.repos.d/lsi.repo

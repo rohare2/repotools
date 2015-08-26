@@ -172,6 +172,10 @@ sub editSpecFile {
 		$input_scalar =~ s/^Packager:.*$/Packager: $packager{$net}/gm;
 	}
 
+	if ($input_scalar =~ /RPM-GPG-KEY-FIE-/m {
+		$input_scalar =~ s/RPM-GIG-KEY-FIE-[0-9]+/RPM-GPG-KEY-FIE-${systemVersion}/gm;
+	}
+
 	open (OUTPUT, "> $file") or die;
 	print OUTPUT "$input_scalar";
 	close OUTPUT;
