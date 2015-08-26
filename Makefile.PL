@@ -317,4 +317,4 @@ system("rpm --addsign $ENV{HOME}/rpmbuild/RPMS/noarch/*.rpm");
 
 # Copy RPMS to web server
 print "Copy RPMS to web server as root user\n";
-system("./repoWebLoad.pl all");
+system("./repoWebLoad.pl @net");

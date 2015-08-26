@@ -1,9 +1,9 @@
 #$Id: Makefile 187 2014-10-23 03:21:38Z rohare $
 #$HeadURL: https://corbin.llnl.gov/repos/admin/repotools/Makefile $
 #
-Name= gs-release
+Name= zdiv-release
 Version= 1.2
-Release= 5.redhat7_x86_64.gs
+Release= 5.redhat7_x86_64.jwics
 Distro= redhat7_x86_64
 Source= ${Name}-${Version}-${Release}.tgz
 BASE= $(shell pwd)
@@ -17,11 +17,11 @@ REPO_DIR= /etc/yum.repos.d
 USR_ETC_DIR= /usr/local/etc
 USR_SBIN_DIR= /usr/local/sbin
 
-ETC_FILES= gs-release
+ETC_FILES= zdiv-release
 
 GPG_FILES= RPM-GPG-KEY-FIE-6
 
-REPO_FILES= gs.repo fedora-epel.repo lsi.repo splunk.repo
+REPO_FILES= jwics.repo fedora-epel.repo lsi.repo redhat7_x86_64.repo splunk.repo
 
 USR_ETC_FILES= sw_src.xml
 
