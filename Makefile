@@ -3,8 +3,8 @@
 #
 Name= zdiv-release
 Version= 1.2
-Release= 3.redhat7_x86_64.jwics
-Distro= redhat7_x86_64
+Release= 4.redhat5_x86_64.jwics
+Distro= redhat5_x86_64
 Source= ${Name}-${Version}-${Release}.tgz
 BASE= $(shell pwd)
 
@@ -18,7 +18,7 @@ USR_SBIN_DIR= /usr/local/sbin
 
 ETC_FILES= zdiv-release
 
-REPO_FILES= jwics.repo fedora-epel.repo lsi.repo redhat7_x86_64.repo splunk.repo
+REPO_FILES= jwics.repo lsi.repo redhat5_x86_64.repo splunk.repo
 
 USR_ETC_FILES= sw_src.xml
 

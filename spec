@@ -7,7 +7,7 @@
 #
 %define Name zdiv-release
 %define Version 1.2
-%define Release 3.redhat7_x86_64.jwics
+%define Release 4.redhat5_x86_64.jwics
 
 Name: %{Name}
 Version: %{Version}
@@ -17,7 +17,7 @@ License: GPLv2
 Group: SystemEnvironment/Base
 BuildArch: noarch
 URL: https://leeloo.ipa.llnl-doe.ic.gov
-Distribution: redhat7_x86_64
+Distribution: redhat5_x86_64
 Vendor: Lawrence Livermore National Laboratory
 Packager: Richard O'Hare <oharer@llnl-doe.ic.gov
 Provides: %{Name}, sw_src.xml
@@ -45,7 +45,6 @@ exit 0
 /etc/%{Name}
 /usr/local/etc/sw_src.xml
 /etc/yum.repos.d/jwics.repo
-/etc/yum.repos.d/fedora-epel.repo
 /etc/yum.repos.d/lsi.repo
-/etc/yum.repos.d/redhat7_x86_64.repo
+/etc/yum.repos.d/redhat5_x86_64.repo
 /etc/yum.repos.d/splunk.repo
