@@ -7,7 +7,7 @@
 #
 %define Name zdiv-release
 %define Version 1.2
-%define Release 4.redhat5_x86_64.jwics
+%define Release 5.redhat7_x86_64.jwics
 
 Name: %{Name}
 Version: %{Version}
@@ -44,6 +44,7 @@ exit 0
 %defattr(644, root, root)
 /etc/%{Name}
 /usr/local/etc/sw_src.xml
+/etc/pki/rpm-gpg/RPM-GPG-KEY-FIE-6
 /etc/yum.repos.d/jwics.repo
 /etc/yum.repos.d/lsi.repo
 /etc/yum.repos.d/redhat5_x86_64.repo
