@@ -6,204 +6,66 @@
 #
 use strict;
 use File::Copy;
-use Cwd;
-use XML::Simple;
-require "repotools.conf";
 
-our ($version,$releaseNo,%baseurl,%vendor,%packager,%zdivDistroRepoList,%gsDistroRepoList);
-
-# repo software location
+my $debug = 0;
+my @net = ('gs','hal','jwics');
 my $BASE_DIR = "/var/www/html/software";
-my $xmlFile = "/usr/local/etc/sw_src.xml";
-my $sources = XMLin("$xmlFile", ForceArray => 1);
 
-# determine domain name
-my $hostname = `uname -n`;
-chomp $hostname;
-my $domainname = `host $hostname | cut -d " " -f1`;
-chomp $domainname;
-
-# determine local host distro
-my $systemVersion = `lsb_release -sr`;
-chomp $systemVersion;
-$systemVersion =~ s/\..*//;
-
-# determine acceptable arguments
-my @open = ('gs');
-my @high = ('hal','jwics');
-my (@all,@good_args);
-if ($domainname eq "corbin.llnl.gov" || $domainname eq "slave.llnl.gov") {
-	@all = ('gs','hal','jwics');
-	@good_args = ('all','gs','hal','high','jwics','open');
-} else {
-	die "Must be run from a known host";
-}
-
-my @net;
-
-($#ARGV >= 0 && grep(/$ARGV[0]/i, @good_args)) || $#ARGV < 0 or
-	die "unknown argument\nvalid arguments: @good_args\n";
-
-if ( $#ARGV >= 0 ) {
-	if ($ARGV[0] eq 'open') {
-		 @net = @open;
-	} elsif ($ARGV[0] eq 'high') {
-		@net = @high;
-	} elsif ($ARGV[0] eq 'all') {
-		@net = @all;
-	} else {
-		@net = @ARGV;
-	}
-} else {
-	die "You must make a network choice.\n";
-}
-
-sub evalRelease {
-	my $net = shift;
-	my $distro = shift;
-
-	$releaseNo =~ s/:.*//;
-	$releaseNo =~ s/M//;
-	$releaseNo =~ s/\..*$//g;
-	my $release = $releaseNo . '.' . $distro . '.' . $net;
-
-	return $release;
-}
-
-sub fixRepoBaseurl {
-     my $net = shift;
-     my $url = $baseurl{$net};
-
-     opendir (DIR, ".") or die $!;
-     while (my $file = readdir(DIR)) {
-          if ($file =~ /.*\.repo/) {
-               open (INPUT, "$file") or die;
-               my @input_array=<INPUT>;
-               my $input_scalar=join("",@input_array);
-               close(INPUT);
-
-               if ($input_scalar =~ /^baseurl=https?:.*\/software/m) {
-                    $input_scalar =~ s/^baseurl=https?:.*\/software/baseurl=https:\/\/${url}\/software/gm;
-               }
-
-               open (OUTPUT, "> $file") or die;
-               print OUTPUT "$input_scalar";
-               close OUTPUT;
-          }
-     }
-}
-
-sub loadWebServer {
-	my $name = shift;
-	my $release = shift;
-	my $net = shift;
-	my $dir = $ENV{"HOME"} . "/rpmbuild/RPMS/noarch";
-	my $file = sprintf("%s-%s-%s.noarch.rpm", $name,$version,$release);
-	my ($distro,$arch);
-
-	# copy to repo
-	my $repoPath = $BASE_DIR . "/" . $net;
-	my $dest = $repoPath;
-	if ($file =~ /centos5/) {
-		$distro = 'centos';
-		$arch = '5';
-		$dest = $dest . "/" . $distro . "/" . $arch;
-	}
-	if ($file =~ /centos6/) {
-		$distro = 'centos';
-		$arch = '6';
-		$dest = $dest . "/" . $distro . "/" . $arch;
-	}
-	if ($file =~ /centos7/) {
-		$distro = 'centos';
-		$arch = '7';
-		$dest = $dest . "/" . $distro . "/" . $arch;
-	}
-	if ($file =~ /redhat5/) {
-		$distro = 'redhat';
-		$arch = '5';
-		$dest = $dest . "/" . $distro . "/" . $arch;
-	}
-	if ($file =~ /redhat6/) {
-		$distro = 'redhat';
-		$arch = '6';
-		$dest = $dest . "/" . $distro . "/" . $arch;
-	}
-	if ($file =~ /redhat7/) {
-		$distro = 'redhat';
-		$arch = '7';
-		$dest = $dest . "/" . $distro . "/" . $arch;
-	}
-
-	if ($file =~ /_i386/ || $file =~ /_x86_64/) {
-		$file =~ /_i386/ && ($dest = $dest . "/i386");
-		$file =~ /_x86_64/ && ($dest = $dest . "/x86_64");
-	} else {
-		next;
-	}
-
-	`install -D -m 660 $dir/$file $dest/$file`;
-
-	# Make a link for this release
-	if ($distro eq 'redhat') {
-		my $cwd =  getcwd();
-		foreach my $version ('Server','Workstation') {
-			if ( ! -l "${repoPath}/${distro}/${arch}${version}") {
-				chdir "${repoPath}/${distro}";
-				system("ln -s $arch ${arch}${version}");
-				chdir $cwd;
-			}
-		}
+# RPMS source directory
+my $dir = $ARGV[0];
+if (not defined $dir) {
+	$dir = $ENV{"HOME"} . "/rpmbuild/RPMS/noarch";
+	print "RPM source directory [$dir]: ";
+	my $ans = <STDIN>;
+	chomp $ans;
+	if ($ans ne "") {
+		$dir = $ans;
 	}
 }
 
 # Push rpms to web server
-foreach my $net (sort @net) {
-	my ($name,$repofile,$distroRepoList);
-	fixRepoBaseurl($net);
+opendir(DIR, "$dir") or die "Can't open $dir";
+foreach my $net (@net) {
+	while (my $file = readdir(DIR)) {
+		 my ($distro,$release,$arch,$dest);
+		 if ($file =~ /^.*\.${net}\./) {
+			my $repoPath = ${BASE_DIR} . "/" . $net;
+			if ($file =~ /\.redhat5_/) {
+				$distro = 'redhat';
+				$release = '5';
+			}
+			if ($file =~ /\.redhat6_/) {
+				$distro = 'redhat';
+				$release = '6';
+			}
+			if ($file =~ /\.redhat7_/) {
+				$distro = 'redhat';
+				$release = '7';
+			}
+			if ($file =~ /\.centos5_/) {
+				$distro = 'centos';
+				$release = '5';
+			}
+			if ($file =~ /\.centos6_/) {
+				$distro = 'centos';
+				$release = '6';
+			}
+			if ($file =~ /\.centos7_/) {
+				$distro = 'centos';
+				$release = '7';
+			}
+			defined $distro or next;
 
-     # network definitions
-     if ($net eq 'gs') {
-		$name = 'gs-release';
-		$repofile = 'gs.repo';
-		$distroRepoList = "gsDistroRepoList";
-	}
-	if ($net eq 'hal') {
-		$name = 'zdiv-release';
-		$repofile = 'hal.repo';
-		$distroRepoList = "zdivDistroRepoList";
-	}
-	if ($net eq 'jwics') {
-		$name = 'zdiv-release';
-		$repofile = 'jwics.repo';
-		$distroRepoList = "zdivDistroRepoList";
-	}
+			$file =~ /_x86_64\./ && ($arch = 'x86_64');
+			$file =~ /_i386\./ && ($arch = 'i386');
 
-	no strict "refs";
-	foreach my $distro (sort keys %{$distroRepoList}) {
-		use strict "refs";
+			$dest = $BASE_DIR . "/" . $net . "/" . $distro . "/" . $release . "/" . $arch;
 
-		# Only build RHEL5 on RHEL5 host, they SHA method
-		my $buildVersion;
-		if ($distro =~ /centos5/ || $distro =~ /redhat5/) {
-			$buildVersion = '5';
-		} elsif ($distro =~ /centos6/ || $distro =~ /redhat6/) {
-			$buildVersion = '6';
-		} elsif ($distro =~ /centos7/ || $distro =~ /redhat7/) {
-			$buildVersion = '7';
-		}
-		if ($systemVersion == 5 && $buildVersion == 5) {
-			print "$distro match\n";
-		} elsif ($systemVersion >= 6 && $buildVersion >= 6) {
-			print "$distro match\n";
+			$debug && print "install -D -m 644 -o apache -g apache $dir/$file $dest/$file\n";
+			`install -D -m 644 -o apache -g apache $dir/$file $dest/$file`;
 		} else {
 			next;
 		}
-
-		defined $net && $net ne '' or die "Net not defined: $!";
-		my $release = evalRelease($net,$distro);
-
-		loadWebServer($name,$release,$net);
 	}
 }
-
+close DIR;

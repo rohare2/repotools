@@ -314,7 +314,3 @@ foreach my $net (sort @net) {
 # PGP sign the rpms
 print "Sign RPM packages\n";
 system("rpm --addsign $ENV{HOME}/rpmbuild/RPMS/noarch/*.rpm");
-
-# Copy RPMS to web server
-print "Copy RPMS to web server as root user\n";
-system("./repoWebLoad.pl @net");
