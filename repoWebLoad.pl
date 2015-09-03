@@ -7,7 +7,7 @@
 use strict;
 use File::Copy;
 
-my $debug = 0;
+my $debug = 1;
 my @net = ('gs','hal','jwics');
 my $BASE_DIR = "/var/www/html/software";
 

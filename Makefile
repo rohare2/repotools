@@ -3,7 +3,7 @@
 #
 Name= zdiv-release
 Version= 1.2
-Release= 5.redhat7_x86_64.jwics
+Release= 6.redhat7_x86_64.jwics
 Distro= redhat7_x86_64
 Source= ${Name}-${Version}-${Release}.tgz
 BASE= $(shell pwd)
@@ -28,7 +28,8 @@ USR_ETC_FILES= sw_src.xml
 USR_SBIN_FILES= repocreate.pl \
 	reposyncWrapper.pl \
 	repotransfer.pl \
-	repoupdate.pl
+	repoupdate.pl \
+	repoWebLoad.pl
 
 rpmbuild: specfile source 
 	rpmbuild -bb --buildroot ${RPM_BUILD_ROOT} ${RPMBUILD}/SPECS/${Name}-${Version}-${Release}.spec
