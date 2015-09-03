@@ -21,8 +21,6 @@ ETC_FILES= zdiv-release
 
 GPG_FILES= RPM-GPG-KEY-FIE-6
 
-REPO_FILES= jwics.repo fedora-epel.repo lsi.repo redhat7_x86_64.repo splunk.repo
-
 USR_ETC_FILES= sw_src.xml
 
 USR_SBIN_FILES= repocreate.pl \
