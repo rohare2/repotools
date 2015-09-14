@@ -4,7 +4,7 @@
 
 [zdiv-base]
 name=centos-base $releasever - $basearch
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/centos/$releasever/os/$basearch/
+baseurl=https://corbin.llnl.gov/software/centos/$releasever/os/$basearch/
 enabled=1
 priority=1
 gpgcheck=0
@@ -12,7 +12,7 @@ sslverify=false
 
 [zdiv-updates]
 name=centos-updates $releasever - $basearch
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/centos/$releasever/updates/$basearch/
+baseurl=https://corbin.llnl.gov/software/centos/$releasever/updates/$basearch/
 enabled=1
 priority=1
 gpgcheck=0
@@ -20,7 +20,7 @@ sslverify=false
 
 [zdiv-centosplus]
 name=centosplus $releasever - $basearch
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/centos/$releasever/centosplus/$basearch/
+baseurl=https://corbin.llnl.gov/software/centos/$releasever/centosplus/$basearch/
 enabled=0
 priority=2
 gpgcheck=0
@@ -28,7 +28,7 @@ sslverify=false
 
 [zdiv-extras]
 name=centos-extras $releasever - $basearch
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/centos/$releasever/extras/$basearch/
+baseurl=https://corbin.llnl.gov/software/centos/$releasever/extras/$basearch/
 enabled=1
 gpgcheck=0
 sslverify=false

@@ -4,14 +4,14 @@
 
 [jwics]
 name=jwics $releasever - $basearch
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/jwics/redhat/$releasever/$basearch/
+baseurl=https://corbin.llnl.gov/software/jwics/redhat/$releasever/$basearch/
 gpgcheck=0
 enabled=1
 sslverify=false
 
 [jwics-noarch]
 name=jwics-noarrch $releasever
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/jwics/redhat/$releasever/noarch/
+baseurl=https://corbin.llnl.gov/software/jwics/redhat/$releasever/noarch/
 gpgcheck=0
 enabled=1
 sslverify=false

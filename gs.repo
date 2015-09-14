@@ -11,7 +11,7 @@ sslverify=false
 
 [gs-noarch]
 name=GS-noarch $releasever
-baseurl=https://corbin.llnl.ic.gov/software/gs/redhat/$releasever/noarch/
+baseurl=https://corbin.llnl.gov/software/gs/redhat/$releasever/noarch/
 gpgcheck=0
 enabled=1
 sslverify=false

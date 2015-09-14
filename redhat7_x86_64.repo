@@ -3,42 +3,42 @@
 
 [llnl-rhel-x86_64-server-7]
 name=Institutional Software for RHEL Serve
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/$basearch/llnl-rhel-x86_64-server-7/getPackage/
+baseurl=https://corbin.llnl.gov/software/redhat/$releasever/$basearch/llnl-rhel-x86_64-server-7/getPackage/
 enabled=1
 gpgcheck=0
 sslverify=false
 
 [rhel-x86_64-server-7]
 name=Red Hat Enterprise Linux Server
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/$basearch/rhel-x86_64-server-7/getPackage/
+baseurl=https://corbin.llnl.gov/software/redhat/$releasever/$basearch/rhel-x86_64-server-7/getPackage/
 enabled=1
 gpgcheck=0
 sslverify=false
 
 [rhel-x86_64-server-7-thirdparty-oracle-java]
 name=Oracle Java for RHEL Server
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/$basearch/rhel-x86_64-server-7-thirdparty-oracle-java/getPackage/
+baseurl=https://corbin.llnl.gov/software/redhat/$releasever/$basearch/rhel-x86_64-server-7-thirdparty-oracle-java/getPackage/
 enabled=1
 gpgcheck=0
 sslverify=false
 
 [rhel-x86_64-server-optional-7]
 name=RHEL Server Optional
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/$basearch/rhel-x86_64-server-optional-7/getPackage/
+baseurl=https://corbin.llnl.gov/software/redhat/$releasever/$basearch/rhel-x86_64-server-optional-7/getPackage/
 enabled=1
 gpgcheck=0
 sslverify=false
 
 [rhel-x86_64-server-supplementary-7]
 name=RHEL Server Supplementary
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/$basearch/rhel-x86_64-server-supplementary-7/getPackage/
+baseurl=https://corbin.llnl.gov/software/redhat/$releasever/$basearch/rhel-x86_64-server-supplementary-7/getPackage/
 enabled=1
 gpgcheck=0
 sslverify=false
 
 [rhn-tools-rhel-x86_64-server-7]
 name=RHN Tools for RHEL Server
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/$basearch/rhn-tools-rhel-x86_64-server-7/getPackage/
+baseurl=https://corbin.llnl.gov/software/redhat/$releasever/$basearch/rhn-tools-rhel-x86_64-server-7/getPackage/
 enabled=1
 gpgcheck=0
 sslverify=false
