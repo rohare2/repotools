@@ -276,7 +276,7 @@ foreach my $net (sort @net) {
 	foreach my $distro (sort keys %{$distroRepoList}) {
 		use strict "refs";
 
-		# Only build RHEL5 on RHEL5 host, they SHA method
+		# Only build RHEL5 on RHEL5 host, they use SHA method
 		my $buildVersion;
 		if ($distro =~ /centos5/ || $distro =~ /redhat5/) {
 			$buildVersion = '5';
