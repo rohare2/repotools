@@ -3,7 +3,7 @@
 #
 Name= zdiv-release
 Version= 1.2
-Release= 7.redhat7_x86_64.jwics
+Release= 9.redhat7_x86_64.jwics
 Distro= redhat7_x86_64
 Source= ${Name}-${Version}-${Release}.tgz
 BASE= $(shell pwd)
@@ -19,7 +19,7 @@ USR_SBIN_DIR= /usr/local/sbin
 
 ETC_FILES= zdiv-release
 
-GPG_FILES= RPM-GPG-KEY-FIE-6
+GPG_FILES= RPM-GPG-KEY-FIE-7
 
 REPO_FILES= jwics.repo fedora-epel.repo lsi.repo redhat7_x86_64.repo splunk.repo
 
@@ -45,7 +45,7 @@ source:
 	tar czvf ${RPMBUILD}/SOURCES/${Source} --exclude=.git -C ${RPMBUILD}/SOURCES ${Name}
 	rm -fr ${RPMBUILD}/SOURCES/${Name}
 
-install: make_path etc gpg repo usr_etc usr_sbin
+install: make_path etc gpgfiles repo usr_etc usr_sbin
 
 make_path:
 	@if [ ! -d ${RPM_BUILD_ROOT}/${ETC_DIR} ]; then \
@@ -69,8 +69,8 @@ etc:
 		install -p $$file ${RPM_BUILD_ROOT}/${ETC_DIR}; \
 	done;
 
-gpg:
-	@for file in ${GPG_FILES}; do \
+gpgfiles:
+	for file in ${GPG_FILES}; do \
 		install -p $$file ${RPM_BUILD_ROOT}/${GPG_DIR}; \
 	done;
 

@@ -75,6 +75,7 @@ sub editMakefile {
 	my $distro = shift;
 	my $release = shift;
 	my $distroRepoList = shift;
+	my $buildVersion = shift;
 	my $file = 'Makefile';
 	my $list = '';
 
@@ -109,7 +110,7 @@ sub editMakefile {
 	}
 
 	if ($input_scalar =~ /^GPG_FILES= /m) {
-		$input_scalar =~ s/^GPG_FILES=.*$/GPG_FILES= RPM-GPG-KEY-FIE-${systemVersion}/m;
+		$input_scalar =~ s/^GPG_FILES=.*$/GPG_FILES= RPM-GPG-KEY-FIE-${buildVersion}/m;
 	}
 
 	if ($input_scalar =~ /^REPO_FILES=/m) {
@@ -140,6 +141,7 @@ sub editSpecFile {
 	my $distro = shift;
 	my $release = shift;
 	my $distroRepoList = shift;
+	my $buildVersion = shift;
 	my $file = 'spec';
 
 	copy("${file}.template","$file") or die "Copy failed: $!";
@@ -177,7 +179,7 @@ sub editSpecFile {
 	}
 
 	if ($input_scalar =~ /RPM-GPG-KEY-FIE-/m) {
-		$input_scalar =~ s/RPM-GPG-KEY-FIE-.*$/RPM-GPG-KEY-FIE-${systemVersion}/gm;
+		$input_scalar =~ s/RPM-GPG-KEY-FIE-.*$/RPM-GPG-KEY-FIE-${buildVersion}/gm;
 	}
 
 	open (OUTPUT, "> $file") or die;
@@ -305,8 +307,8 @@ foreach my $net (sort @net) {
 		print OUTPUT ("${file} ${version}-${release}\n");
 		close OUTPUT;
 
-		editMakefile($name,$repofile,$net,$distro,$release,$distroRepoList);
-		editSpecFile($name,$repofile,$net,$distro,$release,$distroRepoList);
+		editMakefile($name,$repofile,$net,$distro,$release,$distroRepoList,$buildVersion);
+		editSpecFile($name,$repofile,$net,$distro,$release,$distroRepoList,$buildVersion);
 		system("make rpmbuild");
 	}
 }

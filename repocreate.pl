@@ -19,7 +19,7 @@ if ($< != 0) {
 }
 
 # Configureable options
-my $Width = 8;  # Maximum number of forkes
+my $Width = 12;  # Maximum number of forkes
 my $LockFile = "/tmp/lockfile";
 my $ForkCount = 0;
 my $args = '';
