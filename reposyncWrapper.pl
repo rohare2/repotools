@@ -10,27 +10,32 @@ use strict;
 
 my $distro = `lsb_release -si`;
 chomp $distro;
-$distro =~ /RedHat/ && ($distro = 'redhat');
+$distro =~ /RedHat/ || die "Not a RedHat system";
+$distro =~ /RedHatEnterpriseWorkstation/ && ($distro = 'Workstation');
+$distro =~ /RedHatEnterpriseServer/ && ($distro = 'Server');
 
 my $release = `lsb_release -sr`;
 chomp $release;
 $release =~ s/\..*//;
+
+$distro = $release . $distro;
+
 my $arch = `uname -i`;
 chomp $arch;
 
 my $message = <<END;
-The /software directory does not exist.
+The /var/www/html/software directory does not exist.
 This could mean you are on the wrong machine,
 or it could mean you have not prepared this
 system for repo syncronization.
 
 Note, this script should be executed from a
 system joined to a Red Hat Satalite and the
-/software directory should be NFS mounted 
+software directory should be NFS mounted 
 from your YUM server, or the YUM server it self.
 END
 
-my $repoPath = "/var/www/html/software";
+my $repoPath = "/var/www/html/software/redhat";
 ! -d "$repoPath" && die $message;
 
 my $dest = "${repoPath}/${distro}/${release}/${arch}";
