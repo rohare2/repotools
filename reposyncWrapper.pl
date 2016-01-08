@@ -13,6 +13,7 @@ chomp $distro;
 $distro =~ /RedHat/ || die "Not a RedHat system";
 $distro =~ /RedHatEnterpriseWorkstation/ && ($distro = 'Workstation');
 $distro =~ /RedHatEnterpriseServer/ && ($distro = 'Server');
+$distro =~ /RedHatEnterpriseClient/ && ($distro = 'Client');
 
 my $release = `lsb_release -sr`;
 chomp $release;
