@@ -18,7 +18,7 @@ my $release = `lsb_release -sr`;
 chomp $release;
 $release =~ s/\..*//;
 
-$releasever = $release . $id;
+my $releasever = $release . $id;
 
 my $arch = `uname -i`;
 chomp $arch;
@@ -59,7 +59,7 @@ foreach my $line (@list) {
 	my ($repo, $desc) = split(' ', $line);
 
 	# do the repo sync
-	if ($repo =~ "^epel-" || $repo =~ "^llnl-" || $repo =~ "rhel-" || $repo =! "rhn-") { 
+	if ($repo =~ "^epel-" || $repo =~ "^llnl-" || $repo =~ "rhel-" || $repo =~ "rhn-") { 
 		print "Processing: ${repo}\n";
 		system("/usr/bin/reposync -d -n -l --repoid=${repo} --download_path=${dest} > /dev/null");
 	}
