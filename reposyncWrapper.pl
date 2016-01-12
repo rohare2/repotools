@@ -8,17 +8,17 @@
 
 use strict;
 
-my $distro = `lsb_release -si`;
-chomp $distro;
-$distro =~ /RedHat/ || die "Not a RedHat system";
-$distro =~ /RedHatEnterpriseWorkstation/ && ($distro = 'Workstation');
-$distro =~ /RedHatEnterpriseServer/ && ($distro = 'Server');
+my $id = `lsb_release -si`;
+chomp $id;
+$id =~ /RedHat/ || die "Not a RedHat system";
+$id =~ /RedHatEnterpriseWorkstation/ && ($id = 'Workstation');
+$id =~ /RedHatEnterpriseServer/ && ($id = 'Server');
 
 my $release = `lsb_release -sr`;
 chomp $release;
 $release =~ s/\..*//;
 
-$distro = $release . $distro;
+$releasever = $release . $id;
 
 my $arch = `uname -i`;
 chomp $arch;
@@ -38,7 +38,7 @@ END
 my $repoPath = "/var/www/html/software/redhat";
 ! -d "$repoPath" && die $message;
 
-my $dest = "${repoPath}/${distro}/${release}/${arch}";
+my $dest = "${repoPath}/${releasever}/${release}/${arch}";
 print "Destination: $dest\n";
 
 if ( ! -d "$dest") {
@@ -59,23 +59,10 @@ foreach my $line (@list) {
 	my ($repo, $desc) = split(' ', $line);
 
 	# do the repo sync
-	if ($repo =~ "^epel" || $repo =~ "^gs" || $repo =~ "^LSI" || $repo =~ "splunk") { 
-		# Make a link for this releasever
-		&mklink;
-	} else {
+	if ($repo =~ "^epel-" || $repo =~ "^llnl-" || $repo =~ "rhel-" || $repo =! "rhn-") { 
 		print "Processing: ${repo}\n";
 		system("/usr/bin/reposync -d -n -l --repoid=${repo} --download_path=${dest} > /dev/null");
-		# Make a link for this releasever
-		&mklink;
 	}
 
 }
 
-sub mklink() {
-	my $releasever = `rpm -q --qf "%{version}" -f /etc/redhat-release`;
-	if ( ! -l "${repoPath}/${distro}/${releasever}") {
-		chdir "${repoPath}/${distro}";
-		system("ln -s $release $releasever");
-		chdir;
-	}
-}

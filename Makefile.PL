@@ -8,7 +8,7 @@ use Cwd;
 use XML::Simple;
 require "repotools.conf";
 
-our ($version,$releaseNo,%baseurl,%vendor,%packager,%zdivDistroRepoList,%gsDistroRepoList);
+our ($version,$releaseNo,%baseurl,%vendor,%packager,%zdivDistroRepoList);
 
 # repo software location
 my $BASE_DIR = "/var/www/html/software";
@@ -115,11 +115,7 @@ sub editMakefile {
 
 	if ($input_scalar =~ /^REPO_FILES=/m) {
 		$list = $list . " " . $repofile;
-		if ($distroRepoList eq 'gsDistroRepoList') {
-			foreach my $entry (@{$gsDistroRepoList{$distro}}) {
-				$list = $list . " " . $entry;
-			}
-		} elsif ($distroRepoList eq 'zdivDistroRepoList') {
+		if ($distroRepoList eq 'zdivDistroRepoList') {
 			foreach my $entry (@{$zdivDistroRepoList{$distro}}) {
 				$list = $list . " " . $entry;
 			}
@@ -188,11 +184,7 @@ sub editSpecFile {
 
 	open (OUTPUT, ">>$file") or die;
 	print OUTPUT ("/etc/yum.repos.d/$repofile\n");
-	if ($distroRepoList eq 'gsDistroRepoList') {
-		foreach my $entry (@{$gsDistroRepoList{$distro}}) {
-			print OUTPUT ("/etc/yum.repos.d/$entry\n");
-		}
-	} elsif ($distroRepoList eq 'zdivDistroRepoList') {
+	if ($distroRepoList eq 'zdivDistroRepoList') {
 		foreach my $entry (@{$zdivDistroRepoList{$distro}}) {
 			print OUTPUT ("/etc/yum.repos.d/$entry\n");
 		}
@@ -261,7 +253,7 @@ foreach my $net (sort @net) {
 	if ($net eq 'gs') {
 		$name = 'gs-release';
 		$repofile = 'gs.repo';
-		$distroRepoList = "gsDistroRepoList";
+		$distroRepoList = "zdivDistroRepoList";
 	}
 	if ($net eq 'hal') {
 		$name = 'zdiv-release';

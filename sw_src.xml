@@ -156,41 +156,49 @@
 			<repo>hal/redhat/7/noarch</repo>
 			<repo>hal/redhat/7/x86_64</repo>
 		</distro>
-		<distro name = "redhat5_i386" createRepo="1" updateRepo="0" args="-s sha">
-			<repo>redhat/5/i386/epel-llnl</repo>
-			<repo>redhat/5/i386/llnl-rhn-rhel-i386-desktop-5/getPackage</repo>
-			<repo>redhat/5/i386/rhel-i386-client-5/getPackage</repo>
-			<repo>redhat/5/i386/rhel-i386-client-5-thirdparty-oracle-java/getPackage</repo>
-			<repo>redhat/5/i386/rhel-i386-client-supplementary-5/getPackage</repo>
-			<repo>redhat/5/i386/rhel-i386-client-workstation-5/getPackage</repo>
-			<repo>redhat/5/i386/rhn-tools-rhel-i386-client-5/getPackage</repo>
+		<distro name = "redhat5_client_i386" createRepo="1" updateRepo="0" args="-s sha">
+			<repo>redhat/5Client/5/i386/epel-llnl</repo>
+			<repo>redhat/5Client/5/i386/llnl-rhn-rhel-i386-desktop-5/getPackage</repo>
+			<repo>redhat/5Client/5/i386/rhel-i386-client-5/getPackage</repo>
+			<repo>redhat/5Client/5/i386/rhel-i386-client-5-thirdparty-oracle-java/getPackage</repo>
+			<repo>redhat/5Client/5/i386/rhel-i386-client-supplementary-5/getPackage</repo>
+			<repo>redhat/5Client/5/i386/rhel-i386-client-workstation-5/getPackage</repo>
+			<repo>redhat/5Client/5/i386/rhn-tools-rhel-i386-client-5/getPackage</repo>
 		</distro>
-		<distro name = "redhat5_x86_64" createRepo="1" updateRepo="0" args="-s sha">
-			<repo>redhat/5/x86_64/epel-llnl</repo>
-			<repo>redhat/5/x86_64/llnl-rhn-rhel-x86_64-desktop-5/getPackage</repo>
-			<repo>redhat/5/x86_64/rhel-x86_64-client-5/getPackage</repo>
-			<repo>redhat/5/x86_64/rhel-x86_64-client-5-thirdparty-oracle-java/getPackage</repo>
-			<repo>redhat/5/x86_64/rhel-x86_64-client-supplementary-5/getPackage</repo>
-			<repo>redhat/5/x86_64/rhel-x86_64-client-workstation-5/getPackage</repo>
-			<repo>redhat/5/x86_64/rhn-tools-rhel-x86_64-client-5/getPackage</repo>
+		<distro name = "redhat5_client_x86_64" createRepo="1" updateRepo="0" args="-s sha">
+			<repo>redhat/5Client/5/x86_64/epel-llnl</repo>
+			<repo>redhat/5Client/5/x86_64/llnl-rhn-rhel-x86_64-desktop-5/getPackage</repo>
+			<repo>redhat/5Client/5/x86_64/rhel-x86_64-client-5/getPackage</repo>
+			<repo>redhat/5Client/5/x86_64/rhel-x86_64-client-5-thirdparty-oracle-java/getPackage</repo>
+			<repo>redhat/5Client/5/x86_64/rhel-x86_64-client-supplementary-5/getPackage</repo>
+			<repo>redhat/5Client/5/x86_64/rhel-x86_64-client-workstation-5/getPackage</repo>
+			<repo>redhat/5Client/5/x86_64/rhn-tools-rhel-x86_64-client-5/getPackage</repo>
 		</distro>
-		<distro name = "redhat6_x86_64" createRepo="1" updateRepo="0">
-			<repo>redhat/6/x86_64/epel-llnl</repo>
-			<repo>redhat/6/x86_64/llnl-prod</repo>
-			<repo>redhat/6/x86_64/llnl-prod-noarch</repo>
-			<repo>redhat/6/x86_64/llnl-test-noarch</repo>
-			<repo>redhat/6/x86_64/rhel-x86_64-workstation-6/getPackage</repo>
-			<repo>redhat/6/x86_64/rhel-x86_64-workstation-optional-6/getPackage</repo>
-			<repo>redhat/6/x86_64/rhel-x86_64-workstation-supplementary-6/getPackage</repo>
-			<repo>redhat/6/x86_64/rhn-tools-rhel-x86_64-workstation-6/getPackage</repo>
+		<distro name = "redhat6_workstationx86_64" createRepo="1" updateRepo="0">
+			<repo>redhat/6Workstation/6/x86_64/epel-llnl</repo>
+			<repo>redhat/6Workstation/6/x86_64/llnl-prod</repo>
+			<repo>redhat/6Workstation/6/x86_64/llnl-prod-noarch</repo>
+			<repo>redhat/6Workstation/6/x86_64/llnl-test-noarch</repo>
+			<repo>redhat/6Workstation/6/x86_64/rhel-x86_64-workstation-6/getPackage</repo>
+			<repo>redhat/6Workstation/6/x86_64/rhel-x86_64-workstation-optional-6/getPackage</repo>
+			<repo>redhat/6Workstation/6/x86_64/rhel-x86_64-workstation-supplementary-6/getPackage</repo>
+			<repo>redhat/6Workstation/6/x86_64/rhn-tools-rhel-x86_64-workstation-6/getPackage</repo>
 		</distro>
-		<distro name = "redhat7_x86_64" createRepo="1" updateRepo="0">
-			<repo>redhat/7/x86_64/llnl-rhel-x86_64-server-7/getPackage</repo>
-			<repo>redhat/7/x86_64/rhel-x86_64-server-7/getPackage</repo>
-			<repo>redhat/7/x86_64/rhel-x86_64-server-7-thirdparty-oracle-java/getPackage</repo>
-			<repo>redhat/7/x86_64/rhel-x86_64-server-optional-7/getPackage</repo>
-			<repo>redhat/7/x86_64/rhel-x86_64-server-supplementary-7/getPackage</repo>
-			<repo>redhat/7/x86_64/rhn-tools-rhel-x86_64-server-7/getPackage</repo>
+		<distro name = "redhat7_server_x86_64" createRepo="1" updateRepo="0">
+			<repo>redhat/7Server/7/x86_64/llnl-rhel-x86_64-server-7/getPackage</repo>
+			<repo>redhat/7Server/7/x86_64/rhel-x86_64-server-7/getPackage</repo>
+			<repo>redhat/7Server/7/x86_64/rhel-x86_64-server-7-thirdparty-oracle-java/getPackage</repo>
+			<repo>redhat/7Server/7/x86_64/rhel-x86_64-server-optional-7/getPackage</repo>
+			<repo>redhat/7Server/7/x86_64/rhel-x86_64-server-supplementary-7/getPackage</repo>
+			<repo>redhat/7Server/7/x86_64/rhn-tools-rhel-x86_64-server-7/getPackage</repo>
+		</distro>
+		<distro name = "redhat7_workstation_x86_64" createRepo="1" updateRepo="0">
+			<repo>redhat/7Workstation/7/x86_64/llnl-rhel-x86_64-server-7/getPackage</repo>
+			<repo>redhat/7Workstation/7/x86_64/rhel-x86_64-server-7/getPackage</repo>
+			<repo>redhat/7Workstation/7/x86_64/rhel-x86_64-server-7-thirdparty-oracle-java/getPackage</repo>
+			<repo>redhat/7Workstation/7/x86_64/rhel-x86_64-server-optional-7/getPackage</repo>
+			<repo>redhat/7Workstation/7/x86_64/rhel-x86_64-server-supplementary-7/getPackage</repo>
+			<repo>redhat/7Workstation/7/x86_64/rhn-tools-rhel-x86_64-server-7/getPackage</repo>
 		</distro>
 		<distro name = "lsi5" createRepo="1" updateRepo="0" args="-s sha">
 			<repo>VendorSoftware/LSI/5/i386</repo>
