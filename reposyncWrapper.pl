@@ -11,8 +11,9 @@ use strict;
 my $id = `lsb_release -si`;
 chomp $id;
 $id =~ /RedHat/ || die "Not a RedHat system";
-$id =~ /RedHatEnterpriseWorkstation/ && ($id = 'Workstation');
+$id =~ /RedHatEnterpriseClient/ && ($id = 'Client');
 $id =~ /RedHatEnterpriseServer/ && ($id = 'Server');
+$id =~ /RedHatEnterpriseWorkstation/ && ($id = 'Workstation');
 
 my $release = `lsb_release -sr`;
 chomp $release;
