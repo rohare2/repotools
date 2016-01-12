@@ -251,7 +251,7 @@ foreach my $net (sort @net) {
 
 	# network definitions
 	if ($net eq 'gs') {
-		$name = 'gs-release';
+		$name = 'zdiv-release';
 		$repofile = 'gs.repo';
 		$distroRepoList = "zdivDistroRepoList";
 	}
