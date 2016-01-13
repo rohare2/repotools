@@ -2,9 +2,9 @@
 #$HeadURL: https://corbin.llnl.gov/repos/admin/repotools/Makefile $
 #
 Name= zdiv-release
-Version= 1.2
-Release= 9.redhat7_x86_64.jwics
-Distro= redhat7_x86_64
+Version= 1.3
+Release= 1.redhat7_workstation_x86_64.jwics
+Distro= redhat7_workstation_x86_64
 Source= ${Name}-${Version}-${Release}.tgz
 BASE= $(shell pwd)
 
@@ -21,7 +21,7 @@ ETC_FILES= zdiv-release
 
 GPG_FILES= RPM-GPG-KEY-FIE-7
 
-REPO_FILES= jwics.repo fedora-epel.repo lsi.repo redhat7_x86_64.repo splunk.repo
+REPO_FILES= jwics.repo llnl-epel-7.repo lsi.repo redhat7_workstation_x86_64.repo splunk.repo
 
 USR_ETC_FILES= sw_src.xml
 

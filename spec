@@ -6,8 +6,8 @@
 # Repo tools and release file
 #
 %define Name zdiv-release
-%define Version 1.2
-%define Release 7.redhat7_x86_64.jwics
+%define Version 1.3
+%define Release 1.redhat7_workstation_x86_64.jwics
 
 Name: %{Name}
 Version: %{Version}
@@ -17,7 +17,7 @@ License: GPLv2
 Group: SystemEnvironment/Base
 BuildArch: noarch
 URL: https://leeloo.ipa.llnl-doe.ic.gov
-Distribution: redhat7_x86_64
+Distribution: redhat7_workstation_x86_64
 Vendor: Lawrence Livermore National Laboratory
 Packager: Richard O'Hare <oharer@llnl-doe.ic.gov
 Provides: %{Name}, sw_src.xml
@@ -44,9 +44,9 @@ exit 0
 %defattr(644, root, root)
 /etc/%{Name}
 /usr/local/etc/sw_src.xml
-/etc/pki/rpm-gpg/RPM-GPG-KEY-FIE-6
+/etc/pki/rpm-gpg/RPM-GPG-KEY-FIE-7
 /etc/yum.repos.d/jwics.repo
-/etc/yum.repos.d/fedora-epel.repo
+/etc/yum.repos.d/llnl-epel-7.repo
 /etc/yum.repos.d/lsi.repo
-/etc/yum.repos.d/redhat7_x86_64.repo
+/etc/yum.repos.d/redhat7_workstation_x86_64.repo
 /etc/yum.repos.d/splunk.repo
