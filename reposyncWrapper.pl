@@ -58,7 +58,7 @@ foreach my $line (@list) {
 	$line =~ '^repo id' && next;
 	$line =~ '^repolist' && next;
 	my ($repo, $desc) = split(' ', $line);
-	$repo =~ s/\x86_64//;
+	$repo =~ s/\/x86_64//;
 
 	# do the repo sync
 	print "Processing: ${repo}\n";
