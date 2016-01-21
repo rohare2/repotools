@@ -8,51 +8,30 @@ enabled=1
 gpgcheck=1
 sslverify=false
 
-[llnl-prod]
-name=llnl-prod $releasever - $basearch
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/6/$basearch/llnl-prod/
+[rhel-x86_64-workstation-6]
+name=rhel-x86_64-workstation-6 $releasever - $basearch
+baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/6/$basearch/rhel-x86_64-workstation-6/
 enabled=1
 gpgcheck=1
 sslverify=false
 
-[llnl-prod-noarch]
-name=llnl-prod-noarch $releasever - $basearch
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/6/$basearch/llnl-prod-noarch/
+[rhel-x86_64-workstation-optional-6]
+name=rhel-x86_64-workstation-optional-6 $releasever - $basearch
+baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/6/$basearch/rhel-x86_64-workstation-optional-6/
 enabled=1
 gpgcheck=1
 sslverify=false
 
-[llnl-test-noarch]
-name=llnl-test-noarch $releasever - $basearch
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/6/$basearch/llnl-test-noarch/
-enabled=0
-gpgcheck=1
-sslverify=false
-
-[rhel6-workstation]
-name=rhel6-workstation $releasever - $basearch
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/6/$basearch/rhel-x86_64-workstation-6/getPackage
+[rhel-x86_64-workstation-supplementary-6]
+name=rhel-x86_64-workstation-supplementary-6 $releasever - $basearch
+baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/6/$basearch/rhel-x86_64-workstation-supplementary-6/
 enabled=1
 gpgcheck=1
 sslverify=false
 
-[rhel6-optional]
-name=rhel6-optional $releasever - $basearch
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/6/$basearch/rhel-x86_64-workstation-optional-6/getPackage
-enabled=1
-gpgcheck=1
-sslverify=false
-
-[rhel6-supplementary]
-name=rhel6-supplementary $releasever - $basearch
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/6/$basearch/rhel-x86_64-workstation-supplementary-6/getPackage
-enabled=1
-gpgcheck=1
-sslverify=false
-
-[rhn-tools]
-name=rhn-tools $releasever - $basearch
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/6/$basearch/rhn-tools-rhel-x86_64-workstation-6/getPackage
+[rhn-tools-rhel-x86_64-workstation-6]
+name=rhn-tools-rhel-x86_64-workstation-6 $releasever - $basearch
+baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/6/$basearch/rhn-tools-rhel-x86_64-workstation-6
 enabled=1
 gpgcheck=1
 sslverify=false
