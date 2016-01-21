@@ -249,22 +249,20 @@ foreach my $net (sort @net) {
 	my ($name,$repofile,$distroRepoList);
 	fixRepoBaseurl($net);
 
+	$name = 'zdiv-release';
+	$distroRepoList = "zdivDistroRepoList";
+
 	# network definitions
 	if ($net eq 'gs') {
-		$name = 'zdiv-release';
 		$repofile = 'gs.repo';
-		$distroRepoList = "zdivDistroRepoList";
 	}
 	if ($net eq 'hal') {
-		$name = 'zdiv-release';
 		$repofile = 'hal.repo';
-		$distroRepoList = "zdivDistroRepoList";
 	}
 	if ($net eq 'jwics') {
-		$name = 'zdiv-release';
 		$repofile = 'jwics.repo';
-		$distroRepoList = "zdivDistroRepoList";
 	}
+
 
 	no strict "refs";
 	foreach my $distro (sort keys %{$distroRepoList}) {

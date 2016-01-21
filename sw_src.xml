@@ -182,6 +182,7 @@
 			<repo>redhat/6Workstation/6/x86_64/rhn-tools-rhel-x86_64-workstation-6</repo>
 		</distro>
 		<distro name = "redhat7_server_x86_64" createRepo="1" updateRepo="0">
+			<repo>redhat/7Server/7/x86_64/epel-llnl</repo>
 			<repo>redhat/7Server/7/x86_64/llnl-rhel-x86_64-server-7/getPackage</repo>
 			<repo>redhat/7Server/7/x86_64/rhel-x86_64-server-7/getPackage</repo>
 			<repo>redhat/7Server/7/x86_64/rhel-x86_64-server-7-thirdparty-oracle-java/getPackage</repo>

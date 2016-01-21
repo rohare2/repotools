@@ -4,14 +4,14 @@
 
 [LSI]
 name=lsi
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/VendorSoftware/LSI/$releasever/$basearch
+baseurl=https://corbin.llnl.gov/software/VendorSoftware/LSI/$releasever/$basearch
 enabled=1
 gpgcheck=0
 sslverify=false
 
 [LSI-noarch]
 name=lsi - noarch
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/VendorSoftware/LSI/$releasever/noarch
+baseurl=https://corbin.llnl.gov/software/VendorSoftware/LSI/$releasever/noarch
 enabled=1
 gpgcheck=0
 sslverify=false

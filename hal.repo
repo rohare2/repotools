@@ -4,14 +4,14 @@
 
 [hal]
 name=hal $releasever - $basearch
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/hal/redhat/$releasever/$basearch/
+baseurl=https://corbin.llnl.gov/software/hal/redhat/$releasever/$basearch/
 gpgcheck=1
 enabled=1
 sslverify=false
 
 [hal-noarch]
 name=hal-noarrch $releasever
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/hal/redhat/$releasever/noarch/
+baseurl=https://corbin.llnl.gov/software/hal/redhat/$releasever/noarch/
 gpgcheck=1
 enabled=1
 sslverify=false
