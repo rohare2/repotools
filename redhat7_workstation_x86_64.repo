@@ -1,44 +1,51 @@
 # $Id: redhat7_x86_64.repo 267 2015-05-28 15:56:43Z ohare2 $
 # $URL: https://corbin.llnl.gov/repos/admin/repotools/redhat7_x86_64.repo $
 
-[llnl-rhel-x86_64-server-7]
-name=Institutional Software for RHEL Serve
-baseurl=https://corbin.llnl.gov/software/redhat/$releasever/7/$basearch/llnl-rhel-x86_64-server-7/getPackage/
+[epel-llnl]
+name=Extra Packages for Enterprise Linux 7 - $basearch
+baseurl=https://corbin.llnl.gov/software/redhat/$releasever/7/$basearch/epel-llnl/
 enabled=1
 gpgcheck=1
 sslverify=false
 
-[rhel-x86_64-server-7]
-name=Red Hat Enterprise Linux Server
-baseurl=https://corbin.llnl.gov/software/redhat/$releasever/7/$basearch/rhel-x86_64-server-7/getPackage/
+[llnl-rhel-x86_64-workstation-7]
+name=Institutional Software for RHEL Workstation
+baseurl=https://corbin.llnl.gov/software/redhat/$releasever/7/$basearch/llnl-rhel-x86_64-workstation-7/getPackage/
 enabled=1
 gpgcheck=1
 sslverify=false
 
-[rhel-x86_64-server-7-thirdparty-oracle-java]
-name=Oracle Java for RHEL Server
-baseurl=https://corbin.llnl.gov/software/redhat/$releasever/7/$basearch/rhel-x86_64-server-7-thirdparty-oracle-java/getPackage/
+[rhel-x86_64-workstation-7]
+name=Red Hat Enterprise Linux Workstation
+baseurl=https://corbin.llnl.gov/software/redhat/$releasever/7/$basearch/rhel-x86_64-workstation-7/getPackage/
 enabled=1
 gpgcheck=1
 sslverify=false
 
-[rhel-x86_64-server-optional-7]
-name=RHEL Server Optional
-baseurl=https://corbin.llnl.gov/software/redhat/$releasever/7/$basearch/rhel-x86_64-server-optional-7/getPackage/
+[rhel-x86_64-workstation-7-thirdparty-oracle-java]
+name=Oracle Java for RHEL Workstation
+baseurl=https://corbin.llnl.gov/software/redhat/$releasever/7/$basearch/rhel-x86_64-workstation-7-thirdparty-oracle-java/getPackage/
 enabled=1
 gpgcheck=1
 sslverify=false
 
-[rhel-x86_64-server-supplementary-7]
-name=RHEL Server Supplementary
-baseurl=https://corbin.llnl.gov/software/redhat/$releasever/7/$basearch/rhel-x86_64-server-supplementary-7/getPackage/
+[rhel-x86_64-workstation-optional-7]
+name=RHEL Workstation Optional
+baseurl=https://corbin.llnl.gov/software/redhat/$releasever/7/$basearch/rhel-x86_64-workstation-optional-7/getPackage/
 enabled=1
 gpgcheck=1
 sslverify=false
 
-[rhn-tools-rhel-x86_64-server-7]
-name=RHN Tools for RHEL Server
-baseurl=https://corbin.llnl.gov/software/redhat/$releasever/7/$basearch/rhn-tools-rhel-x86_64-server-7/getPackage/
+[rhel-x86_64-workstation-supplementary-7]
+name=RHEL Workstation Supplementary
+baseurl=https://corbin.llnl.gov/software/redhat/$releasever/7/$basearch/rhel-x86_64-workstation-supplementary-7/getPackage/
+enabled=1
+gpgcheck=1
+sslverify=false
+
+[rhn-tools-rhel-x86_64-workstation-7]
+name=RHN Tools for RHEL Workstation
+baseurl=https://corbin.llnl.gov/software/redhat/$releasever/7/$basearch/rhn-tools-rhel-x86_64-workstation-7/getPackage/
 enabled=1
 gpgcheck=1
 sslverify=false
