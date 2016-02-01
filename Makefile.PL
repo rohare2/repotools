@@ -29,13 +29,8 @@ $systemVersion =~ s/\..*//;
 # determine acceptable arguments
 my @open = ('gs');
 my @high = ('hal','jwics');
-my (@all,@good_args);
-if ($domainname eq "corbin.llnl.gov" || $domainname eq "slave.llnl.gov") {
-	@all = ('gs','hal','jwics');
-	@good_args = ('all','gs','hal','high','jwics','open');
-} else {
-	die "Must be run from a known host";
-}
+my @all = ('gs','hal','jwics');
+my @good_args = ('all','gs','hal','high','jwics','open');
 
 my @net;
 
