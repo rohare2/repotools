@@ -15,11 +15,9 @@ my $BASE_DIR = "/var/www/html/software";
 my $xmlFile = "/usr/local/etc/sw_src.xml";
 my $sources = XMLin("$xmlFile", ForceArray => 1);
 
-# determine domain name
+# determine hostname 
 my $hostname = `uname -n`;
 chomp $hostname;
-my $domainname = `host $hostname | cut -d " " -f1`;
-chomp $domainname;
 
 # determine local host distro
 my $systemVersion = `lsb_release -sr`;
@@ -29,8 +27,20 @@ $systemVersion =~ s/\..*//;
 # determine acceptable arguments
 my @open = ('gs');
 my @high = ('hal','jwics');
-my @all = ('gs','hal','jwics');
-my @good_args = ('all','gs','hal','high','jwics','open');
+my (@all,@good_args);
+if ($hostname eq "www.ohares.us" || $hostname eq "carp.ohares.us") {
+	@all = ('ohares');
+	@good_args = ('ohares','all');
+} elsif ($hostname eq "captive.llnl.gov" ||
+		$hostname eq "convict.llnl.gov" ||
+		$hostname eq "corbin.llnl.gov" ||
+		$hostname eq "serf.llnl.gov" ||
+		$hostname eq "slave.llnl.gov") {
+	@all = ('gs','hal','jwics');
+	@good_args = ('all','gs','hal','high','jwics','open');
+} else {
+	die "Must be run from a known host";
+}
 
 my @net;
 

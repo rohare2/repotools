@@ -8,8 +8,7 @@ use strict;
 use File::Copy;
 
 my $debug = 1;
-#my $BASE_DIR = "/var/www/html/software";
-my $BASE_DIR = "/media/sf_software";
+my $BASE_DIR = "/var/www/html/software";
 
 # RPMS source directory
 my $dir = $ARGV[0];
