@@ -49,3 +49,6 @@ exit 0
 /etc/yum.repos.d/lsi.repo
 /etc/yum.repos.d/redhat7_workstation_x86_64.repo
 /etc/yum.repos.d/splunk.repo
+
+%post
+/bin/rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-FIE-7
