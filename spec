@@ -7,7 +7,7 @@
 #
 %define Name zdiv-release
 %define Version 1.3
-%define Release 2.redhat7_workstation_x86_64.gs
+%define Release 6.redhat7_workstation_x86_64.jwics
 
 Name: %{Name}
 Version: %{Version}
@@ -16,10 +16,10 @@ Source: %{Name}-%{Version}-%{Release}.tgz
 License: GPLv2
 Group: SystemEnvironment/Base
 BuildArch: noarch
-URL: https://corbin.llnl.gov
+URL: https://leeloo.ipa.llnl-doe.ic.gov
 Distribution: redhat7_workstation_x86_64
 Vendor: Lawrence Livermore National Laboratory
-Packager: Rich O'Hare <ohare2@llnl.gov
+Packager: Richard O'Hare <oharer@llnl-doe.ic.gov
 Provides: %{Name}, sw_src.xml
 Summary: YUM environment configuration
 %define _unpackaged_files_terminate_build 0
@@ -45,7 +45,7 @@ exit 0
 /etc/%{Name}
 /usr/local/etc/sw_src.xml
 /etc/pki/rpm-gpg/RPM-GPG-KEY-FIE-7
-/etc/yum.repos.d/gs.repo
+/etc/yum.repos.d/zdiv.repo
 /etc/yum.repos.d/lsi.repo
 /etc/yum.repos.d/redhat7_workstation_x86_64.repo
 /etc/yum.repos.d/splunk.repo

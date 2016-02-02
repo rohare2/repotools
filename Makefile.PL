@@ -75,7 +75,6 @@ sub evalRelease {
 
 sub editMakefile {
 	my $name = shift;
-	my $repofile = shift;
 	my $net = shift;
 	my $distro = shift;
 	my $release = shift;
@@ -119,7 +118,6 @@ sub editMakefile {
 	}
 
 	if ($input_scalar =~ /^REPO_FILES=/m) {
-		$list = $list . " " . $repofile;
 		if ($distroRepoList eq 'zdivDistroRepoList') {
 			foreach my $entry (@{$zdivDistroRepoList{$distro}}) {
 				$list = $list . " " . $entry;
@@ -137,7 +135,6 @@ sub editMakefile {
 
 sub editSpecFile {
 	my $name = shift;
-	my $repofile = shift;
 	my $net = shift;
 	my $distro = shift;
 	my $release = shift;
@@ -188,7 +185,6 @@ sub editSpecFile {
 	close OUTPUT;
 
 	open (OUTPUT, ">>$file") or die;
-	print OUTPUT ("/etc/yum.repos.d/$repofile\n");
 	if ($distroRepoList eq 'zdivDistroRepoList') {
 		foreach my $entry (@{$zdivDistroRepoList{$distro}}) {
 			print OUTPUT ("/etc/yum.repos.d/$entry\n");
@@ -233,12 +229,16 @@ sub fixRepoBaseurl {
 sub fixRepoDistro {
 	my $net = shift;
 	my $distro = shift;
-	my $file = $net . ".repo";
+	my $file = "zdiv.repo";
 
 	open (INPUT, "$file") or die "Can not open $file: $!";
 	my @input_array=<INPUT>;
 	my $input_scalar=join("",@input_array);
 	close(INPUT);
+
+	$input_scalar =~ s/\/gs\//\/$net\//mg;
+	$input_scalar =~ s/\/hal\//\/$net\//mg;
+	$input_scalar =~ s/\/jwics\//\/$net\//mg;
 
 	$distro =~ 'redhat' && 
 		($input_scalar =~ s/\/centos\//\/redhat\//mg);
@@ -251,23 +251,11 @@ sub fixRepoDistro {
 }
 
 foreach my $net (sort @net) {
-	my ($name,$repofile,$distroRepoList);
+	my ($name,$distroRepoList);
 	fixRepoBaseurl($net);
 
 	$name = 'zdiv-release';
 	$distroRepoList = "zdivDistroRepoList";
-
-	# network definitions
-	if ($net eq 'gs') {
-		$repofile = 'gs.repo';
-	}
-	if ($net eq 'hal') {
-		$repofile = 'hal.repo';
-	}
-	if ($net eq 'jwics') {
-		$repofile = 'jwics.repo';
-	}
-
 
 	no strict "refs";
 	foreach my $distro (sort keys %{$distroRepoList}) {
@@ -302,8 +290,8 @@ foreach my $net (sort @net) {
 		print OUTPUT ("${file} ${version}-${release}\n");
 		close OUTPUT;
 
-		editMakefile($name,$repofile,$net,$distro,$release,$distroRepoList,$buildVersion);
-		editSpecFile($name,$repofile,$net,$distro,$release,$distroRepoList,$buildVersion);
+		editMakefile($name,$net,$distro,$release,$distroRepoList,$buildVersion);
+		editSpecFile($name,$net,$distro,$release,$distroRepoList,$buildVersion);
 		system("make rpmbuild");
 	}
 }

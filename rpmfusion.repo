@@ -4,14 +4,14 @@
 
 [rpmfusion-free-updates]
 name=rpmfusion-free-updates $releasever - $basearch
-baseurl=https://corbin.llnl.gov/software/rpmfusion/free/el/updates/$releasever/$basearch/
+baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/rpmfusion/free/el/updates/$releasever/$basearch/
 enabled=1
 gpgcheck=0
 sslverify=false
 
 [rpmfusion-nonfree-updates]
 name=rpmfusion-nonfree-updates $releasever - $basearch
-baseurl=https://corbin.llnl.gov/software/rpmfusion/nonfree/el/updates/$releasever/$basearch/
+baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/rpmfusion/nonfree/el/updates/$releasever/$basearch/
 enabled=0
 gpgcheck=0
 sslverify=false

@@ -3,7 +3,7 @@
 #
 Name= zdiv-release
 Version= 1.3
-Release= 2.redhat7_workstation_x86_64.gs
+Release= 6.redhat7_workstation_x86_64.jwics
 Distro= redhat7_workstation_x86_64
 Source= ${Name}-${Version}-${Release}.tgz
 BASE= $(shell pwd)
@@ -21,7 +21,7 @@ ETC_FILES= zdiv-release
 
 GPG_FILES= RPM-GPG-KEY-FIE-7
 
-REPO_FILES= gs.repo lsi.repo redhat7_workstation_x86_64.repo splunk.repo
+REPO_FILES= zdiv.repo lsi.repo redhat7_workstation_x86_64.repo splunk.repo
 
 USR_ETC_FILES= sw_src.xml
 

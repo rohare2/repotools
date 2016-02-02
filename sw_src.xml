@@ -70,7 +70,7 @@
 			<repo>VendorSoftware/Splunk/x86_64</repo>
 		</distro>
 	</source>
-     <source url = "corbin.llnl.gov" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.ipa.llnl-doe.ic.gov">
+     <source url = "zdiv" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.ipa.llnl-doe.ic.gov">
 		<distro name = "gs-centos5" createRepo="1" updateRepo="0" args="-s sha">
 			<repo>gs/centos/5/i386</repo>
 			<repo>gs/centos/5/noarch</repo>
@@ -168,6 +168,8 @@
 			<repo>hal/redhat/7Workstation/noarch</repo>
 			<repo>hal/redhat/7Workstation/x86_64</repo>
 		</distro>
+	</source>
+     <source url = "rhn2" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.ipa.llnl-doe.ic.gov">
 		<distro name = "redhat5_client_i386" createRepo="1" updateRepo="0" args="-s sha">
 			<repo>redhat/5Client/5/i386/epel-llnl</repo>
 			<repo>redhat/5Client/5/i386/llnl-rhn-rhel-i386-desktop-5/getPackage</repo>
@@ -211,6 +213,8 @@
 			<repo>redhat/7Workstation/7/x86_64/rhel-x86_64-workstation-supplementary-7/getPackage</repo>
 			<repo>redhat/7Workstation/7/x86_64/rhn-tools-rhel-x86_64-workstation-7/getPackage</repo>
 		</distro>
+	</source>
+     <source url = "lsi" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.ipa.llnl-doe.ic.gov">
 		<distro name = "lsi5" createRepo="1" updateRepo="0" args="-s sha">
 			<repo>VendorSoftware/LSI/5/i386</repo>
 			<repo>VendorSoftware/LSI/5/noarch</repo>
