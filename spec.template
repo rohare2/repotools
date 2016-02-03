@@ -41,7 +41,7 @@ exit 0
 exit 0
 
 %post
-/bin/rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-FIE-7
+/bin/rpm --import RPM-GPG-KEY-FIE-X
 
 %files
 %defattr(644, root, root)
