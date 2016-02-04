@@ -41,10 +41,10 @@ exit 0
 exit 0
 
 %post
-/bin/rpm --import RPM-GPG-KEY-GS-FIE
+/bin/rpm --import RPM-GPG-KEY-GS-FIE-X
 
 %files
 %defattr(644, root, root)
 /etc/%{Name}
 /usr/local/etc/sw_src.xml
-/etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE
+/etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE-X

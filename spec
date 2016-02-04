@@ -41,13 +41,13 @@ exit 0
 exit 0
 
 %post
-/bin/rpm --import RPM-GPG-KEY-GS-FIE
+/bin/rpm --import RPM-GPG-KEY-GS-FIE-7
 
 %files
 %defattr(644, root, root)
 /etc/%{Name}
 /usr/local/etc/sw_src.xml
-/etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FI
+/etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE-7
 /etc/yum.repos.d/zdiv.repo
 /etc/yum.repos.d/lsi.repo
 /etc/yum.repos.d/redhat7_workstation_x86_64.repo

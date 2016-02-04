@@ -19,7 +19,7 @@ USR_SBIN_DIR= /usr/local/sbin
 
 ETC_FILES= zdiv-release
 
-GPG_FILES= RPM-GPG-KEY-GS-FIE
+GPG_FILES= RPM-GPG-KEY-GS-FIE-7
 
 REPO_FILES= zdiv.repo lsi.repo redhat7_workstation_x86_64.repo splunk.repo
 
@@ -104,8 +104,8 @@ localinstall:
 	@for file in ${GPG_FILES}; do \
 		install $$file ${GPG_DIR}; \
 	done;
-	@chmod 644 /etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE
-	@chgrp wheel /etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE
+	@chmod 644 /etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE-7
+	@chgrp wheel /etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE-7
 	@for file in ${USR_SBIN_FILES}; do \
 		install $$file ${USR_SBIN_DIR}; \
 	done;
