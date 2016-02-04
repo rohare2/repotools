@@ -113,10 +113,6 @@ sub editMakefile {
 		$input_scalar =~ s/^ETC_FILES=.*$/ETC_FILES= $name/m;
 	}
 
-	if ($input_scalar =~ /^GPG_FILES= /m) {
-		$input_scalar =~ s/^GPG_FILES=.*$/GPG_FILES= RPM-GPG-KEY-FIE-${buildVersion}/m;
-	}
-
 	if ($input_scalar =~ /^REPO_FILES=/m) {
 		if ($distroRepoList eq 'zdivDistroRepoList') {
 			foreach my $entry (@{$zdivDistroRepoList{$distro}}) {
@@ -174,10 +170,6 @@ sub editSpecFile {
 
 	if ($input_scalar =~ /^Packager:/m) {
 		$input_scalar =~ s/^Packager:.*$/Packager: $packager{$net}/gm;
-	}
-
-	if ($input_scalar =~ /RPM-GPG-KEY-FIE-/m) {
-		$input_scalar =~ s/RPM-GPG-KEY-FIE-.*$/RPM-GPG-KEY-FIE-${buildVersion}/gm;
 	}
 
 	open (OUTPUT, "> $file") or die;

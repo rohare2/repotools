@@ -7,7 +7,7 @@
 #
 %define Name zdiv-release
 %define Version 1.3
-%define Release 9.redhat7_workstation_x86_64.jwics
+%define Release 12.redhat7_workstation_x86_64.jwics
 
 Name: %{Name}
 Version: %{Version}
@@ -41,13 +41,13 @@ exit 0
 exit 0
 
 %post
-/bin/rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-FIE-7
+/bin/rpm --import RPM-GPG-KEY-GS-FIE
 
 %files
 %defattr(644, root, root)
 /etc/%{Name}
 /usr/local/etc/sw_src.xml
-/etc/pki/rpm-gpg/RPM-GPG-KEY-FIE-7
+/etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FI
 /etc/yum.repos.d/zdiv.repo
 /etc/yum.repos.d/lsi.repo
 /etc/yum.repos.d/redhat7_workstation_x86_64.repo
