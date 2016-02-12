@@ -40,9 +40,6 @@ exit 0
 %clean
 exit 0
 
-%post
-/bin/rpm --import RPM-GPG-KEY-GS-FIE-7
-
 %files
 %defattr(644, root, root)
 /etc/%{Name}

@@ -46,6 +46,10 @@ while (my $file = readdir(DIR)) {
 		$distro = 'redhat';
 		$release = '6';
 	}
+	if ($file =~ /\.redhat7_[xi]/) {
+		$distro = 'redhat';
+		$release = '7';
+	}
 	if ($file =~ /\.redhat7_server/) {
 		$distro = 'redhat';
 		$release = '7Server';
