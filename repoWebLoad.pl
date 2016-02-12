@@ -58,15 +58,15 @@ while (my $file = readdir(DIR)) {
 		$distro = 'redhat';
 		$release = '7Workstation';
 	}
-	if ($file =~ /\.centos5_/) {
+	if ($file =~ /\.centos5[_.]/) {
 		$distro = 'centos';
 		$release = '5';
 	}
-	if ($file =~ /\.centos6_/) {
+	if ($file =~ /\.centos6[_.]/) {
 		$distro = 'centos';
 		$release = '6';
 	}
-	if ($file =~ /\.centos7_/) {
+	if ($file =~ /\.centos7[_.]/) {
 		$distro = 'centos';
 		$release = '7';
 	}
@@ -74,7 +74,8 @@ while (my $file = readdir(DIR)) {
 
 	$file =~ /_x86_64\./ && ($arch = 'x86_64');
 	$file =~ /_i386\./ && ($arch = 'i386');
-	defined $arch or ($arch = "noarch";
+	$file =~ /zdiv-release/ && ($arch = 'noarch');
+	defined $arch or ($arch = "noarch");
 
 	$dest = $BASE_DIR . "/" . $net . "/" . $distro . "/" . $release . "/" . $arch;
 

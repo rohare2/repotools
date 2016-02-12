@@ -99,13 +99,19 @@ sub editMakefile {
 
 	if ($input_scalar =~ /^Distro= /m) {
 		my $origStr = '^Distro=.*$';
-		my $replStr = "Distro= $distro";
+		my $noarchDistro = $distro;
+		$noarchDistro =~ s/_x86_64//;
+		$noarchDistro =~ s/_i386//;
+		my $replStr = "Distro= $noarchDistro";
 		$input_scalar =~ s/$origStr/$replStr/m;
 	}
 
 	if ($input_scalar =~ /^Release= /m) {
 		my $origStr = '^Release=.*$';
-		my $replStr = "Release= $release";
+		my $noarchRelease = $release;
+		$noarchRelease =~ s/_x86_64//;
+		$noarchRelease =~ s/_i386//;
+		my $replStr = "Release= $noarchRelease";
 		$input_scalar =~ s/$origStr/$replStr/m;
 	}
 
@@ -161,11 +167,17 @@ sub editSpecFile {
 	}
 
 	if ($input_scalar =~ /^%define Release/m) {
-		$input_scalar =~ s/^%define Release.*$/%define Release $release/gm;
+		my $noarchRelease = $release;
+		$noarchRelease =~ s/_x86_64//;
+		$noarchRelease =~ s/_i386//;
+		$input_scalar =~ s/^%define Release.*$/%define Release $noarchRelease/gm;
 	}
 
 	if ($input_scalar =~ /^Distribution:/m) {
-		$input_scalar =~ s/^Distribution.*$/Distribution: $distro/gm;
+		my $noarchDistro = $distro;
+		$noarchDistro =~ s/_x86_64//;
+		$noarchDistro =~ s/_i386//;
+		$input_scalar =~ s/^Distribution.*$/Distribution: $noarchDistro/gm;
 	}
 
 	if ($input_scalar =~ /^URL:/m) {

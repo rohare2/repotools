@@ -7,7 +7,7 @@
 #
 %define Name zdiv-release
 %define Version 1.3
-%define Release 12.redhat7_workstation_x86_64.jwics
+%define Release 12.redhat7_workstation.jwics
 
 Name: %{Name}
 Version: %{Version}
@@ -17,7 +17,7 @@ License: GPLv2
 Group: SystemEnvironment/Base
 BuildArch: noarch
 URL: https://leeloo.ipa.llnl-doe.ic.gov
-Distribution: redhat7_workstation_x86_64
+Distribution: redhat7_workstation
 Vendor: Lawrence Livermore National Laboratory
 Packager: Richard O'Hare <oharer@llnl-doe.ic.gov
 Provides: %{Name}, sw_src.xml
