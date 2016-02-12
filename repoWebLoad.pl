@@ -74,7 +74,7 @@ while (my $file = readdir(DIR)) {
 
 	$file =~ /_x86_64\./ && ($arch = 'x86_64');
 	$file =~ /_i386\./ && ($arch = 'i386');
-	defined $arch or next;
+	defined $arch or ($arch = "noarch";
 
 	$dest = $BASE_DIR . "/" . $net . "/" . $distro . "/" . $release . "/" . $arch;
 
