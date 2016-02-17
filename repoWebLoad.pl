@@ -53,7 +53,7 @@ foreach my $subdir ("i386","x86_64","noarch") {
 				$distro = 'redhat';
 				$release = '6';
 			}
-			if ($file =~ /\.redhat7[_.][xi]/) {
+			if ($file =~ /\.redhat7.[xi]/) {
 				$distro = 'redhat';
 				$release = '7';
 			}
