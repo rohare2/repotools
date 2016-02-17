@@ -88,9 +88,10 @@ foreach my $subdir ("i386","x86_64","noarch") {
 			defined $arch or ($arch = "noarch");
 
 			if (defined $distro) {
+				-d $dir or die "missing destination directory";
 				$dest = $BASE_DIR . "/" . $net . "/" . $distro . "/" . $release . "/" . $arch;
-				$debug && print "install -D -m 644 $dir/$file $dest/$file\n";
-				`install -D -m 644 $dir/$file $dest/$file`;
+				$debug && print "install -m 644 $dir/$file $dest/$file\n";
+				`install -m 644 $dir/$file $dest/$file`;
 			} else {
 				print "No distro defined\n";
 				print "$dir/$file\n";
