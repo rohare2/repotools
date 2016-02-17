@@ -53,7 +53,11 @@ foreach my $subdir ("i386","x86_64","noarch") {
 				$distro = 'redhat';
 				$release = '6';
 			}
-			if ($file =~ /\.redhat7.[xi]/) {
+			if ($file =~ /\.redhat7_[xi]/) {
+				$distro = 'redhat';
+				$release = '7';
+			}
+			if ($file =~ /\.redhat7\./) {
 				$distro = 'redhat';
 				$release = '7';
 			}
@@ -83,10 +87,14 @@ foreach my $subdir ("i386","x86_64","noarch") {
 			$file =~ /zdiv-release/ && ($arch = 'noarch');
 			defined $arch or ($arch = "noarch");
 
-			defined $distro or die "No distro defined";
-			$dest = $BASE_DIR . "/" . $net . "/" . $distro . "/" . $release . "/" . $arch;
-			$debug && print "install -D -m 644 $dir/$file $dest/$file\n";
-			`install -D -m 644 $dir/$file $dest/$file`;
+			if (defined $distro) {
+				$dest = $BASE_DIR . "/" . $net . "/" . $distro . "/" . $release . "/" . $arch;
+				$debug && print "install -D -m 644 $dir/$file $dest/$file\n";
+				`install -D -m 644 $dir/$file $dest/$file`;
+			} else {
+				print "No distro defined\n";
+				print "$dir/$file\n";
+			}
 		}
 		close DIR;
 	}
