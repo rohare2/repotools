@@ -134,7 +134,7 @@ sub editSpecFile {
 	my $input_scalar=join("",@input_array);
 
 	$input_scalar =~ /^%define Version/m && ($input_scalar =~ s/^%define Version.*$/%define Version ${version}/m);
-	$input_scalar =~ /^%define Release/m && ($input_scalar =~ s/^%define Release.*$/%define Release ${releaseNo}.${ld}/m);
+	$input_scalar =~ /^%define Release/m && ($input_scalar =~ s/^%define Release.*$/%define Release ${releaseNo}.${ld}.${net}/m);
 	$input_scalar =~ /^Source:/m && ($input_scalar =~ s/^Source:.*$/Source: ${package}.tgz/m);
 	$input_scalar =~ /^BuildArch/m && ($input_scalar =~ s/^BuildArch.*$/BuildArch: ${arch}/m);
 	$input_scalar =~ /^Distribution:/m && ($input_scalar =~ s/^Distribution.*$/Distribution: ${ld}/m);
