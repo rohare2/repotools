@@ -61,23 +61,27 @@ if ( $#ARGV >= 0 ) {
 	die "You must make a network choice.\n";
 }
 
-sub evalRelease {
+sub evalPackage {
 	my $net = shift;
 	my $distro = shift;
+	my $arch;
 
-	$releaseNo =~ s/:.*//;
-	$releaseNo =~ s/M//;
-	$releaseNo =~ s/\..*$//g;
-	my $release = $releaseNo . '.' . $distro . '.' . $net;
-
-	return $release;
+	if ($distro =~ /_i386/) {
+		$distro =~ s/_i386//;
+		$arch = "i386";
+	} 
+	if ($distro =~ /_x86_64/) {
+		$distro =~ s/_x86_64//;
+		$arch = "x86_64";
+	} 
+	
+	my $package = "zdiv-release-${version}-${releaseNo}.${distro}.${net}";
+	return ($package,$arch);
 }
 
 sub editMakefile {
-	my $name = shift;
-	my $net = shift;
 	my $distro = shift;
-	my $release = shift;
+	my $package = shift;
 	my $distroRepoList = shift;
 	my $buildVersion = shift;
 	my $file = 'Makefile';
@@ -89,43 +93,10 @@ sub editMakefile {
 	my $input_scalar=join("",@input_array);
 	my ($origStr, $replStr);
 
-	if ($input_scalar =~ /^Name= /m) {
-		$input_scalar =~ s/^Name=.*$/Name= $name/m;
-	}
-
-	if ($input_scalar =~ /^Version= /m) {
-		$input_scalar =~ s/^Version=.*$/Version= $version/m;
-	}
-
-	if ($input_scalar =~ /^Distro= /m) {
-		my $origStr = '^Distro=.*$';
-		my $noarchDistro = $distro;
-		$noarchDistro =~ s/_x86_64//;
-		$noarchDistro =~ s/_i386//;
-		my $replStr = "Distro= $noarchDistro";
-		$input_scalar =~ s/$origStr/$replStr/m;
-	}
-
-	if ($input_scalar =~ /^Release= /m) {
-		my $origStr = '^Release=.*$';
-		my $noarchRelease = $release;
-		$noarchRelease =~ s/_x86_64//;
-		$noarchRelease =~ s/_i386//;
-		my $replStr = "Release= $noarchRelease";
-		$input_scalar =~ s/$origStr/$replStr/m;
-	}
-
-	if ($input_scalar =~ /^ETC_FILES= /m) {
-		$input_scalar =~ s/^ETC_FILES=.*$/ETC_FILES= $name/m;
-	}
-
-	if ($input_scalar =~ /^GPG_FILES= /m) {
-		$input_scalar =~ s/^GPG_FILES=.*$/GPG_FILES= RPM-GPG-KEY-GS-FIE-${buildVersion}/m;
-	}
-
-	if ($input_scalar =~ /RPM-GPG-KEY-GS-FIE-/m) {
-		$input_scalar =~ s/RPM-GPG-KEY-GS-FIE-.*$/RPM-GPG-KEY-GS-FIE-${buildVersion}/gm;
-	}
+	$input_scalar =~ /^Version= /m && ($input_scalar =~ s/^Version=.*$/Version= $version/m);
+	$input_scalar =~ /^Package= /m && ($input_scalar =~ s/^Package=.*$/Package= $package/m);
+	$input_scalar =~ /^GPG_FILES= /m && ($input_scalar =~ s/^GPG_FILES=.*$/GPG_FILES= RPM-GPG-KEY-GS-FIE-${buildVersion}/m);
+	$input_scalar =~ /RPM-GPG-KEY-GS-FIE-/m && ($input_scalar =~ s/RPM-GPG-KEY-GS-FIE-.*$/RPM-GPG-KEY-GS-FIE-${buildVersion}/gm);
 
 	if ($input_scalar =~ /^REPO_FILES=/m) {
 		if ($distroRepoList eq 'zdivDistroRepoList') {
@@ -144,66 +115,42 @@ sub editMakefile {
 }
 
 sub editSpecFile {
-	my $name = shift;
 	my $net = shift;
 	my $distro = shift;
-	my $release = shift;
+	my $package = shift;
 	my $distroRepoList = shift;
 	my $buildVersion = shift;
+	my $arch = shift;
 	my $file = 'spec';
 
+	my $ld = $distro;
+	$ld =~ s/_i386//;
+	$ld =~ s/_x86_64//;
+	
 	copy("${file}.template","$file") or die "Copy failed: $!";
 	open (INPUT,"<$file") or die;
 	my @input_array=<INPUT>;
 	close(INPUT);
 	my $input_scalar=join("",@input_array);
 
-	if ($input_scalar =~ /^%define Name /m) {
-		$input_scalar =~ s/^%define Name.*$/%define Name $name/m;
-	}
-
-	if ($input_scalar =~ /^%define Version/m) {
-		$input_scalar =~ s/%define Version.*$/%define Version $version/gm;
-	}
-
-	if ($input_scalar =~ /^%define Release/m) {
-		my $noarchRelease = $release;
-		$noarchRelease =~ s/_x86_64//;
-		$noarchRelease =~ s/_i386//;
-		$input_scalar =~ s/^%define Release.*$/%define Release $noarchRelease/gm;
-	}
-
-	if ($input_scalar =~ /^Distribution:/m) {
-		my $noarchDistro = $distro;
-		$noarchDistro =~ s/_x86_64//;
-		$noarchDistro =~ s/_i386//;
-		$input_scalar =~ s/^Distribution.*$/Distribution: $noarchDistro/gm;
-	}
-
-	if ($input_scalar =~ /^URL:/m) {
-		$input_scalar =~ s/^URL.*$/URL: https:\/\/$baseurl{$net}/gm;
-	}
-
-	if ($input_scalar =~ /^Vendor:/m) {
-		$input_scalar =~ s/^Vendor:.*$/Vendor: $vendor{$net}/gm;
-	}
-
-	if ($input_scalar =~ /^Packager:/m) {
-		$input_scalar =~ s/^Packager:.*$/Packager: $packager{$net}/gm;
-	}
-
-	if ($input_scalar =~ /RPM-GPG-KEY-GS-FIE-/m) {
-		$input_scalar =~ s/RPM-GPG-KEY-GS-FIE-.*$/RPM-GPG-KEY-GS-FIE-${buildVersion}/gm;
-	}
+	$input_scalar =~ /^%define Version/m && ($input_scalar =~ s/^%define Version.*$/%define Version ${version}/m);
+	$input_scalar =~ /^%define Release/m && ($input_scalar =~ s/^%define Release.*$/%define Release ${releaseNo}.${ld}/m);
+	$input_scalar =~ /^Source:/m && ($input_scalar =~ s/^Source:.*$/Source: ${package}.tgz/m);
+	$input_scalar =~ /^BuildArch/m && ($input_scalar =~ s/^BuildArch.*$/BuildArch: ${arch}/m);
+	$input_scalar =~ /^Distribution:/m && ($input_scalar =~ s/^Distribution.*$/Distribution: ${ld}/m);
+	$input_scalar =~ /^URL:/m && ($input_scalar =~ s/^URL.*$/URL: https:\/\/$baseurl{$net}/gm);
+	$input_scalar =~ /^Vendor:/m && ($input_scalar =~ s/^Vendor:.*$/Vendor: $vendor{$net}/gm);
+	$input_scalar =~ /^Packager:/m && ($input_scalar =~ s/^Packager:.*$/Packager: $packager{$net}/gm);
+	$input_scalar =~ /RPM-GPG-KEY-GS-FIE-/m && ($input_scalar =~ s/RPM-GPG-KEY-GS-FIE-.*$/RPM-GPG-KEY-GS-FIE-${buildVersion}/gm);
 
 	open (OUTPUT, "> $file") or die;
 	print OUTPUT "$input_scalar";
 	close OUTPUT;
 
-	open (OUTPUT, ">>$file") or die;
+	open (OUTPUT, ">> $file") or die;
 	if ($distroRepoList eq 'zdivDistroRepoList') {
 		foreach my $entry (@{$zdivDistroRepoList{$distro}}) {
-			print OUTPUT ("/etc/yum.repos.d/$entry\n");
+			print OUTPUT ("/etc/yum.repos.d/${entry}\n");
 		}
 		if ($distro =~ /centos/) {
 			print OUTPUT ("\n");
@@ -256,10 +203,8 @@ sub fixRepoDistro {
 	$input_scalar =~ s/\/hal\//\/$net\//mg;
 	$input_scalar =~ s/\/jwics\//\/$net\//mg;
 
-	$distro =~ 'redhat' && 
-		($input_scalar =~ s/\/centos\//\/redhat\//mg);
-	$distro =~ 'centos' && 
-		($input_scalar =~ s/\/redhat\//\/centos\//mg);
+	$distro =~ 'redhat' && ($input_scalar =~ s/\/centos\//\/redhat\//mg);
+	$distro =~ 'centos' && ($input_scalar =~ s/\/redhat\//\/centos\//mg);
 
 	open (OUTPUT, "> $file") or die;
 	print OUTPUT "$input_scalar";
@@ -295,7 +240,7 @@ foreach my $net (sort @net) {
 		}
 
 		defined $net && $net ne '' or die "Net not defined: $!";
-		my $release = evalRelease($net,$distro);
+		my ($package, $arch) = evalPackage($net,$distro);
 
 		# Fix the baseurl in repo file
 		fixRepoDistro($net,$distro);
@@ -303,15 +248,15 @@ foreach my $net (sort @net) {
 		# Make release file
 		my $file = "$name";
 		open (OUTPUT, "> $file") or die;
-		print OUTPUT ("${file} ${version}-${release}\n");
+		print OUTPUT ("${file} ${version}-${releaseNo}\n");
 		close OUTPUT;
 
-		editMakefile($name,$net,$distro,$release,$distroRepoList,$buildVersion);
-		editSpecFile($name,$net,$distro,$release,$distroRepoList,$buildVersion);
+		editMakefile($distro,$package,$distroRepoList,$buildVersion);
+		editSpecFile($net,$distro,$package,$distroRepoList,$buildVersion,$arch);
 		system("make rpmbuild");
 	}
 }
 
 # PGP sign the rpms
 print "Sign RPM packages\n";
-system("rpm --addsign $ENV{HOME}/rpmbuild/RPMS/noarch/zdiv-release*.rpm");
+system("rpm --addsign $ENV{HOME}/rpmbuild/RPMS/*/zdiv-release*.rpm");

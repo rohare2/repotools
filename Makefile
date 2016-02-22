@@ -3,9 +3,8 @@
 #
 Name= zdiv-release
 Version= 1.3
-Release= 12.redhat7_workstation.jwics
-Distro= redhat7_workstation
-Source= ${Name}-${Version}-${Release}.tgz
+Package= zdiv-release-1.3-12.redhat7_workstation.gs
+Source= ${Package}.tgz
 BASE= $(shell pwd)
 
 RPMBUILD= ${HOME}/rpmbuild
@@ -32,10 +31,10 @@ USR_SBIN_FILES= repocreate.pl \
 	repoWebLoad.pl
 
 rpmbuild: specfile source 
-	rpmbuild -bb --buildroot ${RPM_BUILD_ROOT} ${RPMBUILD}/SPECS/${Name}-${Version}-${Release}.spec
+	rpmbuild -bb --buildroot ${RPM_BUILD_ROOT} ${RPMBUILD}/SPECS/${Package}.spec
 
 specfile: spec
-	@cat ./spec > ${RPMBUILD}/SPECS/${Name}-${Version}-${Release}.spec
+	@cat ./spec > ${RPMBUILD}/SPECS/${Package}.spec
 
 source:
 	if [ ! -d ${RPMBUILD}/SOURCES/${Name} ]; then \

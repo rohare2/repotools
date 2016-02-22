@@ -7,7 +7,7 @@
 use strict;
 use File::Copy;
 
-my $debug = 1;
+my $debug = 0;
 my $BASE_DIR = "/var/www/html/software";
 
 # RPMS source directory
@@ -23,79 +23,44 @@ if (not defined $dir) {
 }
 
 -d $dir or die "rpmbuild directory does not exist";
+my $basedir = $dir;
 
 # Push rpms to web server
-my $basedir = $dir;
 foreach my $subdir ("i386","x86_64","noarch") {
 	$dir = $basedir . "/" . $subdir;
 	if (-d $dir) { 
 		print "$dir\n";
 		opendir(DIR, "$dir") or warn "Can't open $dir";
 		while (my $file = readdir(DIR)) {
-			my ($net,$distro,$release,$arch,$dest);
+			my ($net,$distro,$arch,$dest);
+			$file =~ /^zdiv-release-/ or next;
 
-			if ($file =~ /\.gs\./) {
-				$net = 'gs';
-			}
-			if ($file =~ /\.hal\./) {
-				$net = 'hal';
-			}
-			if ($file =~ /\.jwics\./) {
-				$net = 'jwics';
-			}
-			defined $net or next;
+			$file =~ /\.gs\./ && ($net = 'gs');
+			$file =~ /\.hal\./ && ($net = 'hal');
+			$file =~ /\.jwics\./ && ($net = 'jwics');
+			defined $net or die "No net defined for: $file";
 
-			if ($file =~ /\.redhat5[_.]/) {
-				$distro = 'redhat';
-				$release = '5';
-			}
-			if ($file =~ /\.redhat6[_.]/) {
-				$distro = 'redhat';
-				$release = '6';
-			}
-			if ($file =~ /\.redhat7_[xi]/) {
-				$distro = 'redhat';
-				$release = '7';
-			}
-			if ($file =~ /\.redhat7\./) {
-				$distro = 'redhat';
-				$release = '7';
-			}
-			if ($file =~ /\.redhat7_server/) {
-				$distro = 'redhat';
-				$release = '7Server';
-			}
-			if ($file =~ /\.redhat7_workstation/) {
-				$distro = 'redhat';
-				$release = '7Workstation';
-			}
-			if ($file =~ /\.centos5[_.]/) {
-				$distro = 'centos';
-				$release = '5';
-			}
-			if ($file =~ /\.centos6[_.]/) {
-				$distro = 'centos';
-				$release = '6';
-			}
-			if ($file =~ /\.centos7[_.]/) {
-				$distro = 'centos';
-				$release = '7';
-			}
+			$file =~ /\.redhat5_client\./ && ($distro = 'redhat/5Client');
+			$file =~ /\.redhat5_server\./ && ($distro = 'redhat/5Server');
+			$file =~ /\.redhat6_server\./ && ($distro = 'redhat/6Server');
+			$file =~ /\.redhat6_workstation\./ && ($distro = 'redhat/6Workstation');
+			$file =~ /\.redhat7_server\./ && ($distro = 'redhat/7Server');
+			$file =~ /\.redhat7_workstation\./ && ($distro = 'redhat/7Workstation');
+			$file =~ /\.centos5\./ && ($distro = 'centos/5');
+			$file =~ /\.centos6\./ && ($distro = 'centos/6');
+			$file =~ /\.centos7\./ && ($distro = 'centos/7');
+			defined $distro or die "No distro defined for: $file";
 
-			$file =~ /[_.]x86_64\./ && ($arch = 'x86_64');
-			$file =~ /[_.]i386\./ && ($arch = 'i386');
-			$file =~ /zdiv-release/ && ($arch = 'noarch');
-			defined $arch or ($arch = "noarch");
+			$file =~ /\.x86_64\./ && ($arch = 'x86_64');
+			$file =~ /\.i386\./ && ($arch = 'i386');
+			$file =~ /\.noarch\./ && ($arch = 'noarch');
+			defined $arch or die "No arch defined for: $file";
 
-			if (defined $distro) {
-				-d $dir or die "missing destination directory";
-				$dest = $BASE_DIR . "/" . $net . "/" . $distro . "/" . $release . "/" . $arch;
-				$debug && print "install -m 644 $dir/$file $dest/$file\n";
-				`install -m 644 $dir/$file $dest/$file`;
-			} else {
-				print "No distro defined\n";
-				print "$dir/$file\n";
-			}
+			-d $dir or die "missing destination directory";
+			$dest = $BASE_DIR . "/" . $net . "/" . $distro . "/" . $arch;
+			$debug && print "install -m 644 $dir/$file $dest/$file\n";
+			`install -m 644 $dir/$file $dest/$file`;
+			! $debug && `rm $dir/$file`;
 		}
 		close DIR;
 	}
