@@ -260,4 +260,4 @@ foreach my $net (sort @net) {
 
 # PGP sign the rpms
 print "Sign RPM packages\n";
-system("rpm --addsign $ENV{HOME}/rpmbuild/RPMS/*/zdiv-release*.rpm");
+system("rpm --addsign $ENV{HOME}/rpmbuild/RPMS/noarch/zdiv-release*.rpm");
