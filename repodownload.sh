@@ -7,7 +7,7 @@
 # Request transfer disk location
 read -p "Repo mount location: " src_dir
 
-dest_dir="/var/www/html/software"
+dest_dir="/var/www/html"
 
-rsync -av --delete --exclude=.htaccess ${src_dir}/repos/software/ ${dest_dir}/
+rsync -av --delete --exclude=.htaccess ${src_dir}/repos/html/ ${dest_dir}/
 

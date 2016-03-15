@@ -7,7 +7,7 @@
 use strict;
 
 # repo software location
-my $softwareDir = "/var/www/html/software";
+my $htmlDir = "/var/www/html";
 
 # determine network
 my $hostname = `uname -n`;
@@ -26,8 +26,8 @@ my $mtPoint = <STDIN>;
 chomp $mtPoint;
 
 # copy software to transfer disk
-print "rsync -av --delete --exclude=.htaccess $softwareDir/ ${mtPoint}/software\n";
-`rsync -av --delete --exclude=.htaccess $softwareDir/ ${mtPoint}/software`;
+print "rsync -av --delete --exclude=.htaccess $htmlDir/ ${mtPoint}/html\n";
+`rsync -av --delete --exclude=.htaccess $htmlDir/ ${mtPoint}/html`;
 
 # copy transfer files to transfer disk
 my $transferDir = "/transfer";
