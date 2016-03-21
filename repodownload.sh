@@ -9,5 +9,8 @@ read -p "Repo mount location: " src_dir
 
 dest_dir="/var/www/html"
 
-rsync -av --delete --exclude=.htaccess ${src_dir}/repos/html/ ${dest_dir}/
+print "rsync -av --delete --exclude /projects/jwics --exclude /projects/hal ${src_dir}/var/www/html/ /var/www/html/\n";
+rsync -av --delete --exclude /projects/jwics --exclude /projects/hal ${src_dir}/var/www/html/ /var/www/html/
+print "rsync -av --delete ${src_dir}/var/www/cgi-bin/ /var/www/cgi-bin/\n";
+rsync -av --delete ${src_dir}/var/www/cgi-bin/ /var/www/cgi-bin/
 

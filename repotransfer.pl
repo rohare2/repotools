@@ -6,9 +6,6 @@
 #  Copy files from corbin to one-way-transfer disk drive for transfer to high side networks
 use strict;
 
-# repo software location
-my $htmlDir = "/var/www/html";
-
 # determine network
 my $hostname = `uname -n`;
 chomp $hostname;
@@ -25,9 +22,11 @@ print "Transfer disk mount point: ";
 my $mtPoint = <STDIN>;
 chomp $mtPoint;
 
-# copy software to transfer disk
-print "rsync -av --delete --exclude=.htaccess $htmlDir/ ${mtPoint}/html\n";
-`rsync -av --delete --exclude=.htaccess $htmlDir/ ${mtPoint}/html`;
+# copy web server files to transfer disk
+print "rsync -av --delete /var/www/html/ ${mtPoint}/var/www/html\n";
+`rsync -av --delete /var/www/html/ ${mtPoint}/var/www/html`;
+print "rsync -av --delete /var/www/cgi-bin/ ${mtPoint}/var/www/cgi-bin\n";
+`rsync -av --delete /var/www/cgi-bin/ ${mtPoint}/var/www/cgi-bin`;
 
 # copy transfer files to transfer disk
 my $transferDir = "/transfer";
