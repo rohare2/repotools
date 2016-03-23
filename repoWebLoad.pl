@@ -53,7 +53,7 @@ foreach my $subdir ("i386","x86_64","noarch") {
 
 			$file =~ /\.x86_64\./ && ($arch = 'x86_64');
 			$file =~ /\.i386\./ && ($arch = 'i386');
-			$file =~ /\.noarch\./ && ($arch = 'noarch');
+			#$file =~ /\.noarch\./ && ($arch = 'noarch');
 			defined $arch or die "No arch defined for: $file";
 
 			-d $dir or die "missing destination directory";
