@@ -3,7 +3,7 @@
 # $Date: $
 #
 # repoWebLoad.pl
-#
+# Copy our FIE rpms to the webserver
 use strict;
 use File::Copy;
 

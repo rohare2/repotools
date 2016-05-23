@@ -25,6 +25,7 @@ REPO_FILES= zdiv.repo lsi.repo redhat7_workstation_x86_64.repo splunk.repo
 USR_ETC_FILES= sw_src.xml
 
 USR_SBIN_FILES= repocreate.pl \
+	repodownload.sh \
 	reposyncWrapper.pl \
 	repotransfer.pl \
 	repoupdate.pl \
@@ -69,7 +70,7 @@ etc:
 	done;
 
 gpgfiles:
-	for file in ${GPG_FILES}; do \
+	@for file in ${GPG_FILES}; do \
 		install -p $$file ${RPM_BUILD_ROOT}/${GPG_DIR}; \
 	done;
 
@@ -107,7 +108,7 @@ localinstall:
 	@chgrp wheel /etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE-7
 	@for file in ${USR_SBIN_FILES}; do \
 		install $$file ${USR_SBIN_DIR}; \
+		install $$file /var/www/html/software/tools; \
 	done;
 	@chgrp wheel ${USR_SBIN_DIR}/repo*
 	@chmod 770 ${USR_SBIN_DIR}/repo*
-
