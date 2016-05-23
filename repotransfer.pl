@@ -24,7 +24,7 @@ chomp $mtPoint;
 
 # copy web server files to transfer disk
 print "rsync -av --delete /var/www/html/ ${mtPoint}/var/www/html\n";
-`rsync -av --delete /var/www/html/ ${mtPoint}/var/www/html`;
+`rsync -av --delete --exclude /software/*/.htaccess /var/www/html/ ${mtPoint}/var/www/html`;
 print "rsync -av --delete /var/www/cgi-bin/ ${mtPoint}/var/www/cgi-bin\n";
 `rsync -av --delete /var/www/cgi-bin/ ${mtPoint}/var/www/cgi-bin`;
 
