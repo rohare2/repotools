@@ -15,5 +15,5 @@ rsync -av --delete --exclude /classified/ --exclude /software/*/.htaccess ${src_
 print "rsync -av --delete ${src_dir}/var/www/cgi-bin/ /var/www/cgi-bin/\n";
 rsync -av --delete ${src_dir}/var/www/cgi-bin/ /var/www/cgi-bin/
 
-print "rsync -av --delete ${src_dir}/transfer /transfer\n";
-rsync -av --delete ${src_dir}/transfer /transfer;
+print "rsync -av --delete ${src_dir}/transfer/ /transfer/\n";
+rsync -av --delete ${src_dir}/transfer/ /transfer/;
