@@ -23,11 +23,8 @@ my $mtPoint = <STDIN>;
 chomp $mtPoint;
 
 # copy web server files to transfer disk
-print "rsync -av --delete --exclude /software/*/.htaccess /var/www/html/ ${mtPoint}/var/www/html\n";
-`rsync -av --delete --exclude /software/*/.htaccess /var/www/html/ ${mtPoint}/var/www/html`;
-
-print "rsync -av --delete /var/www/cgi-bin/ ${mtPoint}/var/www/cgi-bin\n";
-`rsync -av --delete /var/www/cgi-bin/ ${mtPoint}/var/www/cgi-bin`;
+print "rsync -av --delete --exclude .htaccess /var/www/html/ ${mtPoint}/var/www/html\n";
+`rsync -av --delete --exclude .htaccess /var/www/html/ ${mtPoint}/var/www/html`;
 
 # copy transfer files to transfer disk
 my $transferDir = "/transfer";
