@@ -7,19 +7,19 @@
 #
 %define Name zdiv-release
 %define Version 1.3
-%define Release 12.redhat7_workstation
+%define Release 17.redhat7_workstation.x86_64.jwics
 
 Name: %{Name}
 Version: %{Version}
 Release: %{Release}
-Source: zdiv-release-1.3-12.redhat7_workstation.gs.tgz
+Source: zdiv-release-1.3-17.redhat7_workstation.x86_64.jwics.tgz
 License: GPLv2
 Group: SystemEnvironment/Base
-BuildArch: x86_64
-URL: https://corbin.llnl.gov
+BuildArch: noarch
+URL: https://leeloo.ipa.llnl-doe.ic.gov
 Distribution: redhat7_workstation
 Vendor: Lawrence Livermore National Laboratory
-Packager: Rich O'Hare <ohare2@llnl.gov
+Packager: Richard O'Hare <oharer@llnl-doe.ic.gov
 Provides: %{Name}, sw_src.xml
 Summary: YUM environment configuration
 %define _unpackaged_files_terminate_build 0

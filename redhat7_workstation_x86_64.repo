@@ -3,49 +3,56 @@
 
 [epel-llnl]
 name=Extra Packages for Enterprise Linux 7 - $basearch
-baseurl=https://corbin.llnl.gov/software/redhat/$releasever/7/$basearch/epel-llnl/
+baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/7/$basearch/epel-llnl/
 enabled=1
 gpgcheck=1
 sslverify=false
 
 [llnl-rhel-x86_64-workstation-7]
 name=Institutional Software for RHEL Workstation
-baseurl=https://corbin.llnl.gov/software/redhat/$releasever/7/$basearch/llnl-rhel-x86_64-workstation-7/getPackage/
+baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/7/$basearch/llnl-rhel-x86_64-workstation-7/getPackage/
 enabled=1
 gpgcheck=1
 sslverify=false
 
 [rhel-x86_64-workstation-7]
 name=Red Hat Enterprise Linux Workstation
-baseurl=https://corbin.llnl.gov/software/redhat/$releasever/7/$basearch/rhel-x86_64-workstation-7/getPackage/
+baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/7/$basearch/rhel-x86_64-workstation-7/getPackage/
+enabled=1
+gpgcheck=1
+sslverify=false
+
+[rhel-x86_64-workstation-7-rhscl-1]
+name=RHEL7 Workstation SCL
+baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/7/$basearch/rhel-x86_64-workstation-7-rhscl-1/getPackage/
 enabled=1
 gpgcheck=1
 sslverify=false
 
 [rhel-x86_64-workstation-7-thirdparty-oracle-java]
 name=Oracle Java for RHEL Workstation
-baseurl=https://corbin.llnl.gov/software/redhat/$releasever/7/$basearch/rhel-x86_64-workstation-7-thirdparty-oracle-java/getPackage/
+baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/7/$basearch/rhel-x86_64-workstation-7-thirdparty-oracle-java/getPackage/
 enabled=1
 gpgcheck=1
 sslverify=false
 
 [rhel-x86_64-workstation-optional-7]
 name=RHEL Workstation Optional
-baseurl=https://corbin.llnl.gov/software/redhat/$releasever/7/$basearch/rhel-x86_64-workstation-optional-7/getPackage/
+baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/7/$basearch/rhel-x86_64-workstation-optional-7/getPackage/
 enabled=1
 gpgcheck=1
 sslverify=false
 
 [rhel-x86_64-workstation-supplementary-7]
 name=RHEL Workstation Supplementary
-baseurl=https://corbin.llnl.gov/software/redhat/$releasever/7/$basearch/rhel-x86_64-workstation-supplementary-7/getPackage/
+baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/7/$basearch/rhel-x86_64-workstation-supplementary-7/getPackage/
 enabled=1
 gpgcheck=1
 sslverify=false
 
 [rhn-tools-rhel-x86_64-workstation-7]
 name=RHN Tools for RHEL Workstation
-baseurl=https://corbin.llnl.gov/software/redhat/$releasever/7/$basearch/rhn-tools-rhel-x86_64-workstation-7/getPackage/
+baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/7/$basearch/rhn-tools-rhel-x86_64-workstation-7/getPackage/
 enabled=1
 gpgcheck=1
 sslverify=false
