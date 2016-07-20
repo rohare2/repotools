@@ -24,7 +24,7 @@ sslverify=false
 
 [rhel-x86_64-workstation-6-thirdparty-oracle-java]
 name=rhel-x86_64-workstation-6-thirdparty-oracle-java $releasever - $basearch
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/6/$basearch/rhel-x86_64-workstation-thirdparty-oracle-java/
+baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/6/$basearch/rhel-x86_64-workstation-6-thirdparty-oracle-java/
 enabled=1
 gpgcheck=1
 sslverify=false
