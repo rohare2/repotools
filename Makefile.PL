@@ -234,7 +234,9 @@ foreach my $net (sort @net) {
 		}
 		if ($systemVersion == 5 && $buildVersion == 5) {
 			print "$repolistEntry match\n";
-		} elsif ($systemVersion >= 6 && $buildVersion >= 6) {
+		} elsif ($systemVersion == 6 && $buildVersion == 6) {
+			print "$repolistEntry match\n";
+		} elsif ($systemVersion == 7 && $buildVersion == 7) {
 			print "$repolistEntry match\n";
 		} else {
 			next;
