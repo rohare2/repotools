@@ -19,15 +19,35 @@ if ($domainname eq "corbin.llnl.gov") {
 }
 
 print "Transfer disk mount point: ";
-my $mtPoint = <STDIN>;
-chomp $mtPoint;
+my $mntPoint = <STDIN>;
+chomp $mntPoint;
 
 # copy web server files to transfer disk
-print "rsync -av --delete --exclude .htaccess /var/www/html/ ${mtPoint}/var/www/html\n";
-`rsync -av --delete --exclude .htaccess /var/www/html/ ${mtPoint}/var/www/html`;
+system "rsync", "-av", "--delete", "--exclude", ".htaccess", "/var/www/html/", "${mntPoint}/var/www/html";
 
 # copy transfer files to transfer disk
 my $transferDir = "/transfer";
-print "rsync -av --delete $transferDir/ ${mtPoint}/transfer\n";
-`rsync -av --delete $transferDir/ ${mtPoint}/transfer`;
+system "rsync", "-av", "--delete", "$transferDir/", "${mntPoint}/transfer";
+
+my $Dir = "${mntPoint}/transfer/ohare2";
+if ( ! -d $Dir ) {
+	`mkdir -p -m 0770 $Dir`;
+	`chown -R ohare2:ohare2 $Dir`;
+}
+if ( ! -d "${Dir}/corbin" ) {
+	`mkdir -p -m 0770 "$Dir/corbin"`;
+	`chown ohare2:ohare2 "$Dir/corbin"`;
+}
+if ( ! -d "${Dir}/corbin/git" ) {
+	`mkdir -p -m 0770 "$Dir/corbin/git"`;
+	`chown ohare2:ohare2 "$Dir/corbin/git"`;
+}
+
+# dump fie_it database
+`/usr/bin/mysqldump fie_it --single-transaction > ${Dir}/corbin/fie_it_dump`;
+`chown ohare2:ohare2 ${Dir}/corbin/fie_it_dump`;
+
+# copy git repos
+system("rsync", "-av", "/opt/git/", "${Dir}/corbin/git/");
+`chown ohare2:ohare2 "${Dir}/corbin/git"`;
 

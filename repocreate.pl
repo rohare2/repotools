@@ -194,8 +194,8 @@ sub processRepo() {
 
 sub usage() {
     print( <<EOF
-Usage: check.pl -h
-       check.pl [-f <xmlFile>] [-s <Source> [-r <Repo> || -d <Distro>]
+Usage: repocreate.pl -h
+       repocreate.pl [-f <xmlFile>] [-s <Source> [-r <Repo> || -d <Distro>]
            -d      Process named distro
            -f      Name of XML file with repo definitions
            -h      Display this usage message
