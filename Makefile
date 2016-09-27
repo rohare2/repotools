@@ -25,7 +25,7 @@ REPO_FILES= zdiv.repo lsi.repo redhat7_workstation_x86_64.repo splunk.repo
 USR_ETC_FILES= sw_src.xml
 
 USR_SBIN_FILES= repocreate.pl \
-	repodownload.sh \
+	repodownload.pl \
 	reposyncWrapper.pl \
 	repotransfer.pl \
 	repoupdate.pl \
