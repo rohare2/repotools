@@ -32,22 +32,25 @@ system "rsync", "-av", "--delete", "$transferDir/", "${mntPoint}/transfer";
 my $Dir = "${mntPoint}/transfer/ohare2";
 if ( ! -d $Dir ) {
 	`mkdir -p -m 0770 $Dir`;
-	`chown -R ohare2:ohare2 $Dir`;
 }
+`chown -R ohare2:ohare2 $Dir`;
+
 if ( ! -d "${Dir}/corbin" ) {
 	`mkdir -p -m 0770 "$Dir/corbin"`;
-	`chown ohare2:ohare2 "$Dir/corbin"`;
 }
+`chown ohare2:ohare2 "$Dir/corbin"`;
+
 if ( ! -d "${Dir}/corbin/git" ) {
 	`mkdir -p -m 0770 "$Dir/corbin/git"`;
-	`chown ohare2:ohare2 "$Dir/corbin/git"`;
 }
+`chown ohare2:ohare2 "$Dir/corbin/git"`;
 
 # dump fie_it database
-`/usr/bin/mysqldump fie_it --single-transaction > ${Dir}/corbin/fie_it_dump`;
+`/usr/bin/mysqldump --single-transaction --databases fie_it > ${Dir}/corbin/fie_it_dump`;
 `chown ohare2:ohare2 ${Dir}/corbin/fie_it_dump`;
+`chmod 0440 ${Dir}/corbin/fie_it_dump`;
 
 # copy git repos
 system("rsync", "-av", "/opt/git/", "${Dir}/corbin/git/");
-`chown ohare2:ohare2 "${Dir}/corbin/git"`;
+`chown ohare2:ohare2 ${Dir}/corbin/git`;
 
