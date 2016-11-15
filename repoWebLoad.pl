@@ -7,7 +7,7 @@
 use strict;
 use File::Copy;
 
-my $debug = 1;
+my $debug = 0;
 my $BASE_DIR = "/var/www/html/software";
 
 # RPMS source directory
@@ -65,3 +65,4 @@ foreach my $subdir ("i386","x86_64","noarch") {
 		close DIR;
 	}
 }
+

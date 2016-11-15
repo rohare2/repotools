@@ -1,0 +1,11 @@
+#$Id: certify.repo $
+# $URL: $
+# $Date: $
+#
+
+[certify]
+name=certify
+baseurl=https://corbin.llnl.gov/software/certify
+enabled=1
+gpgcheck=1
+
