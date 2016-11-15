@@ -5,7 +5,7 @@
 
 [certify]
 name=certify
-baseurl=https://corbin.llnl.gov/software/certify
+baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/certify
 enabled=1
 gpgcheck=1
-
+sslverify=false
