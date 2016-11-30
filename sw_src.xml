@@ -169,9 +169,9 @@
 			<repo>hal/redhat/7Workstation/x86_64</repo>
 		</distro>
 	</source>
-     <source url = "certify" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.ipa.llnl-doe.ic.gov">
-		<distro name = "certify" createRepo="1" updateRepo="0">
-			<repo>certify</repo>
+     <source url = "corbin.llnl.gov" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.ipa.llnl-doe.ic.gov">
+		<distro name = "noarch" createRepo="1" updateRepo="0">
+			<repo>local</repo>
 		</distro>
 	</source>
      <source url = "rhn2" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.ipa.llnl-doe.ic.gov">

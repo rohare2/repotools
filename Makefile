@@ -3,7 +3,7 @@
 #
 Name= zdiv-release
 Version= 1.3
-Package= zdiv-release-1.3-17.redhat7_workstation.x86_64.jwics
+Package= zdiv-release-1.3-23.redhat6_workstation.x86_64.jwics
 Source= ${Package}.tgz
 BASE= $(shell pwd)
 
@@ -18,9 +18,9 @@ USR_SBIN_DIR= /usr/local/sbin
 
 ETC_FILES= zdiv-release
 
-GPG_FILES= RPM-GPG-KEY-GS-FIE-7
+GPG_FILES= RPM-GPG-KEY-GS-FIE-6
 
-REPO_FILES= zdiv.repo lsi.repo redhat7_workstation_x86_64.repo splunk.repo
+REPO_FILES= zdiv.repo local.repo lsi.repo redhat6_workstation_x86_64.repo splunk.repo
 
 USR_ETC_FILES= sw_src.xml
 
@@ -104,8 +104,8 @@ localinstall:
 	@for file in ${GPG_FILES}; do \
 		install $$file ${GPG_DIR}; \
 	done;
-	@chmod 644 /etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE-7
-	@chgrp wheel /etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE-7
+	@chmod 644 /etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE-6
+	@chgrp wheel /etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE-6
 	@for file in ${USR_SBIN_FILES}; do \
 		install $$file ${USR_SBIN_DIR}; \
 		install $$file /var/www/html/software/tools; \

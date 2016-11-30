@@ -7,17 +7,17 @@
 #
 %define Name zdiv-release
 %define Version 1.3
-%define Release 17.redhat7_workstation.x86_64.jwics
+%define Release 23.redhat6_workstation.x86_64.jwics
 
 Name: %{Name}
 Version: %{Version}
 Release: %{Release}
-Source: zdiv-release-1.3-17.redhat7_workstation.x86_64.jwics.tgz
+Source: zdiv-release-1.3-23.redhat6_workstation.x86_64.jwics.tgz
 License: GPLv2
 Group: SystemEnvironment/Base
 BuildArch: noarch
 URL: https://leeloo.ipa.llnl-doe.ic.gov
-Distribution: redhat7_workstation
+Distribution: redhat6_workstation
 Vendor: Lawrence Livermore National Laboratory
 Packager: Richard O'Hare <oharer@llnl-doe.ic.gov
 Provides: %{Name}, sw_src.xml
@@ -44,8 +44,9 @@ exit 0
 %defattr(644, root, root)
 /etc/%{Name}
 /usr/local/etc/sw_src.xml
-/etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE-7
+/etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE-6
 /etc/yum.repos.d/zdiv.repo
+/etc/yum.repos.d/local.repo
 /etc/yum.repos.d/lsi.repo
-/etc/yum.repos.d/redhat7_workstation_x86_64.repo
+/etc/yum.repos.d/redhat6_workstation_x86_64.repo
 /etc/yum.repos.d/splunk.repo
