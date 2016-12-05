@@ -40,11 +40,14 @@ exit 0
 %clean
 exit 0
 
+%post
+rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE
+
 %files
 %defattr(644, root, root)
 /etc/%{Name}
 /usr/local/etc/sw_src.xml
-/etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE-6
+/etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE
 /etc/yum.repos.d/zdiv.repo
 /etc/yum.repos.d/local.repo
 /etc/yum.repos.d/lsi.repo

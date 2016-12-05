@@ -18,7 +18,7 @@ USR_SBIN_DIR= /usr/local/sbin
 
 ETC_FILES= zdiv-release
 
-GPG_FILES= RPM-GPG-KEY-GS-FIE-6
+GPG_FILES= RPM-GPG-KEY-GS-FIE
 
 REPO_FILES= zdiv.repo local.repo lsi.repo redhat6_workstation_x86_64.repo splunk.repo
 
@@ -104,8 +104,8 @@ localinstall:
 	@for file in ${GPG_FILES}; do \
 		install $$file ${GPG_DIR}; \
 	done;
-	@chmod 644 /etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE-6
-	@chgrp wheel /etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE-6
+	@chmod 644 /etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE
+	@chgrp wheel /etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE
 	@for file in ${USR_SBIN_FILES}; do \
 		install $$file ${USR_SBIN_DIR}; \
 		install $$file /var/www/html/software/tools; \

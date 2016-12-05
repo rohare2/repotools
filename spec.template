@@ -44,4 +44,4 @@ exit 0
 %defattr(644, root, root)
 /etc/%{Name}
 /usr/local/etc/sw_src.xml
-/etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE-X
+/etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE

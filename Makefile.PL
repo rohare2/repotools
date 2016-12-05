@@ -98,8 +98,6 @@ sub editMakefile {
 
 	$input_scalar =~ /^Version= /m && ($input_scalar =~ s/^Version=.*$/Version= $version/m);
 	$input_scalar =~ /^Package= /m && ($input_scalar =~ s/^Package=.*$/Package= $package/m);
-	$input_scalar =~ /^GPG_FILES= /m && ($input_scalar =~ s/^GPG_FILES=.*$/GPG_FILES= RPM-GPG-KEY-GS-FIE-${buildVersion}/m);
-	$input_scalar =~ /RPM-GPG-KEY-GS-FIE-/m && ($input_scalar =~ s/RPM-GPG-KEY-GS-FIE-.*$/RPM-GPG-KEY-GS-FIE-${buildVersion}/gm);
 
 	if ($input_scalar =~ /^REPO_FILES=/m) {
 		if ($distroRepoList eq 'zdivDistroRepoList') {
@@ -142,7 +140,6 @@ sub editSpecFile {
 	$input_scalar =~ /^URL:/m && ($input_scalar =~ s/^URL.*$/URL: https:\/\/$baseurl{$net}/gm);
 	$input_scalar =~ /^Vendor:/m && ($input_scalar =~ s/^Vendor:.*$/Vendor: $vendor{$net}/gm);
 	$input_scalar =~ /^Packager:/m && ($input_scalar =~ s/^Packager:.*$/Packager: $packager{$net}/gm);
-	$input_scalar =~ /RPM-GPG-KEY-GS-FIE-/m && ($input_scalar =~ s/RPM-GPG-KEY-GS-FIE-.*$/RPM-GPG-KEY-GS-FIE-${buildVersion}/gm);
 
 	open (OUTPUT, "> $file") or die;
 	print OUTPUT "$input_scalar";
