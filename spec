@@ -7,12 +7,12 @@
 #
 %define Name zdiv-release
 %define Version 1.3
-%define Release 23.redhat6_workstation.x86_64.jwics
+%define Release 25.redhat6_workstation.x86_64.jwics
 
 Name: %{Name}
 Version: %{Version}
 Release: %{Release}
-Source: zdiv-release-1.3-23.redhat6_workstation.x86_64.jwics.tgz
+Source: zdiv-release-1.3-25.redhat6_workstation.x86_64.jwics.tgz
 License: GPLv2
 Group: SystemEnvironment/Base
 BuildArch: noarch
@@ -40,16 +40,12 @@ exit 0
 %clean
 exit 0
 
-%post
-rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE
-
 %files
 %defattr(644, root, root)
 /etc/%{Name}
 /usr/local/etc/sw_src.xml
 /etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE
 /etc/yum.repos.d/zdiv.repo
-/etc/yum.repos.d/local.repo
 /etc/yum.repos.d/lsi.repo
 /etc/yum.repos.d/redhat6_workstation_x86_64.repo
 /etc/yum.repos.d/splunk.repo
