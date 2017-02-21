@@ -23,7 +23,7 @@ my $mntPoint = <STDIN>;
 chomp $mntPoint;
 
 # copy web server files to transfer disk
-system "rsync", "-av", "--delete", "--exclude", ".htaccess", "/var/www/html/", "${mntPoint}/var/www/html";
+system "rsync", "-av", "--delete", "--exclude", ".htaccess", "--exclude", "/apps", "--exclude", "/project", "/var/www/html/", "${mntPoint}/var/www/html";
 
 # copy transfer files to transfer disk
 my $transferDir = "/transfer";
