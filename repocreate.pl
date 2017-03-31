@@ -10,7 +10,7 @@ use XML::Simple;
 use Errno qw(EAGAIN);
 use POSIX "sys_wait_h";
 
-$ENV{PATH} = "/bin:/usr/bin";    # Ensure a secure PATH
+$ENV{PATH} = "/bin:/usr/bin:/usr/sbin";    # Ensure a secure PATH
 $| = 1;
 
 if ($< != 0) {

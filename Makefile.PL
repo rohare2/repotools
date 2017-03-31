@@ -28,10 +28,7 @@ $systemVersion =~ s/\..*//;
 my @open = ('gs');
 my @high = ('hal','jwics');
 my (@all,@good_args);
-if ($hostname eq "www.ohares.us" || $hostname eq "carp.ohares.us") {
-	@all = ('ohares');
-	@good_args = ('ohares','all');
-} elsif ($hostname eq "captive.llnl.gov" ||
+if ($hostname eq "captive.llnl.gov" ||
 		$hostname eq "convict.llnl.gov" ||
 		$hostname eq "corbin.llnl.gov" ||
 		$hostname eq "serf.llnl.gov" ||

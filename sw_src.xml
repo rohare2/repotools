@@ -2,13 +2,13 @@
 <!-- $URL: https://corbin.llnl.gov/repos/admin/repotools/sw_src.xml $ -->
 <records forceCreateRepo="0">
 	<source url = "mirrors.kernel.org" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.ipa.llnl-doe.ic.gov">
-		<distro name = "centos5_i386" createRepo="1" updateRepo="1" args="-s sha">
+		<distro name = "centos5_i386" createRepo="0" updateRepo="0" args="-s sha">
 			<repo>centos/5/os/i386</repo>
 			<repo>centos/5/updates/i386</repo>
 			<repo>centos/5/extras/i386</repo>
 			<repo>centos/5/centosplus/i386</repo>
 		</distro>
-		<distro name = "centos5_x86_64" createRepo="1" updateRepo="1" args="-s sha">
+		<distro name = "centos5_x86_64" createRepo="0" updateRepo="0" args="-s sha">
 			<repo>centos/5/os/x86_64</repo>
 			<repo>centos/5/updates/x86_64</repo>
 			<repo>centos/5/extras/x86_64</repo>
@@ -38,7 +38,7 @@
 		</distro>
 	</source>
 	<source url = "linux.mirrors.es.net" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.ipa.llnl-doe.ic.gov">
-		<distro name = "epel5" createRepo="1" updateRepo="1" args="-s sha">
+		<distro name = "epel5" createRepo="0" updateRepo="0" args="-s sha">
 			<repo>fedora-epel/5/i386</repo>
 			<repo>fedora-epel/5/x86_64</repo>
 		</distro>
@@ -51,7 +51,7 @@
 		</distro>
 	</source>
 	<source url = "download1.rpmfusion.org" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.ipa.llnl-doe.ic.gov">
-		<distro name = "rpmfusion5" createRepo="1" updateRepo="1" args="-s sha">
+		<distro name = "rpmfusion5" createRepo="0" updateRepo="0" args="-s sha">
 			<repo>rpmfusion/free/el/updates/5/i386</repo>
 			<repo>rpmfusion/free/el/updates/5/x86_64</repo>
 			<repo>rpmfusion/nonfree/el/updates/5/i386</repo>
@@ -71,7 +71,7 @@
 		</distro>
 	</source>
      <source url = "zdiv" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.ipa.llnl-doe.ic.gov">
-		<distro name = "gs-centos5" createRepo="1" updateRepo="0" args="-s sha">
+		<distro name = "gs-centos5" createRepo="0" updateRepo="0" args="-s sha">
 			<repo>gs/centos/5/i386</repo>
 			<repo>gs/centos/5/noarch</repo>
 			<repo>gs/centos/5/x86_64</repo>
@@ -86,7 +86,7 @@
 			<repo>gs/centos/7/noarch</repo>
 			<repo>gs/centos/7/x86_64</repo>
 		</distro>
-		<distro name = "gs-redhat5" createRepo="1" updateRepo="0" args="-s sha">
+		<distro name = "gs-redhat5" createRepo="0" updateRepo="0" args="-s sha">
 			<repo>gs/redhat/5/i386</repo>
 			<repo>gs/redhat/5/noarch</repo>
 			<repo>gs/redhat/5/x86_64</repo>
@@ -104,7 +104,7 @@
 			<repo>gs/redhat/7Workstation/noarch</repo>
 			<repo>gs/redhat/7Workstation/x86_64</repo>
 		</distro>
-		<distro name = "jwics-centos5" createRepo="1" updateRepo="0" args="-s sha">
+		<distro name = "jwics-centos5" createRepo="0" updateRepo="0" args="-s sha">
 			<repo>jwics/centos/5/i386</repo>
 			<repo>jwics/centos/5/noarch</repo>
 			<repo>jwics/centos/5/x86_64</repo>
@@ -118,7 +118,7 @@
 			<repo>jwics/centos/7/noarch</repo>
 			<repo>jwics/centos/7/x86_64</repo>
 		</distro>
-		<distro name = "jwics-redhat5" createRepo="1" updateRepo="0" args="-s sha">
+		<distro name = "jwics-redhat5" createRepo="0" updateRepo="0" args="-s sha">
 			<repo>jwics/redhat/5/i386</repo>
 			<repo>jwics/redhat/5/noarch</repo>
 			<repo>jwics/redhat/5/x86_64</repo>
@@ -136,7 +136,7 @@
 			<repo>jwics/redhat/7Workstation/noarch</repo>
 			<repo>jwics/redhat/7Workstation/x86_64</repo>
 		</distro>
-		<distro name = "hal-centos5" createRepo="1" updateRepo="0" args="-s sha">
+		<distro name = "hal-centos5" createRepo="0" updateRepo="0" args="-s sha">
 			<repo>hal/centos/5/i386</repo>
 			<repo>hal/centos/5/noarch</repo>
 			<repo>hal/centos/5/x86_64</repo>
@@ -150,7 +150,7 @@
 			<repo>hal/centos/7/noarch</repo>
 			<repo>hal/centos/7/x86_64</repo>
 		</distro>
-		<distro name = "hal-redhat5" createRepo="1" updateRepo="0" args="-s sha">
+		<distro name = "hal-redhat5" createRepo="0" updateRepo="0" args="-s sha">
 			<repo>hal/redhat/5/i386</repo>
 			<repo>hal/redhat/5/noarch</repo>
 			<repo>hal/redhat/5/x86_64</repo>
@@ -175,7 +175,7 @@
 		</distro>
 	</source>
      <source url = "rhn2" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.ipa.llnl-doe.ic.gov">
-		<distro name = "redhat5_client_i386" createRepo="1" updateRepo="0" args="-s sha">
+		<distro name = "redhat5_client_i386" createRepo="0" updateRepo="0" args="-s sha">
 			<repo>redhat/5Client/5/i386/epel-llnl</repo>
 			<repo>redhat/5Client/5/i386/llnl-rhn-rhel-i386-desktop-5/getPackage</repo>
 			<repo>redhat/5Client/5/i386/rhel-i386-client-5/getPackage</repo>
@@ -184,7 +184,7 @@
 			<repo>redhat/5Client/5/i386/rhel-i386-client-workstation-5/getPackage</repo>
 			<repo>redhat/5Client/5/i386/rhn-tools-rhel-i386-client-5/getPackage</repo>
 		</distro>
-		<distro name = "redhat5_client_x86_64" createRepo="1" updateRepo="0" args="-s sha">
+		<distro name = "redhat5_client_x86_64" createRepo="0" updateRepo="0" args="-s sha">
 			<repo>redhat/5Client/5/x86_64/epel-llnl</repo>
 			<repo>redhat/5Client/5/x86_64/llnl-rhn-rhel-x86_64-desktop-5/getPackage</repo>
 			<repo>redhat/5Client/5/x86_64/rhel-x86_64-client-5/getPackage</repo>
@@ -224,7 +224,7 @@
 		</distro>
 	</source>
      <source url = "lsi" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.ipa.llnl-doe.ic.gov">
-		<distro name = "lsi5" createRepo="1" updateRepo="0" args="-s sha">
+		<distro name = "lsi5" createRepo="0" updateRepo="0" args="-s sha">
 			<repo>VendorSoftware/LSI/5/i386</repo>
 			<repo>VendorSoftware/LSI/5/noarch</repo>
 			<repo>VendorSoftware/LSI/5/x86_64</repo>
