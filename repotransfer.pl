@@ -23,11 +23,11 @@ my $mntPoint = <STDIN>;
 chomp $mntPoint;
 
 # copy web server files to transfer disk
-system "rsync", "-av", "--delete", "--exclude", ".htaccess", "--exclude", "/apps", "--exclude", "/project", "/var/www/html/", "${mntPoint}/var/www/html";
+system "rsync", "-av", "--delete", "--exclude", ".htaccess", "/var/www/html/software/", "${mntPoint}/var/www/html/software/";
 
 # copy transfer files to transfer disk
 my $transferDir = "/transfer";
-system "rsync", "-av", "--delete", "$transferDir/", "${mntPoint}/transfer";
+system "rsync", "-av", "--delete", "$transferDir/", "${mntPoint}/transfer/";
 
 my $Dir = "${mntPoint}/transfer/ohare2";
 if ( ! -d $Dir ) {

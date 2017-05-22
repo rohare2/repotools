@@ -33,22 +33,11 @@ if ($DEBUG) {
 }
 
 # update software and references
-foreach my $dir ('apps','reference','software') {
+foreach my $dir ('software') {
 	if ($DEBUG) {
 		print "rsync -av --delete --exclude .htaccess ${mntPoint}/var/www/html/${dir}/ ${dest}/${dir}/\n";
 	} else {
 		`rsync -av --delete --exclude .htaccess ${mntPoint}/var/www/html/${dir}/ ${dest}/${dir}/`;
-	}
-}
-
-# update procedures
-foreach my $dir ('procedure') {
-	print "$dir\n";
-	if ($DEBUG) {
-		print "rsync -av --delete --exclude .htaccess ${mntPoint}/var/www/html/${dir}/ ${dest}/${dir}/OLN/\n";
-	} else {
-		`rsync -av --delete --exclude .htaccess ${mntPoint}/var/www/html/${dir}/ ${dest}/${dir}/OLN/`;
-
 	}
 }
 

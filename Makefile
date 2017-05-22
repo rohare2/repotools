@@ -3,7 +3,7 @@
 #
 Name= zdiv-release
 Version= 1.3
-Package= zdiv-release-1.3-24.redhat6_workstation.x86_64.jwics
+Package= zdiv-release-1.3-26.redhat6_workstation.x86_64.jwics
 Source= ${Package}.tgz
 BASE= $(shell pwd)
 

@@ -7,12 +7,12 @@
 #
 %define Name zdiv-release
 %define Version 1.3
-%define Release 25.redhat6_workstation.x86_64.jwics
+%define Release 26.redhat6_workstation.x86_64.jwics
 
 Name: %{Name}
 Version: %{Version}
 Release: %{Release}
-Source: zdiv-release-1.3-25.redhat6_workstation.x86_64.jwics.tgz
+Source: zdiv-release-1.3-26.redhat6_workstation.x86_64.jwics.tgz
 License: GPLv2
 Group: SystemEnvironment/Base
 BuildArch: noarch
