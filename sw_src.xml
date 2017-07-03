@@ -148,14 +148,15 @@
 			<repo>redhat/7Server/7/x86_64/rhn-tools-rhel-x86_64-server-7/getPackage</repo>
 		</distro>
 		<distro name = "redhat7_workstation_x86_64" createRepo="1" updateRepo="0">
-			<repo>redhat/7Workstation/7/x86_64/epel-llnl</repo>
-			<repo>redhat/7Workstation/7/x86_64/llnl-rhel-x86_64-workstation-7/getPackage</repo>
-			<repo>redhat/7Workstation/7/x86_64/rhel-x86_64-workstation-7/getPackage</repo>
-			<repo>redhat/7Workstation/7/x86_64/rhel-x86_64-workstation-7-rhscl-1/getPackage</repo>
-			<repo>redhat/7Workstation/7/x86_64/rhel-x86_64-workstation-7-thirdparty-oracle-java/getPackage</repo>
-			<repo>redhat/7Workstation/7/x86_64/rhel-x86_64-workstation-optional-7/getPackage</repo>
-			<repo>redhat/7Workstation/7/x86_64/rhel-x86_64-workstation-supplementary-7/getPackage</repo>
-			<repo>redhat/7Workstation/7/x86_64/rhn-tools-rhel-x86_64-workstation-7/getPackage</repo>
+			<repo>redhat/7Workstation/7/x86_64/rhel-7-workstation-optional-rpms</repo>
+			<repo>redhat/7Workstation/7/x86_64/rhel-7-workstation-supplementary-rpms</repo>
+			<repo>redhat/7Workstation/7/x86_64/rhel-7-workstation-extras-rpms</repo>
+			<repo>redhat/7Workstation/7/x86_64/GS_IS7_x86_64_RPMs</repo>
+			<repo>redhat/7Workstation/7/x86_64/rhel-7-workstation-rpms</repo>
+			<repo>redhat/7Workstation/7/x86_64/GS_EPEL7_x86_64_RPMs</repo>
+			<repo>redhat/7Workstation/7/x86_64/rhel-7-workstation-rhn-tools-rpms</repo>
+			<repo>redhat/7Workstation/7/x86_64/rhel-7-workstation-satellite-tools-6.2-rpms</repo>
+			<repo>redhat/7Workstation/7/x86_64/rhel-7-workstation-thirdparty-oracle-java-rpms</repo>
 		</distro>
 	</source>
      <source url = "lsi" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.ipa.llnl-doe.ic.gov">

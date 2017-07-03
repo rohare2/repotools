@@ -47,23 +47,4 @@ if ( ! -d "$dest") {
 }
 
 # Process repos
-my $ret = `yum repolist enabled`;
-my @list = split('\n', $ret);
-foreach my $line (@list) {
-	$line =~ '^Load' && next;
-	$line =~ '^[ \t]*:' && next;
-	$line =~ '^0' && next;
-	$line =~ '^This system' && next;
-	$line =~ '^Reading' && next;
-	$line =~ '^repo id' && next;
-	$line =~ '^repolist' && next;
-	my ($repo, $desc) = split(' ', $line);
-	$repo =~ s/^!//;
-	$repo =~ s/\/x86_64//;
-
-	# do the repo sync
-	print "Processing: ${repo}\n";
-	system("/usr/bin/reposync -d -n -l --repoid=${repo} --download_path=${dest} > /dev/null");
-
-}
-
+system("/usr/bin/reposync -d -n -l --download_path=${dest}");
