@@ -138,14 +138,17 @@
 			<repo>redhat/6Workstation/6/x86_64/rhn-tools-rhel-x86_64-workstation-6</repo>
 		</distro>
 		<distro name = "redhat7_server_x86_64" createRepo="1" updateRepo="0">
-			<repo>redhat/7Server/7/x86_64/epel-llnl</repo>
-			<repo>redhat/7Server/7/x86_64/llnl-rhel-x86_64-server-7/getPackage</repo>
-			<repo>redhat/7Server/7/x86_64/rhel-x86_64-server-7/getPackage</repo>
-			<repo>redhat/7Server/7/x86_64/rhel-x86_64-server-7-rhscl-1/getPackage</repo>
-			<repo>redhat/7Server/7/x86_64/rhel-x86_64-server-7-thirdparty-oracle-java/getPackage</repo>
-			<repo>redhat/7Server/7/x86_64/rhel-x86_64-server-optional-7/getPackage</repo>
-			<repo>redhat/7Server/7/x86_64/rhel-x86_64-server-supplementary-7/getPackage</repo>
-			<repo>redhat/7Server/7/x86_64/rhn-tools-rhel-x86_64-server-7/getPackage</repo>
+			<repo>redhat/7Server/7/x86_64/rhel-7-server-satellite-tools-6.2-rpms</repo>
+			<repo>redhat/7Server/7/x86_64/rhel-server-rhscl-7-rpms</repo>
+			<repo>redhat/7Server/7/x86_64/rhel-7-server-optional-rpms</repo>
+			<repo>redhat/7Server/7/x86_64/GS_IS7_x86_64_RPMs</repo>
+			<repo>redhat/7Server/7/x86_64/GS_EPEL7_x86_64_RPMs</repo>
+			<repo>redhat/7Server/7/x86_64/rhel-7-server-extras-rpms</repo>
+			<repo>redhat/7Server/7/x86_64/rhel-7-server-rhn-tools-rpms</repo>
+			<repo>redhat/7Server/7/x86_64/rhel-7-server-rpms</repo>
+			<repo>redhat/7Server/7/x86_64/rhel-atomic-host-rpms</repo>
+			<repo>redhat/7Server/7/x86_64/rhel-7-server-supplementary-rpms</repo>
+			<repo>redhat/7Server/7/x86_64/rhel-7-server-thirdparty-oracle-java-rpms</repo>
 		</distro>
 		<distro name = "redhat7_workstation_x86_64" createRepo="1" updateRepo="0">
 			<repo>redhat/7Workstation/7/x86_64/rhel-7-workstation-optional-rpms</repo>
