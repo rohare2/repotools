@@ -127,7 +127,7 @@
 			<repo>redhat/7Workstation/7/x86_64/iso</repo>
 		</distro>
 	</source>
-     <source url = "rhn2" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.ipa.llnl-doe.ic.gov">
+     <source url = "rhn" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.ipa.llnl-doe.ic.gov">
 		<distro name = "redhat6_workstation_x86_64" createRepo="1" updateRepo="0">
 			<repo>redhat/6Workstation/6/x86_64/epel-llnl</repo>
 			<repo>redhat/6Workstation/6/x86_64/rhel-x86_64-workstation-6</repo>
