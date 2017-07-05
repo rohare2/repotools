@@ -131,7 +131,7 @@
 		<distro name = "redhat6_workstation_x86_64" createRepo="1" updateRepo="0">
 			<repo>redhat/6Workstation/6/x86_64/rhel-6-workstation-rpms</repo>
 			<repo>redhat/6Workstation/6/x86_64/rhel-6-workstation-extras-rpms</repo>
-			<repo>redhat/6Workstation/6/x86_64/rhel-6-workstation-supplementary-rpms>
+			<repo>redhat/6Workstation/6/x86_64/rhel-6-workstation-supplementary-rpms</repo>
 			<repo>redhat/6Workstation/6/x86_64/rhel-6-workstation-satellite-tools-6.2-rpms</repo>
 			<repo>redhat/6Workstation/6/x86_64/GS_IS6_x86_64_RPMs</repo>
 			<repo>redhat/6Workstation/6/x86_64/rhel-6-workstation-thirdparty-oracle-java-rpms</repo>
