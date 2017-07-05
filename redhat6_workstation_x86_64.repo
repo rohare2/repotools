@@ -1,52 +1,125 @@
-# $Id: redhat6_x86_64.repo 222 2014-10-24 18:18:28Z ohare2 $
-# $URL: https://corbin.llnl.gov/repos/admin/repotools/redhat6_x86_64.repo $
+#
+# Certificate-Based Repositories
+# Managed by (rhsm) subscription-manager
+#
+# *** This file is auto-generated.  Changes made here will be over-written. ***
+# *** Use "subscription-manager repo-override --help" if you wish to make changes. ***
+#
+# If this file is empty and this system is subscribed consider 
+# a "yum repolist" to refresh available repos
+#
 
-[epel-llnl]
-name=epel-llnl $releasever - $basearch
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/6/$basearch/epel-llnl/
-enabled=1
-gpgcheck=1
-sslverify=false
+[rhel-6-workstation-rpms]
+metadata_expire = 1
+sslclientcert = /etc/pki/entitlement/3463996232870227991.pem
+baseurl = https://rhn6.llnl.gov/pulp/repos/GS/Library/content/dist/rhel/workstation/6/$releasever/$basearch/os
+ui_repoid_vars = releasever basearch
+sslverify = 1
+name = Red Hat Enterprise Linux 6 Workstation (RPMs)
+sslclientkey = /etc/pki/entitlement/3463996232870227991-key.pem
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+enabled = 1
+sslcacert = /etc/rhsm/ca/katello-server-ca.pem
+gpgcheck = 1
 
-[rhel-x86_64-workstation-6]
-name=rhel-x86_64-workstation-6 $releasever - $basearch
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/6/$basearch/rhel-x86_64-workstation-6/
-enabled=1
-gpgcheck=1
-sslverify=false
+[rhel-6-workstation-extras-rpms]
+metadata_expire = 1
+sslclientcert = /etc/pki/entitlement/3463996232870227991.pem
+baseurl = https://rhn6.llnl.gov/pulp/repos/GS/Library/content/dist/rhel/workstation/6/6Workstation/$basearch/extras/os
+ui_repoid_vars = basearch
+sslverify = 1
+name = Red Hat Enterprise Linux 6 Workstation - Extras (RPMs)
+sslclientkey = /etc/pki/entitlement/3463996232870227991-key.pem
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+enabled = 1
+sslcacert = /etc/rhsm/ca/katello-server-ca.pem
+gpgcheck = 1
 
-[rhel-x86_64-workstation-6-rhscl-1]
-name=rhel-x86_64-workstation-6-rhscl-1 $releasever - $basearch
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/6/$basearch/rhel-x86_64-workstation-6-rhscl-1/
-enabled=1
-gpgcheck=1
-sslverify=false
+[rhel-6-workstation-supplementary-rpms]
+metadata_expire = 1
+sslclientcert = /etc/pki/entitlement/3463996232870227991.pem
+baseurl = https://rhn6.llnl.gov/pulp/repos/GS/Library/content/dist/rhel/workstation/6/$releasever/$basearch/supplementary/os
+ui_repoid_vars = releasever basearch
+sslverify = 1
+name = Red Hat Enterprise Linux 6 Workstation - Supplementary (RPMs)
+sslclientkey = /etc/pki/entitlement/3463996232870227991-key.pem
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+enabled = 1
+sslcacert = /etc/rhsm/ca/katello-server-ca.pem
+gpgcheck = 1
 
-[rhel-x86_64-workstation-6-thirdparty-oracle-java]
-name=rhel-x86_64-workstation-6-thirdparty-oracle-java $releasever - $basearch
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/6/$basearch/rhel-x86_64-workstation-6-thirdparty-oracle-java/
-enabled=1
-gpgcheck=1
-sslverify=false
+[rhel-6-workstation-satellite-tools-6.2-rpms]
+metadata_expire = 1
+sslclientcert = /etc/pki/entitlement/3463996232870227991.pem
+baseurl = https://rhn6.llnl.gov/pulp/repos/GS/Library/content/dist/rhel/workstation/6/6Workstation/$basearch/sat-tools/6.2/os
+ui_repoid_vars = basearch
+sslverify = 1
+name = Red Hat Satellite Tools 6.2 (for RHEL 6 Workstation) (RPMs)
+sslclientkey = /etc/pki/entitlement/3463996232870227991-key.pem
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+enabled = 1
+sslcacert = /etc/rhsm/ca/katello-server-ca.pem
+gpgcheck = 1
 
-[rhel-x86_64-workstation-optional-6]
-name=rhel-x86_64-workstation-optional-6 $releasever - $basearch
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/6/$basearch/rhel-x86_64-workstation-optional-6/
-enabled=1
-gpgcheck=1
-sslverify=false
+[GS_IS6_x86_64_RPMs]
+metadata_expire = 1
+sslclientcert = /etc/pki/entitlement/5366160548882465780.pem
+baseurl = https://rhn6.llnl.gov/pulp/repos/GS/Library/custom/IS6_x86_64/RPMs
+sslverify = 1
+name = RPMs
+sslclientkey = /etc/pki/entitlement/5366160548882465780-key.pem
+gpgkey = https://rhn6.llnl.gov/katello/api/repositories/674/gpg_key_content
+enabled = 1
+sslcacert = /etc/rhsm/ca/katello-server-ca.pem
+gpgcheck = 1
 
-[rhel-x86_64-workstation-supplementary-6]
-name=rhel-x86_64-workstation-supplementary-6 $releasever - $basearch
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/6/$basearch/rhel-x86_64-workstation-supplementary-6/
-enabled=1
-gpgcheck=1
-sslverify=false
+[rhel-6-workstation-thirdparty-oracle-java-rpms]
+metadata_expire = 1
+sslclientcert = /etc/pki/entitlement/3463996232870227991.pem
+baseurl = https://rhn6.llnl.gov/pulp/repos/GS/Library/content/dist/rhel/workstation/6/$releasever/$basearch/oracle-java/os
+ui_repoid_vars = releasever basearch
+sslverify = 1
+name = Red Hat Enterprise Linux 6 Workstation - Oracle Java (RPMs)
+sslclientkey = /etc/pki/entitlement/3463996232870227991-key.pem
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+enabled = 0
+sslcacert = /etc/rhsm/ca/katello-server-ca.pem
+gpgcheck = 1
 
-[rhn-tools-rhel-x86_64-workstation-6]
-name=rhn-tools-rhel-x86_64-workstation-6 $releasever - $basearch
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/6/$basearch/rhn-tools-rhel-x86_64-workstation-6
-enabled=1
-gpgcheck=1
-sslverify=false
+[GS_EPEL6_x86_64_RPMs]
+metadata_expire = 1
+sslclientcert = /etc/pki/entitlement/5904740951746648771.pem
+baseurl = https://rhn6.llnl.gov/pulp/repos/GS/Library/custom/EPEL6_x86_64/RPMs
+sslverify = 1
+name = RPMs
+sslclientkey = /etc/pki/entitlement/5904740951746648771-key.pem
+gpgkey = https://rhn6.llnl.gov/katello/api/repositories/671/gpg_key_content
+enabled = 1
+sslcacert = /etc/rhsm/ca/katello-server-ca.pem
+gpgcheck = 1
 
+[rhel-6-workstation-optional-rpms]
+metadata_expire = 1
+sslclientcert = /etc/pki/entitlement/3463996232870227991.pem
+baseurl = https://rhn6.llnl.gov/pulp/repos/GS/Library/content/dist/rhel/workstation/6/$releasever/$basearch/optional/os
+ui_repoid_vars = releasever basearch
+sslverify = 1
+name = Red Hat Enterprise Linux 6 Workstation - Optional (RPMs)
+sslclientkey = /etc/pki/entitlement/3463996232870227991-key.pem
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+enabled = 1
+sslcacert = /etc/rhsm/ca/katello-server-ca.pem
+gpgcheck = 1
+
+[rhel-6-workstation-rhn-tools-rpms]
+metadata_expire = 1
+sslclientcert = /etc/pki/entitlement/3463996232870227991.pem
+baseurl = https://rhn6.llnl.gov/pulp/repos/GS/Library/content/dist/rhel/workstation/6/$releasever/$basearch/rhn-tools/os
+ui_repoid_vars = releasever basearch
+sslverify = 1
+name = RHN Tools for Red Hat Enterprise Linux 6 Workstation (RPMs)
+sslclientkey = /etc/pki/entitlement/3463996232870227991-key.pem
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+enabled = 0
+sslcacert = /etc/rhsm/ca/katello-server-ca.pem
+gpgcheck = 1

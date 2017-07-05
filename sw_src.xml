@@ -129,13 +129,15 @@
 	</source>
      <source url = "rhn" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.ipa.llnl-doe.ic.gov">
 		<distro name = "redhat6_workstation_x86_64" createRepo="1" updateRepo="0">
-			<repo>redhat/6Workstation/6/x86_64/epel-llnl</repo>
-			<repo>redhat/6Workstation/6/x86_64/rhel-x86_64-workstation-6</repo>
-			<repo>redhat/6Workstation/6/x86_64/rhel-x86_64-workstation-6-rhscl-1</repo>
-			<repo>redhat/6Workstation/6/x86_64/rhel-x86_64-workstation-6-thirdparty-oracle-java</repo>
-			<repo>redhat/6Workstation/6/x86_64/rhel-x86_64-workstation-optional-6</repo>
-			<repo>redhat/6Workstation/6/x86_64/rhel-x86_64-workstation-supplementary-6</repo>
-			<repo>redhat/6Workstation/6/x86_64/rhn-tools-rhel-x86_64-workstation-6</repo>
+			<repo>redhat/6Workstation/6/x86_64/rhel-6-workstation-rpms</repo>
+			<repo>redhat/6Workstation/6/x86_64/rhel-6-workstation-extras-rpms</repo>
+			<repo>redhat/6Workstation/6/x86_64/rhel-6-workstation-supplementary-rpms>
+			<repo>redhat/6Workstation/6/x86_64/rhel-6-workstation-satellite-tools-6.2-rpms</repo>
+			<repo>redhat/6Workstation/6/x86_64/GS_IS6_x86_64_RPMs</repo>
+			<repo>redhat/6Workstation/6/x86_64/rhel-6-workstation-thirdparty-oracle-java-rpms</repo>
+			<repo>redhat/6Workstation/6/x86_64/GS_EPEL6_x86_64_RPMs</repo>
+			<repo>redhat/6Workstation/6/x86_64/rhel-6-workstation-optional-rpms</repo>
+			<repo>redhat/6Workstation/6/x86_64/rhel-6-workstation-rhn-tools-rpms</repo>
 		</distro>
 		<distro name = "redhat7_server_x86_64" createRepo="1" updateRepo="0">
 			<repo>redhat/7Server/7/x86_64/rhel-7-server-satellite-tools-6.2-rpms</repo>
