@@ -1,0 +1,18 @@
+# $Id: gs.repo 187 2014-10-23 03:21:38Z rohare $
+# $URL: https://corbin.llnl.gov/repos/admin/repotools/gs.repo $
+#
+
+[zdiv]
+name=GS $releasever - $basearch
+baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/$basearch/
+gpgcheck=1
+enabled=1
+sslverify=false
+
+[zdiv-noarch]
+name=GS-noarch $releasever
+baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/noarch/
+gpgcheck=1
+enabled=1
+sslverify=false
+

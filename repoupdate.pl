@@ -1,13 +1,13 @@
 #!/usr/bin/perl -w
-# $Id: repoupdate.pl 167 2014-10-18 14:29:53Z rohare $
-# $URL: file:///usr/local/svn/admin/repotools/repoupdate.pl $
+# $Id: repoupdate.pl 222 2014-10-24 18:18:28Z ohare2 $
+# $Date: $
 #
 # repoupdate.pl
 # Updates Z-Div Linux repos
 
 use strict;
 use Net::Ping;
-use File::Path;
+use File::Path::Tiny;
 use XML::Simple;
 
 $ENV{PATH} = "/bin:/usr/bin";    # Ensure a secure PATH
@@ -145,13 +145,12 @@ sub processRepo() {
 			}
 			print "\t\t$repo\n";
 		} else {
-			unless (-e "$dir") {
-				File::Path::Tiny::mk("$dir") || &unlock &&
+				if(!File::Path::Tiny::mk("$dir")) {
+					&unlock;
 					die "Could not make path '$dir': $!";
-
+				}
 				chmod 0755, "$dir";
 				chown -1, $gid, "$dir";
-			}
 
 			my $command = "rsync $options rsync://${url}/${repo}/ $dir";
 
@@ -173,8 +172,8 @@ sub eorTest() {
 
 sub usage() {
     print( <<EOF
-Usage: check.pl -h
-       check.pl [-f <xmlFile>] [-s <Source>] [-r <Repo>] [-d <Distro>]
+Usage: repoupdate.pl -h
+       repoupdate.pl [-f <xmlFile>] [-s <Source>] [-r <Repo>] [-d <Distro>]
            -d      Process named distro
            -f      Name of XML file with repo definitions
            -h      Display this usage message

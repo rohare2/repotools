@@ -1,51 +1,58 @@
-#$Id: Makefile 187 2014-10-23 03:21:38Z rohare $
-#$HeadURL: file:///usr/local/svn/admin/repotools/Makefile $
+# $Id: $
+#$HeadURL: https://corbin.llnl.gov/repos/admin/repotools/Makefile $
 #
-Name= ohares-release
-Version= 1.0
-Release= 185.centos6_x86_64.ohares
-Distro= centos6_x86_64
-Source= ${Name}-${Version}-${Release}.tgz
+Name= zdiv-release
+Version= 1.3
+Package= zdiv-release-1.3-27.redhat6_workstation.x86_64
+Source= ${Package}.tgz
 BASE= $(shell pwd)
 
 RPMBUILD= ${HOME}/rpmbuild
 RPM_BUILD_ROOT= ${RPMBUILD}/BUILDROOT
 
 ETC_DIR= /etc
+GPG_DIR= /etc/pki/rpm-gpg
 REPO_DIR= /etc/yum.repos.d
 USR_ETC_DIR= /usr/local/etc
 USR_SBIN_DIR= /usr/local/sbin
 
-ETC_FILES= ohares-release
+ETC_FILES= zdiv-release
 
-REPO_FILES= ohares.repo
+GPG_FILES= RPM-GPG-KEY-GS-FIE
+
+REPO_FILES= zdiv.repo lsi.repo redhat6_workstation_x86_64.repo splunk.repo
 
 USR_ETC_FILES= sw_src.xml
 
 USR_SBIN_FILES= repocreate.pl \
+	repodownload.pl \
 	reposyncWrapper.pl \
 	repotransfer.pl \
-	repoupdate.pl
+	repoupdate.pl \
+	repoWebLoad.pl
 
 rpmbuild: specfile source 
-	rpmbuild -bb --buildroot ${RPM_BUILD_ROOT} ${RPMBUILD}/SPECS/${Name}-${Version}-${Release}.spec
+	rpmbuild -bb --buildroot ${RPM_BUILD_ROOT} ${RPMBUILD}/SPECS/${Package}.spec
 
 specfile: spec
-	@cat ./spec > ${RPMBUILD}/SPECS/${Name}-${Version}-${Release}.spec
+	@cat ./spec > ${RPMBUILD}/SPECS/${Package}.spec
 
 source:
 	if [ ! -d ${RPMBUILD}/SOURCES/${Name} ]; then \
 		mkdir ${RPMBUILD}/SOURCES/${Name}; \
 	fi
 	rsync -av * ${RPMBUILD}/SOURCES/${Name}
-	tar czvf ${RPMBUILD}/SOURCES/${Source} --exclude=.svn -C ${RPMBUILD}/SOURCES ${Name}
+	tar czvf ${RPMBUILD}/SOURCES/${Source} --exclude=.git -C ${RPMBUILD}/SOURCES ${Name}
 	rm -fr ${RPMBUILD}/SOURCES/${Name}
 
-install: make_path etc repo usr_etc usr_sbin localinstall
+install: make_path etc gpgfiles repo usr_etc usr_sbin
 
 make_path:
 	@if [ ! -d ${RPM_BUILD_ROOT}/${ETC_DIR} ]; then \
 		mkdir -m 0755 -p ${RPM_BUILD_ROOT}/${ETC_DIR}; \
+	fi;
+	@if [ ! -d ${RPM_BUILD_ROOT}/${GPG_DIR} ]; then \
+		mkdir -m 0755 -p ${RPM_BUILD_ROOT}/${GPG_DIR}; \
 	fi;
 	@if [ ! -d ${RPM_BUILD_ROOT}/${REPO_DIR} ]; then \
 		mkdir -m 0755 -p ${RPM_BUILD_ROOT}/${REPO_DIR}; \
@@ -60,6 +67,11 @@ make_path:
 etc:
 	@for file in ${ETC_FILES}; do \
 		install -p $$file ${RPM_BUILD_ROOT}/${ETC_DIR}; \
+	done;
+
+gpgfiles:
+	@for file in ${GPG_FILES}; do \
+		install -p $$file ${RPM_BUILD_ROOT}/${GPG_DIR}; \
 	done;
 
 repo:
@@ -89,9 +101,14 @@ localinstall:
 	done;
 	@chmod 640 /usr/local/etc/sw_src.xml
 	@chgrp wheel /usr/local/etc/sw_src.xml
+	@for file in ${GPG_FILES}; do \
+		install $$file ${GPG_DIR}; \
+	done;
+	@chmod 644 /etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE
+	@chgrp wheel /etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE
 	@for file in ${USR_SBIN_FILES}; do \
 		install $$file ${USR_SBIN_DIR}; \
+		install $$file /var/www/html/software/tools; \
 	done;
 	@chgrp wheel ${USR_SBIN_DIR}/repo*
 	@chmod 770 ${USR_SBIN_DIR}/repo*
-

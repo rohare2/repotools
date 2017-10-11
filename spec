@@ -1,13 +1,13 @@
-# $Id: spec 187 2014-10-23 03:21:38Z rohare $
-# $URL: file:///usr/local/svn/admin/repotools/spec $
+# $Id: spec.template 222 2014-10-24 18:18:28Z ohare2 $
+# $URL: https://corbin.llnl.gov/repos/admin/repotools/spec.template $
 #
 # Author: Rich O'Hare  <rohare2@gmail.com>
 #
 # Repo tools and release file
 #
-%define Name ohares-release
-%define Version 1.0
-%define Release 185.centos6_x86_64.ohares
+%define Name zdiv-release
+%define Version 1.3
+%define Release 27.redhat6_workstation.x86_64
 
 Name: %{Name}
 Version: %{Version}
@@ -44,4 +44,8 @@ exit 0
 %defattr(644, root, root)
 /etc/%{Name}
 /usr/local/etc/sw_src.xml
-/etc/yum.repos.d/ohares.repo
+/etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE
+/etc/yum.repos.d/zdiv.repo
+/etc/yum.repos.d/lsi.repo
+/etc/yum.repos.d/redhat6_workstation_x86_64.repo
+/etc/yum.repos.d/splunk.repo

@@ -1,87 +1,55 @@
 #!/usr/bin/perl -w
 # $Id: Makefile.PL 187 2014-10-23 03:21:38Z rohare $
-# $URL: file:///usr/local/svn/admin/repotools/Makefile.PL $
-#
+# $Date: $
 use strict;
 use File::Copy;
 use Cwd;
 use XML::Simple;
 require "repotools.conf";
 
-our ($version,%baseurl,%vendor,%packager,%zdivDistroRepoList,%oharesDistroRepoList,%gsDistroRepoList);
+our ($version,$releaseNo,%vendor,%packager,%zdivDistroRepoList);
 
 # repo software location
 my $BASE_DIR = "/var/www/html/software";
 my $xmlFile = "/usr/local/etc/sw_src.xml";
 my $sources = XMLin("$xmlFile", ForceArray => 1);
+my $baseurl = "zdiv-yum";
 
-# determine domain name
+# determine hostname 
 my $hostname = `uname -n`;
 chomp $hostname;
-my $domainname = `host $hostname | cut -d " " -f1`;
-chomp $domainname;
 
 # determine local host distro
 my $systemVersion = `lsb_release -sr`;
 chomp $systemVersion;
 $systemVersion =~ s/\..*//;
 
-# determine acceptable arguments
-my @open = ('gs');
-my @high = ('hal','jwics');
-my (@all,@good_args);
-if ($domainname eq "www.ohares.us") {
-	@all = ('ohares');
-	@good_args = ('ohares','all');
-} elsif ($domainname eq "corbin.llnl.gov" || $domainname eq "slave.llnl.gov") {
-	@all = ('gs','hal','jwics');
-	@good_args = ('all','gs','hal','high','jwics','open');
-} else {
-	die "Must be run from a known host";
-}
+sub evalPackage {
+	my $repolistEntry = shift;
+	my $buildDistro = $repolistEntry;
+	my $buildArch;
 
-my @net;
-
-($#ARGV >= 0 && grep(/$ARGV[0]/i, @good_args)) || $#ARGV < 0 or
-	die "unknown argument\nvalid arguments: @good_args\n";
-
-if ( $#ARGV >= 0 ) {
-	if ($ARGV[0] eq 'open') {
-		 @net = @open;
-	} elsif ($ARGV[0] eq 'high') {
-		@net = @high;
-	} elsif ($ARGV[0] eq 'all') {
-		@net = @all;
-	} else {
-		@net = @ARGV;
-	}
-} else {
-	die "You must make a network choice.\n";
-}
-
-sub evalRelease {
-	my $net = shift;
-	my $distro = shift;
-
-	my $SvnVersion = `svnversion`;
-	chomp $SvnVersion;
-	$SvnVersion =~ s/:.*//;
-	$SvnVersion =~ s/M//;
-	$SvnVersion =~ s/\..*$//g;
-	my $release = $SvnVersion . '.' . $distro . '.' . $net;
-
-	return $release;
+	if ($buildDistro =~ /_i386/) {
+		$buildDistro =~ s/_i386//;
+		$buildArch = "i386";
+	} 
+	if ($buildDistro =~ /_x86_64/) {
+		$buildDistro =~ s/_x86_64//;
+		$buildArch = "x86_64";
+	} 
+	
+	return ($buildDistro,$buildArch);
 }
 
 sub editMakefile {
-	my $name = shift;
-	my $repofile = shift;
-	my $net = shift;
-	my $distro = shift;
-	my $release = shift;
+	my $buildDistro = shift;
+	my $buildArch = shift;
+	my $repolistEntry = shift;
 	my $distroRepoList = shift;
-	my $file = 'Makefile';
+	my $buildVersion = shift;
+	my $package = "zdiv-release-${version}-${releaseNo}.${buildDistro}.${buildArch}";
 	my $list = '';
+	my $file = 'Makefile';
 
 	open (INPUT,"<$file") or die;
 	my @input_array=<INPUT>;
@@ -89,42 +57,12 @@ sub editMakefile {
 	my $input_scalar=join("",@input_array);
 	my ($origStr, $replStr);
 
-	if ($input_scalar =~ /^Name= /m) {
-		$input_scalar =~ s/^Name=.*$/Name= $name/m;
-	}
-
-	if ($input_scalar =~ /^Version= /m) {
-		$input_scalar =~ s/^Version=.*$/Version= $version/m;
-	}
-
-	if ($input_scalar =~ /^Distro= /m) {
-		my $origStr = '^Distro=.*$';
-		my $replStr = "Distro= $distro";
-		$input_scalar =~ s/$origStr/$replStr/m;
-	}
-
-	if ($input_scalar =~ /^Release= /m) {
-		my $origStr = '^Release=.*$';
-		my $replStr = "Release= $release";
-		$input_scalar =~ s/$origStr/$replStr/m;
-	}
-
-	if ($input_scalar =~ /^ETC_FILES= /m) {
-		$input_scalar =~ s/^ETC_FILES=.*$/ETC_FILES= $name/m;
-	}
+	$input_scalar =~ /^Version= /m && ($input_scalar =~ s/^Version=.*$/Version= $version/m);
+	$input_scalar =~ /^Package= /m && ($input_scalar =~ s/^Package=.*$/Package= $package/m);
 
 	if ($input_scalar =~ /^REPO_FILES=/m) {
-		$list = $list . " " . $repofile;
-		if ($distroRepoList eq 'oharesDistroRepoList') {
-			foreach my $entry (@{$oharesDistroRepoList{$distro}}) {
-				$list = $list . " " . $entry;
-			}
-		} elsif ($distroRepoList eq 'gsDistroRepoList') {
-			foreach my $entry (@{$gsDistroRepoList{$distro}}) {
-				$list = $list . " " . $entry;
-			}
-		} elsif ($distroRepoList eq 'zdivDistroRepoList') {
-			foreach my $entry (@{$zdivDistroRepoList{$distro}}) {
+		if ($distroRepoList eq 'zdivDistroRepoList') {
+			foreach my $entry (@{$zdivDistroRepoList{$repolistEntry}}) {
 				$list = $list . " " . $entry;
 			}
 		} else {
@@ -139,13 +77,16 @@ sub editMakefile {
 }
 
 sub editSpecFile {
-	my $name = shift;
-	my $repofile = shift;
-	my $net = shift;
-	my $distro = shift;
-	my $release = shift;
+	my $buildDistro = shift;
+	my $buildArch = shift;
+	my $repolistEntry = shift;
 	my $distroRepoList = shift;
+	my $buildVersion = shift;
+	my $release = "${releaseNo}.${buildDistro}.${buildArch}.${net}";
+	my $source = "zdiv-release-${version}-${release}.tgz";
 	my $file = 'spec';
+	my $vendor = 'Lawrence Livermore National Laboratory';
+	my $packager = 'Rich O\'Hare <ohare2@llnl.gov'
 
 	copy("${file}.template","$file") or die "Copy failed: $!";
 	open (INPUT,"<$file") or die;
@@ -153,51 +94,31 @@ sub editSpecFile {
 	close(INPUT);
 	my $input_scalar=join("",@input_array);
 
-	if ($input_scalar =~ /^%define Name /m) {
-		$input_scalar =~ s/^%define Name.*$/%define Name $name/m;
-	}
-
-	if ($input_scalar =~ /^%define Version/m) {
-		$input_scalar =~ s/%define Version.*$/%define Version $version/gm;
-	}
-
-	if ($input_scalar =~ /^%define Release/m) {
-		$input_scalar =~ s/^%define Release.*$/%define Release $release/gm;
-	}
-
-	if ($input_scalar =~ /^Distribution:/m) {
-		$input_scalar =~ s/^Distribution.*$/Distribution: $distro/gm;
-	}
-
-	if ($input_scalar =~ /^URL:/m) {
-		$input_scalar =~ s/^URL.*$/URL: https:\/\/$baseurl{$net}/gm;
-	}
-
-	if ($input_scalar =~ /^Vendor:/m) {
-		$input_scalar =~ s/^Vendor:.*$/Vendor: $vendor{$net}/gm;
-	}
-
-	if ($input_scalar =~ /^Packager:/m) {
-		$input_scalar =~ s/^Packager:.*$/Packager: $packager{$net}/gm;
-	}
+	$input_scalar =~ /^%define Version/m && ($input_scalar =~ s/^%define Version.*$/%define Version ${version}/m);
+	$input_scalar =~ /^%define Release/m && ($input_scalar =~ s/^%define Release.*$/%define Release ${release}/m);
+	$input_scalar =~ /^Source:/m && ($input_scalar =~ s/^Source:.*$/Source: ${source}/m);
+	$input_scalar =~ /^BuildArch/m && ($input_scalar =~ s/^BuildArch.*$/BuildArch: noarch/m);
+	$input_scalar =~ /^Distribution:/m && ($input_scalar =~ s/^Distribution.*$/Distribution: ${buildDistro}/m);
+	$input_scalar =~ /^URL:/m && ($input_scalar =~ s/^URL.*$/URL: https:\/\/$baseurl/gm);
+	$input_scalar =~ /^Vendor:/m && ($input_scalar =~ s/^Vendor:.*$/Vendor: ${vendor}/gm);
+	$input_scalar =~ /^Packager:/m && ($input_scalar =~ s/^Packager:.*$/Packager: ${packager}/gm);
 
 	open (OUTPUT, "> $file") or die;
 	print OUTPUT "$input_scalar";
 	close OUTPUT;
 
-	open (OUTPUT, ">>$file") or die;
-	print OUTPUT ("/etc/yum.repos.d/$repofile\n");
-	if ($distroRepoList eq 'oharesDistroRepoList') {
-		foreach my $entry (@{$oharesDistroRepoList{$distro}}) {
-			print OUTPUT ("/etc/yum.repos.d/$entry\n");
+	open (OUTPUT, ">> $file") or die;
+	if ($distroRepoList eq 'zdivDistroRepoList') {
+		foreach my $entry (@{$zdivDistroRepoList{$repolistEntry}}) {
+			print OUTPUT ("/etc/yum.repos.d/${entry}\n");
 		}
-	} elsif ($distroRepoList eq 'gsDistroRepoList') {
-		foreach my $entry (@{$gsDistroRepoList{$distro}}) {
-			print OUTPUT ("/etc/yum.repos.d/$entry\n");
-		}
-	} elsif ($distroRepoList eq 'zdivDistroRepoList') {
-		foreach my $entry (@{$zdivDistroRepoList{$distro}}) {
-			print OUTPUT ("/etc/yum.repos.d/$entry\n");
+		if ($repolistEntry =~ /centos/) {
+			print OUTPUT ("\n");
+			print OUTPUT ("%posttrans\n");
+			print OUTPUT ("/usr/bin/yum-config-manager --disable base\n");
+			print OUTPUT ("/usr/bin/yum-config-manager --disable updates\n");
+			print OUTPUT ("/usr/bin/yum-config-manager --disable extras\n");
+			print OUTPUT ("/usr/bin/yum-config-manager --disable centosplus\n");
 		}
 	} else {
 		die "no DistroRepoList defined";
@@ -205,73 +126,8 @@ sub editSpecFile {
 	close OUTPUT;
 }
 
-sub loadWebServer {
-	my $name = shift;
-	my $release = shift;
-	my $net = shift;
-	my $dir = $ENV{"HOME"} . "/rpmbuild/RPMS/noarch";
-	my $file = sprintf("%s-%s-%s.noarch.rpm", $name,$version,$release);
-	my ($distro,$arch);
-
-	# copy to repo
-	my $repoPath = $BASE_DIR . "/" . $net;
-	my $dest = $repoPath;
-	if ($file =~ /centos5/) {
-		$distro = 'centos';
-		$arch = '5';
-		$dest = $dest . "/" . $distro . "/" . $arch;
-	}
-	if ($file =~ /centos6/) {
-		$distro = 'centos';
-		$arch = '6';
-		$dest = $dest . "/" . $distro . "/" . $arch;
-	}
-	if ($file =~ /centos7/) {
-		$distro = 'centos';
-		$arch = '7';
-		$dest = $dest . "/" . $distro . "/" . $arch;
-	}
-	if ($file =~ /redhat5/) {
-		$distro = 'redhat';
-		$arch = '5';
-		$dest = $dest . "/" . $distro . "/" . $arch;
-	}
-	if ($file =~ /redhat6/) {
-		$distro = 'redhat';
-		$arch = '6';
-		$dest = $dest . "/" . $distro . "/" . $arch;
-	}
-	if ($file =~ /redhat7/) {
-		$distro = 'redhat';
-		$arch = '7';
-		$dest = $dest . "/" . $distro . "/" . $arch;
-	}
-
-	if ($file =~ /_i386/ || $file =~ /_x86_64/) {
-		$file =~ /_i386/ && ($dest = $dest . "/i386");
-		$file =~ /_x86_64/ && ($dest = $dest . "/x86_64");
-	} else {
-		next;
-	}
-
-	`install -D -m 660 $dir/$file $dest/$file`;
-
-	# Make a link for this release
-	if ($distro eq 'redhat') {
-		my $cwd =  getcwd();
-		foreach my $version ('Server','Workstation') {
-			if ( ! -l "${repoPath}/${distro}/${arch}${version}") {
-				chdir "${repoPath}/${distro}";
-				system("ln -s $arch ${arch}${version}");
-				chdir $cwd;
-			}
-		}
-	}
-}
-
 sub fixRepoBaseurl {
-	my $net = shift;
-	my $url = $baseurl{$net};
+	my $url = $baseurl;
 
 	opendir (DIR, ".") or die $!;
 	while (my $file = readdir(DIR)) {
@@ -293,88 +149,67 @@ sub fixRepoBaseurl {
 }
 
 sub fixRepoDistro {
-	my $net = shift;
 	my $distro = shift;
-	my $file = $net . ".repo";
+	my $file = "zdiv.repo";
 
 	open (INPUT, "$file") or die "Can not open $file: $!";
 	my @input_array=<INPUT>;
 	my $input_scalar=join("",@input_array);
 	close(INPUT);
 
-	$distro =~ 'redhat' && 
-		($input_scalar =~ s/\/centos\//\/redhat\//mg);
-	$distro =~ 'centos' && 
-		($input_scalar =~ s/\/redhat\//\/centos\//mg);
+	$distro =~ 'redhat' && ($input_scalar =~ s/\/centos\//\/redhat\//mg);
+	$distro =~ 'centos' && ($input_scalar =~ s/\/redhat\//\/centos\//mg);
 
 	open (OUTPUT, "> $file") or die;
 	print OUTPUT "$input_scalar";
 	close OUTPUT;
 }
 
-foreach my $net (sort @net) {
-	my ($name,$repofile,$distroRepoList);
-	fixRepoBaseurl($net);
+my ($name,$distroRepoList);
+fixRepoBaseurl();
 
-	# network definitions
-	if ($net eq 'ohares') {
-		$name = 'ohares-release';
-		$repofile = 'ohares.repo';
-		$distroRepoList = "oharesDistroRepoList";
+$name = 'zdiv-release';
+$distroRepoList = "zdivDistroRepoList";
+
+no strict "refs";
+foreach my $repolistEntry (sort keys %{$distroRepoList}) {
+	use strict "refs";
+
+	# Only build RHEL5 on RHEL5 host, they use SHA method
+	my $buildVersion;
+	if ($repolistEntry =~ /centos5/ || $repolistEntry =~ /redhat5/) {
+		$buildVersion = '5';
+	} elsif ($repolistEntry =~ /centos6/ || $repolistEntry =~ /redhat6/) {
+		$buildVersion = '6';
+	} elsif ($repolistEntry =~ /centos7/ || $repolistEntry =~ /redhat7/) {
+		$buildVersion = '7';
 	}
-	if ($net eq 'gs') {
-		$name = 'gs-release';
-		$repofile = 'gs.repo';
-		$distroRepoList = "gsDistroRepoList";
-	}
-	if ($net eq 'hal') {
-		$name = 'zdiv-release';
-		$repofile = 'hal.repo';
-		$distroRepoList = "zdivDistroRepoList";
-	}
-	if ($net eq 'jwics') {
-		$name = 'zdiv-release';
-		$repofile = 'jwics.repo';
-		$distroRepoList = "zdivDistroRepoList";
+	if ($systemVersion == 5 && $buildVersion == 5) {
+		print "$repolistEntry match\n";
+	} elsif ($systemVersion == 6 && $buildVersion == 6) {
+		print "$repolistEntry match\n";
+	} elsif ($systemVersion == 7 && $buildVersion == 7) {
+		print "$repolistEntry match\n";
+	} else {
+		next;
 	}
 
-	no strict "refs";
-	foreach my $distro (sort keys %{$distroRepoList}) {
-		use strict "refs";
+	my ($buildDistro, $buildArch) = evalPackage($repolistEntry);
 
-		# Only build rpms for local host linux distribution version
-		my $buildVersion;
-		if ($distro =~ /centos5/ || $distro =~ /redhat5/) {
-			$buildVersion = '5';
-		} elsif ($distro =~ /centos6/ || $distro =~ /redhat6/) {
-			$buildVersion = '6';
-		} elsif ($distro =~ /centos7/ || $distro =~ /redhat7/) {
-			$buildVersion = '7';
-		}
-		if ($systemVersion == 5 && $buildVersion == 5) {
-			print "$distro match\n";
-		} elsif ($systemVersion >= 6 && $buildVersion >= 6) {
-			print "$distro match\n";
-		} else {
-			next;
-		}
+	# Fix the baseurl in repo file
+	fixRepoDistro($repolistEntry);
 
-		defined $net && $net ne '' or die "Net not defined: $!";
-		my $release = evalRelease($net,$distro);
+	# Make release file
+	my $file = "$name";
+	open (OUTPUT, "> $file") or die;
+	print OUTPUT ("${file} ${version}-${releaseNo}\n");
+	close OUTPUT;
 
-		# Fix the baseurl in repo file
-		fixRepoDistro($net,$distro);
-
-		# Make release file
-		my $file = "$name";
-		open (OUTPUT, "> $file") or die;
-		print OUTPUT ("${file} ${version}-${release}\n");
-		close OUTPUT;
-
-		editMakefile($name,$repofile,$net,$distro,$release,$distroRepoList);
-		editSpecFile($name,$repofile,$net,$distro,$release,$distroRepoList);
-		system("make rpmbuild");
-		loadWebServer($name,$release,$net);
-	}
+	editMakefile($buildDistro,$buildArch,$repolistEntry,$distroRepoList,$buildVersion);
+	editSpecFile($buildDistro,$buildArch,$repolistEntry,$distroRepoList,$buildVersion);
+	system("make rpmbuild");
 }
 
+# PGP sign the rpms
+print "Sign RPM packages\n";
+system("rpm --addsign $ENV{HOME}/rpmbuild/RPMS/noarch/zdiv-release*.rpm");

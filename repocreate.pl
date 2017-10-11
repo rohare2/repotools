@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
-# $Id: repocreate.pl 189 2014-10-24 17:09:56Z rohare $
-# $URL: file:///usr/local/svn/admin/repotools/repocreate.pl $
+# $Id: $
+# $Date: $
 #
 # Create repos selected from sw_src.xml
 
@@ -10,7 +10,7 @@ use XML::Simple;
 use Errno qw(EAGAIN);
 use POSIX "sys_wait_h";
 
-$ENV{PATH} = "/bin:/usr/bin";    # Ensure a secure PATH
+$ENV{PATH} = "/bin:/usr/bin:/usr/sbin";    # Ensure a secure PATH
 $| = 1;
 
 if ($< != 0) {
@@ -19,7 +19,7 @@ if ($< != 0) {
 }
 
 # Configureable options
-my $Width = 8;  # Maximum number of forkes
+my $Width = 12;  # Maximum number of forkes
 my $LockFile = "/tmp/lockfile";
 my $ForkCount = 0;
 my $args = '';
@@ -35,8 +35,8 @@ chomp $domainname;
 my $DEST_URL;
 if ($domainname =~ /llnl.gov/) {
 	$DEST_URL = "https://corbin.llnl.gov/software";
-} elsif ($domainname =~ /ohares.us/) {
-	$DEST_URL = "https://www.ohares.us/software";
+} else {
+	die "Unknown domainname\n";
 }
 
 my $BASE_DIR = "/var/www/html/software";
@@ -194,8 +194,8 @@ sub processRepo() {
 
 sub usage() {
     print( <<EOF
-Usage: check.pl -h
-       check.pl [-f <xmlFile>] [-s <Source> [-r <Repo> || -d <Distro>]
+Usage: repocreate.pl -h
+       repocreate.pl [-f <xmlFile>] [-s <Source> [-r <Repo> || -d <Distro>]
            -d      Process named distro
            -f      Name of XML file with repo definitions
            -h      Display this usage message

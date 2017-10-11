@@ -1,10 +1,10 @@
-#$Id: splunk.repo 187 2014-10-23 03:21:38Z rohare $
-# $URL: file:///usr/local/svn/admin/repotools/splunk.repo $
+#$Id: splunk.repo 222 2014-10-24 18:18:28Z ohare2 $
+# $URL: https://corbin.llnl.gov/repos/admin/repotools/splunk.repo $
 #
 
 [splunk]
-name=splunk
-baseurl=https://www.ohares.us/software/VendorSoftware/Splunk/$releasever/$basearch/
-enabled=1
+name=splunk - $basearch
+baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/VendorSoftware/Splunk/$basearch/
+enabled=0
 gpgcheck=0
 sslverify=false

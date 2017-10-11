@@ -1,5 +1,5 @@
-# $Id: spec.template 151 2014-10-08 14:44:49Z rohare $
-# $URL: file:///usr/local/svn/admin/repotools/spec.template $
+# $Id: $
+# $Date: $
 #
 # Author: Rich O'Hare  <rohare2@gmail.com>
 #
@@ -16,7 +16,7 @@ Source: %{Name}-%{Version}-%{Release}.tgz
 License: GPLv2
 Group: SystemEnvironment/Base
 BuildArch: noarch
-URL: https://www.ohares.us/
+URL: https://corbin.llnl.gov/
 Distribution: ???
 Vendor: Lawrence Livermore National Laboratory
 Packager: Rich O'Hare <ohare2@llnl.gov>
@@ -44,3 +44,4 @@ exit 0
 %defattr(644, root, root)
 /etc/%{Name}
 /usr/local/etc/sw_src.xml
+/etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE

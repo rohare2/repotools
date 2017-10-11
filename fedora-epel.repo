@@ -1,10 +1,9 @@
-#$Id: fedora-epel.repo 187 2014-10-23 03:21:38Z rohare $
-# $URL: file:///usr/local/svn/admin/repotools/fedora-epel.repo $
+# $Id: $
+# $Date: $
 #
-
 [epel]
 name=fedora-epel $releasever - $basearch
-baseurl=https://www.ohares.us/software/fedora-epel/$releasever/$basearch/
+baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/fedora-epel/$releasever/$basearch/
 enabled=1
 gpgcheck=0
 sslverify=false
