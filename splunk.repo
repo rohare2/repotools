@@ -4,7 +4,7 @@
 
 [splunk]
 name=splunk - $basearch
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/VendorSoftware/Splunk/$basearch/
+baseurl=https://zdiv-yum/software/VendorSoftware/Splunk/$basearch/
 enabled=0
 gpgcheck=0
 sslverify=false

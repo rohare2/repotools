@@ -82,11 +82,11 @@ sub editSpecFile {
 	my $repolistEntry = shift;
 	my $distroRepoList = shift;
 	my $buildVersion = shift;
-	my $release = "${releaseNo}.${buildDistro}.${buildArch}.${net}";
+	my $release = "${releaseNo}.${buildDistro}.${buildArch}";
 	my $source = "zdiv-release-${version}-${release}.tgz";
 	my $file = 'spec';
 	my $vendor = 'Lawrence Livermore National Laboratory';
-	my $packager = 'Rich O\'Hare <ohare2@llnl.gov'
+	my $packager = 'Rich O\'Hare <ohare2@llnl.gov';
 
 	copy("${file}.template","$file") or die "Copy failed: $!";
 	open (INPUT,"<$file") or die;

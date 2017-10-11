@@ -1,25 +1,25 @@
-# $Id: spec.template 222 2014-10-24 18:18:28Z ohare2 $
-# $URL: https://corbin.llnl.gov/repos/admin/repotools/spec.template $
+# $Id: $
+# $Date: $
 #
 # Author: Rich O'Hare  <rohare2@gmail.com>
 #
 # Repo tools and release file
 #
 %define Name zdiv-release
-%define Version 1.3
-%define Release 27.redhat6_workstation.x86_64
+%define Version 1.5
+%define Release 1.redhat7_workstation.x86_64
 
 Name: %{Name}
 Version: %{Version}
 Release: %{Release}
-Source: %{Name}-%{Version}-%{Release}.tgz
+Source: zdiv-release-1.5-1.redhat7_workstation.x86_64.tgz
 License: GPLv2
 Group: SystemEnvironment/Base
 BuildArch: noarch
-URL: https://www.ohares.us
-Distribution: centos6_x86_64
-Vendor: DVCAL
-Packager: Rich O'Hare <rohare2@gmail.com
+URL: https://zdiv-yum
+Distribution: redhat7_workstation
+Vendor: Lawrence Livermore National Laboratory
+Packager: Rich O'Hare <ohare2@llnl.gov
 Provides: %{Name}, sw_src.xml
 Summary: YUM environment configuration
 %define _unpackaged_files_terminate_build 0
@@ -47,5 +47,5 @@ exit 0
 /etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE
 /etc/yum.repos.d/zdiv.repo
 /etc/yum.repos.d/lsi.repo
-/etc/yum.repos.d/redhat6_workstation_x86_64.repo
+/etc/yum.repos.d/redhat7_workstation_x86_64.repo
 /etc/yum.repos.d/splunk.repo

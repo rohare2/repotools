@@ -3,7 +3,7 @@
 #
 [epel]
 name=fedora-epel $releasever - $basearch
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/fedora-epel/$releasever/$basearch/
+baseurl=https://zdiv-yum/software/fedora-epel/$releasever/$basearch/
 enabled=1
 gpgcheck=0
 sslverify=false

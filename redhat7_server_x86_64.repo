@@ -3,77 +3,77 @@
 
 [GS_EPEL7_x86_64_RPMs]
 name=GS_EPEL7_x86_64_RPM
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/7/$basearch/GS_EPEL7_x86_64_RPMs/
+baseurl=https://zdiv-yum/software/redhat/$releasever/7/$basearch/GS_EPEL7_x86_64_RPMs/
 enabled=1
 gpgcheck=1
 sslverify=false
 
 [GS_IS7_x86_64_RPMs]
 name=GS_IS7_x86_64_RPMs
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/7/$basearch/GS_IS7_x86_64_RPMs/
+baseurl=https://zdiv-yum/software/redhat/$releasever/7/$basearch/GS_IS7_x86_64_RPMs/
 enabled=1
 gpgcheck=1
 sslverify=false
 
 [rhel-7-server-extras-rpms]
 name=rhel-7-server-extras-rpms
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/7/$basearch/rhel-7-server-extras-rpms/
+baseurl=https://zdiv-yum/software/redhat/$releasever/7/$basearch/rhel-7-server-extras-rpms/
 enabled=1
 gpgcheck=1
 sslverify=false
 
 [rhel-7-server-optional-rpms]
 name=rhel-7-server-optional-rpms
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/7/$basearch/rhel-7-server-optional-rpms/
+baseurl=https://zdiv-yum/software/redhat/$releasever/7/$basearch/rhel-7-server-optional-rpms/
 enabled=1
 gpgcheck=1
 sslverify=false
 
 [rhel-7-server-rhn-tools-rpms]
 name=rhel-7-server-rhn-tools-rpms
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/7/$basearch/rhel-7-server-rhn-tools-rpms/
+baseurl=https://zdiv-yum/software/redhat/$releasever/7/$basearch/rhel-7-server-rhn-tools-rpms/
 enabled=0
 gpgcheck=1
 sslverify=false
 
 [rhel-7-server-rpms]
 name=rhel-7-server-rpms
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/7/$basearch/rhel-7-server-rpms/
+baseurl=https://zdiv-yum/software/redhat/$releasever/7/$basearch/rhel-7-server-rpms/
 enabled=1
 gpgcheck=1
 sslverify=false
 
 [rhel-7-server-satellite-tools-6.2-rpms]
 name=rhel-7-server-satellite-tools-6.2-rpms
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/7/$basearch/rhel-7-server-satellite-tools-6.2-rpms/
+baseurl=https://zdiv-yum/software/redhat/$releasever/7/$basearch/rhel-7-server-satellite-tools-6.2-rpms/
 enabled=0
 gpgcheck=1
 sslverify=false
 
 [rhel-7-server-supplementary-rpms]
 name=rhel-7-server-supplementary-rpms
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/7/$basearch/rhel-7-server-supplementary-rpms/
+baseurl=https://zdiv-yum/software/redhat/$releasever/7/$basearch/rhel-7-server-supplementary-rpms/
 enabled=1
 gpgcheck=1
 sslverify=false
 
 [rhel-7-server-thirdparty-oracle-java-rpms]
 name=rhel-7-server-thirdparty-oracle-java-rpms
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/7/$basearch/rhel-7-server-thirdparty-oracle-java-rpms/
+baseurl=https://zdiv-yum/software/redhat/$releasever/7/$basearch/rhel-7-server-thirdparty-oracle-java-rpms/
 enabled=0
 gpgcheck=1
 sslverify=false
 
 [rhel-atomic-host-rpms]
 name=rhel-atomic-host-rpms
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/7/$basearch/rhel-atomic-host-rpms/
+baseurl=https://zdiv-yum/software/redhat/$releasever/7/$basearch/rhel-atomic-host-rpms/
 enabled=0
 gpgcheck=1
 sslverify=false
 
 [rhel-server-rhscl-7-rpms]
 name=rhel-server-rhscl-7-rpms
-baseurl=https://leeloo.ipa.llnl-doe.ic.gov/software/redhat/$releasever/7/$basearch/rhel-server-rhscl-7-rpms/
+baseurl=https://zdiv-yum/software/redhat/$releasever/7/$basearch/rhel-server-rhscl-7-rpms/
 enabled=1
 gpgcheck=1
 sslverify=false
