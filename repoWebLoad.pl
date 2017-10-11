@@ -32,13 +32,9 @@ foreach my $subdir ("i386","x86_64","noarch") {
 		print "$dir\n";
 		opendir(DIR, "$dir") or warn "Can't open $dir";
 		while (my $file = readdir(DIR)) {
-			my ($net,$distro,$arch,$dest);
+			my ($distro,$arch,$dest);
 			$file =~ /^zdiv-release-/ or next;
 
-			$file =~ /\.gs\./ && ($net = 'gs');
-			$file =~ /\.hal\./ && ($net = 'hal');
-			$file =~ /\.jwics\./ && ($net = 'jwics');
-			defined $net or die "No net defined for: $file";
 
 			$file =~ /\.redhat5_client\./ && ($distro = 'redhat/5Client');
 			$file =~ /\.redhat5_server\./ && ($distro = 'redhat/5Server');
@@ -57,7 +53,7 @@ foreach my $subdir ("i386","x86_64","noarch") {
 			defined $arch or die "No arch defined for: $file";
 
 			-d $dir or die "missing destination directory";
-			$dest = $BASE_DIR . "/" . $net . "/" . $distro . "/" . $arch;
+			$dest = $BASE_DIR . "/gs/"  . $distro . "/" . $arch;
 			$debug && print "install -m 644 $dir/$file $dest/$file\n";
 			`install -m 644 $dir/$file $dest/$file`;
 			! $debug && `rm $dir/$file`;

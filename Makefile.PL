@@ -8,12 +8,13 @@ use Cwd;
 use XML::Simple;
 require "repotools.conf";
 
-our ($version,$releaseNo,%baseurl,%vendor,%packager,%zdivDistroRepoList);
+our ($version,$releaseNo,%vendor,%packager,%zdivDistroRepoList);
 
 # repo software location
 my $BASE_DIR = "/var/www/html/software";
 my $xmlFile = "/usr/local/etc/sw_src.xml";
 my $sources = XMLin("$xmlFile", ForceArray => 1);
+my $baseurl = "zdiv-yum";
 
 # determine hostname 
 my $hostname = `uname -n`;
@@ -25,41 +26,17 @@ chomp $systemVersion;
 $systemVersion =~ s/\..*//;
 
 # determine acceptable arguments
-my @open = ('gs');
-my @high = ('hal','jwics');
-my (@all,@good_args);
 if ($hostname eq "captive.llnl.gov" ||
 		$hostname eq "convict.llnl.gov" ||
 		$hostname eq "corbin.llnl.gov" ||
 		$hostname eq "serf.llnl.gov" ||
 		$hostname eq "slave.llnl.gov") {
-	@all = ('gs','hal','jwics');
-	@good_args = ('all','gs','hal','high','jwics','open');
 } else {
 	die "Must be run from a known host";
 }
 
-my @net;
-
-($#ARGV >= 0 && grep(/$ARGV[0]/i, @good_args)) || $#ARGV < 0 or
-	die "unknown argument\nvalid arguments: @good_args\n";
-
-if ( $#ARGV >= 0 ) {
-	if ($ARGV[0] eq 'open') {
-		 @net = @open;
-	} elsif ($ARGV[0] eq 'high') {
-		@net = @high;
-	} elsif ($ARGV[0] eq 'all') {
-		@net = @all;
-	} else {
-		@net = @ARGV;
-	}
-} else {
-	die "You must make a network choice.\n";
-}
 
 sub evalPackage {
-	my $net = shift;
 	my $repolistEntry = shift;
 	my $buildDistro = $repolistEntry;
 	my $buildArch;
@@ -82,8 +59,7 @@ sub editMakefile {
 	my $repolistEntry = shift;
 	my $distroRepoList = shift;
 	my $buildVersion = shift;
-	my $net = shift;
-	my $package = "zdiv-release-${version}-${releaseNo}.${buildDistro}.${buildArch}.${net}";
+	my $package = "zdiv-release-${version}-${releaseNo}.${buildDistro}.${buildArch}";
 	my $list = '';
 	my $file = 'Makefile';
 
@@ -118,10 +94,11 @@ sub editSpecFile {
 	my $repolistEntry = shift;
 	my $distroRepoList = shift;
 	my $buildVersion = shift;
-	my $net = shift;
 	my $release = "${releaseNo}.${buildDistro}.${buildArch}.${net}";
 	my $source = "zdiv-release-${version}-${release}.tgz";
 	my $file = 'spec';
+	my $vendor = 'Lawrence Livermore National Laboratory';
+	my $packager = 'Rich O\'Hare <ohare2@llnl.gov'
 
 	copy("${file}.template","$file") or die "Copy failed: $!";
 	open (INPUT,"<$file") or die;
@@ -134,9 +111,9 @@ sub editSpecFile {
 	$input_scalar =~ /^Source:/m && ($input_scalar =~ s/^Source:.*$/Source: ${source}/m);
 	$input_scalar =~ /^BuildArch/m && ($input_scalar =~ s/^BuildArch.*$/BuildArch: noarch/m);
 	$input_scalar =~ /^Distribution:/m && ($input_scalar =~ s/^Distribution.*$/Distribution: ${buildDistro}/m);
-	$input_scalar =~ /^URL:/m && ($input_scalar =~ s/^URL.*$/URL: https:\/\/$baseurl{$net}/gm);
-	$input_scalar =~ /^Vendor:/m && ($input_scalar =~ s/^Vendor:.*$/Vendor: $vendor{$net}/gm);
-	$input_scalar =~ /^Packager:/m && ($input_scalar =~ s/^Packager:.*$/Packager: $packager{$net}/gm);
+	$input_scalar =~ /^URL:/m && ($input_scalar =~ s/^URL.*$/URL: https:\/\/$baseurl/gm);
+	$input_scalar =~ /^Vendor:/m && ($input_scalar =~ s/^Vendor:.*$/Vendor: ${vendor}/gm);
+	$input_scalar =~ /^Packager:/m && ($input_scalar =~ s/^Packager:.*$/Packager: ${packager}/gm);
 
 	open (OUTPUT, "> $file") or die;
 	print OUTPUT "$input_scalar";
@@ -162,8 +139,7 @@ sub editSpecFile {
 }
 
 sub fixRepoBaseurl {
-	my $net = shift;
-	my $url = $baseurl{$net};
+	my $url = $baseurl;
 
 	opendir (DIR, ".") or die $!;
 	while (my $file = readdir(DIR)) {
@@ -185,7 +161,6 @@ sub fixRepoBaseurl {
 }
 
 sub fixRepoDistro {
-	my $net = shift;
 	my $distro = shift;
 	my $file = "zdiv.repo";
 
@@ -193,10 +168,6 @@ sub fixRepoDistro {
 	my @input_array=<INPUT>;
 	my $input_scalar=join("",@input_array);
 	close(INPUT);
-
-	$input_scalar =~ s/\/gs\//\/$net\//mg;
-	$input_scalar =~ s/\/hal\//\/$net\//mg;
-	$input_scalar =~ s/\/jwics\//\/$net\//mg;
 
 	$distro =~ 'redhat' && ($input_scalar =~ s/\/centos\//\/redhat\//mg);
 	$distro =~ 'centos' && ($input_scalar =~ s/\/redhat\//\/centos\//mg);
@@ -206,52 +177,49 @@ sub fixRepoDistro {
 	close OUTPUT;
 }
 
-foreach my $net (sort @net) {
-	my ($name,$distroRepoList);
-	fixRepoBaseurl($net);
+my ($name,$distroRepoList);
+fixRepoBaseurl();
 
-	$name = 'zdiv-release';
-	$distroRepoList = "zdivDistroRepoList";
+$name = 'zdiv-release';
+$distroRepoList = "zdivDistroRepoList";
 
-	no strict "refs";
-	foreach my $repolistEntry (sort keys %{$distroRepoList}) {
-		use strict "refs";
+no strict "refs";
+foreach my $repolistEntry (sort keys %{$distroRepoList}) {
+	use strict "refs";
 
-		# Only build RHEL5 on RHEL5 host, they use SHA method
-		my $buildVersion;
-		if ($repolistEntry =~ /centos5/ || $repolistEntry =~ /redhat5/) {
-			$buildVersion = '5';
-		} elsif ($repolistEntry =~ /centos6/ || $repolistEntry =~ /redhat6/) {
-			$buildVersion = '6';
-		} elsif ($repolistEntry =~ /centos7/ || $repolistEntry =~ /redhat7/) {
-			$buildVersion = '7';
-		}
-		if ($systemVersion == 5 && $buildVersion == 5) {
-			print "$repolistEntry match\n";
-		} elsif ($systemVersion == 6 && $buildVersion == 6) {
-			print "$repolistEntry match\n";
-		} elsif ($systemVersion == 7 && $buildVersion == 7) {
-			print "$repolistEntry match\n";
-		} else {
-			next;
-		}
-
-		defined $net && $net ne '' or die "Net not defined: $!";
-		my ($buildDistro, $buildArch) = evalPackage($net,$repolistEntry);
-
-		# Fix the baseurl in repo file
-		fixRepoDistro($net,$repolistEntry);
-
-		# Make release file
-		my $file = "$name";
-		open (OUTPUT, "> $file") or die;
-		print OUTPUT ("${file} ${version}-${releaseNo}\n");
-		close OUTPUT;
-
-		editMakefile($buildDistro,$buildArch,$repolistEntry,$distroRepoList,$buildVersion,$net);
-		editSpecFile($buildDistro,$buildArch,$repolistEntry,$distroRepoList,$buildVersion,$net);
-		system("make rpmbuild");
+	# Only build RHEL5 on RHEL5 host, they use SHA method
+	my $buildVersion;
+	if ($repolistEntry =~ /centos5/ || $repolistEntry =~ /redhat5/) {
+		$buildVersion = '5';
+	} elsif ($repolistEntry =~ /centos6/ || $repolistEntry =~ /redhat6/) {
+		$buildVersion = '6';
+	} elsif ($repolistEntry =~ /centos7/ || $repolistEntry =~ /redhat7/) {
+		$buildVersion = '7';
 	}
+	if ($systemVersion == 5 && $buildVersion == 5) {
+		print "$repolistEntry match\n";
+	} elsif ($systemVersion == 6 && $buildVersion == 6) {
+		print "$repolistEntry match\n";
+	} elsif ($systemVersion == 7 && $buildVersion == 7) {
+		print "$repolistEntry match\n";
+	} else {
+		next;
+	}
+
+	my ($buildDistro, $buildArch) = evalPackage($repolistEntry);
+
+	# Fix the baseurl in repo file
+	fixRepoDistro($repolistEntry);
+
+	# Make release file
+	my $file = "$name";
+	open (OUTPUT, "> $file") or die;
+	print OUTPUT ("${file} ${version}-${releaseNo}\n");
+	close OUTPUT;
+
+	editMakefile($buildDistro,$buildArch,$repolistEntry,$distroRepoList,$buildVersion);
+	editSpecFile($buildDistro,$buildArch,$repolistEntry,$distroRepoList,$buildVersion);
+	system("make rpmbuild");
 }
 
 # PGP sign the rpms
