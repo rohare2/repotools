@@ -61,6 +61,7 @@ sub editMakefile {
 		foreach my $entry (@{$RepoList{$repolistEntry}}) {
 			$list = $list . " " . $entry;
 		}
+		$list = $list . " ${org}.repo";
 		$input_scalar =~ s/^REPO_FILES=.*$/REPO_FILES=$list/m;
 	}
 
@@ -103,6 +104,7 @@ sub editSpecFile {
 			print OUTPUT ("/etc/yum.repos.d/${repo}\n");
 		}
 	}
+	print OUTPUT ("/etc/yum.repos.d/${org}.repo\n");
 	if ($repolistEntry =~ /centos/) {
 		print OUTPUT ("\n");
 		print OUTPUT ("%posttrans\n");

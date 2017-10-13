@@ -6,6 +6,7 @@ Version= 1.4
 Package= zdiv-release-1.4-1.redhat7_workstation.x86_64
 Source= ${Package}.tgz
 BASE= $(shell pwd)
+REPO= ???
 
 RPMBUILD= ${HOME}/rpmbuild
 RPM_BUILD_ROOT= ${RPMBUILD}/BUILDROOT
@@ -20,7 +21,7 @@ ETC_FILES= zdiv-release
 
 GPG_FILES= RPM-GPG-KEY-GS-FIE
 
-REPO_FILES= zdiv.repo lsi.repo redhat7_workstation_x86_64.repo splunk.repo
+REPO_FILES= lsi.repo redhat7_workstation_x86_64.repo splunk.repo zdiv.repo
 
 USR_ETC_FILES= sw_src.xml
 
