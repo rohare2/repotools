@@ -1,5 +1,5 @@
 #!/usr/bin/perl -w
-# $Id: Makefile.PL 187 2014-10-23 03:21:38Z rohare $
+# $Id: $
 # $Date: $
 use strict;
 use File::Copy;
@@ -7,13 +7,11 @@ use Cwd;
 use XML::Simple;
 require "repotools.conf";
 
-our ($version,$releaseNo,%vendor,%packager,%zdivDistroRepoList);
+our ($org,$baseurl,$version,$releaseNo,%vendor,%packager,%RepoList,$repoText);
 
 # repo software location
 my $BASE_DIR = "/var/www/html/software";
 my $xmlFile = "/usr/local/etc/sw_src.xml";
-my $sources = XMLin("$xmlFile", ForceArray => 1);
-my $baseurl = "zdiv-yum";
 
 # determine hostname 
 my $hostname = `uname -n`;
@@ -45,9 +43,8 @@ sub editMakefile {
 	my $buildDistro = shift;
 	my $buildArch = shift;
 	my $repolistEntry = shift;
-	my $distroRepoList = shift;
 	my $buildVersion = shift;
-	my $package = "zdiv-release-${version}-${releaseNo}.${buildDistro}.${buildArch}";
+	my $package = "${org}-release-${version}-${releaseNo}.${buildDistro}.${buildArch}";
 	my $list = '';
 	my $file = 'Makefile';
 
@@ -61,12 +58,8 @@ sub editMakefile {
 	$input_scalar =~ /^Package= /m && ($input_scalar =~ s/^Package=.*$/Package= $package/m);
 
 	if ($input_scalar =~ /^REPO_FILES=/m) {
-		if ($distroRepoList eq 'zdivDistroRepoList') {
-			foreach my $entry (@{$zdivDistroRepoList{$repolistEntry}}) {
-				$list = $list . " " . $entry;
-			}
-		} else {
-			die "no distroRepoList defined";
+		foreach my $entry (@{$RepoList{$repolistEntry}}) {
+			$list = $list . " " . $entry;
 		}
 		$input_scalar =~ s/^REPO_FILES=.*$/REPO_FILES=$list/m;
 	}
@@ -80,10 +73,8 @@ sub editSpecFile {
 	my $buildDistro = shift;
 	my $buildArch = shift;
 	my $repolistEntry = shift;
-	my $distroRepoList = shift;
 	my $buildVersion = shift;
 	my $release = "${releaseNo}.${buildDistro}.${buildArch}";
-	my $source = "zdiv-release-${version}-${release}.tgz";
 	my $file = 'spec';
 	my $vendor = 'Lawrence Livermore National Laboratory';
 	my $packager = 'Rich O\'Hare <ohare2@llnl.gov';
@@ -96,7 +87,6 @@ sub editSpecFile {
 
 	$input_scalar =~ /^%define Version/m && ($input_scalar =~ s/^%define Version.*$/%define Version ${version}/m);
 	$input_scalar =~ /^%define Release/m && ($input_scalar =~ s/^%define Release.*$/%define Release ${release}/m);
-	$input_scalar =~ /^Source:/m && ($input_scalar =~ s/^Source:.*$/Source: ${source}/m);
 	$input_scalar =~ /^BuildArch/m && ($input_scalar =~ s/^BuildArch.*$/BuildArch: noarch/m);
 	$input_scalar =~ /^Distribution:/m && ($input_scalar =~ s/^Distribution.*$/Distribution: ${buildDistro}/m);
 	$input_scalar =~ /^URL:/m && ($input_scalar =~ s/^URL.*$/URL: https:\/\/$baseurl/gm);
@@ -108,27 +98,28 @@ sub editSpecFile {
 	close OUTPUT;
 
 	open (OUTPUT, ">> $file") or die;
-	if ($distroRepoList eq 'zdivDistroRepoList') {
-		foreach my $entry (@{$zdivDistroRepoList{$repolistEntry}}) {
-			print OUTPUT ("/etc/yum.repos.d/${entry}\n");
-		}
-		if ($repolistEntry =~ /centos/) {
-			print OUTPUT ("\n");
-			print OUTPUT ("%posttrans\n");
-			print OUTPUT ("/usr/bin/yum-config-manager --disable base\n");
-			print OUTPUT ("/usr/bin/yum-config-manager --disable updates\n");
-			print OUTPUT ("/usr/bin/yum-config-manager --disable extras\n");
-			print OUTPUT ("/usr/bin/yum-config-manager --disable centosplus\n");
-		}
-	} else {
-		die "no DistroRepoList defined";
+	foreach my $entry (${RepoList{$repolistEntry}}) {
+		print OUTPUT ("/etc/yum.repos.d/${entry}\n");
+	}
+	if ($repolistEntry =~ /centos/) {
+		print OUTPUT ("\n");
+		print OUTPUT ("%posttrans\n");
+		print OUTPUT ("/usr/bin/yum-config-manager --disable base\n");
+		print OUTPUT ("/usr/bin/yum-config-manager --disable updates\n");
+		print OUTPUT ("/usr/bin/yum-config-manager --disable extras\n");
+		print OUTPUT ("/usr/bin/yum-config-manager --disable centosplus\n");
 	}
 	close OUTPUT;
 }
 
-sub fixRepoBaseurl {
-	my $url = $baseurl;
+sub createRepoFile {
+	my $file = "${org}.repo";
+	open(OUTPUT, "> $file") or die "Can not open $file: $!";
+	print OUTPUT "$repoText";
+	close OUTPUT;
+}
 
+sub fixRepoBaseurl {
 	opendir (DIR, ".") or die $!;
 	while (my $file = readdir(DIR)) {
 		if ($file =~ /.*\.repo/) {
@@ -137,9 +128,10 @@ sub fixRepoBaseurl {
 			my $input_scalar=join("",@input_array);
 			close(INPUT);
 
-			if ($input_scalar =~ /^baseurl=https?:.*\/software/m) {
-				$input_scalar =~ s/^baseurl=https?:.*\/software/baseurl=https:\/\/${url}\/software/gm;
-			}
+			$input_scalar =~ s/^# Repo:.*/# Repo: ${org}-release ${version}-${releaseNo}/gm;
+			$input_scalar =~ s/^\[local\]/[$org]/m;
+			$input_scalar =~ s/^\[local-noarch\]/[$org-noarch]/m;
+			$input_scalar =~ s/^baseurl=https?:.*\/software/baseurl=https:\/\/${baseurl}\/software/gm;
 
 			open (OUTPUT, "> $file") or die;
 			print OUTPUT "$input_scalar";
@@ -150,8 +142,7 @@ sub fixRepoBaseurl {
 
 sub fixRepoDistro {
 	my $distro = shift;
-	my $file = "zdiv.repo";
-
+	my $file = "${org}.repo";
 	open (INPUT, "$file") or die "Can not open $file: $!";
 	my @input_array=<INPUT>;
 	my $input_scalar=join("",@input_array);
@@ -165,14 +156,11 @@ sub fixRepoDistro {
 	close OUTPUT;
 }
 
-my ($name,$distroRepoList);
+createRepoFile();
 fixRepoBaseurl();
 
-$name = 'zdiv-release';
-$distroRepoList = "zdivDistroRepoList";
-
 no strict "refs";
-foreach my $repolistEntry (sort keys %{$distroRepoList}) {
+foreach my $repolistEntry (sort keys %{RepoList}) {
 	use strict "refs";
 
 	# Only build RHEL5 on RHEL5 host, they use SHA method
@@ -196,17 +184,17 @@ foreach my $repolistEntry (sort keys %{$distroRepoList}) {
 
 	my ($buildDistro, $buildArch) = evalPackage($repolistEntry);
 
-	# Fix the baseurl in repo file
+	# Fix the org in repo file
 	fixRepoDistro($repolistEntry);
 
 	# Make release file
-	my $file = "$name";
+	my $file = $org ."-release";
 	open (OUTPUT, "> $file") or die;
-	print OUTPUT ("${file} ${version}-${releaseNo}\n");
+	print OUTPUT ("${org}-release ${version}-${releaseNo}\n");
 	close OUTPUT;
 
-	editMakefile($buildDistro,$buildArch,$repolistEntry,$distroRepoList,$buildVersion);
-	editSpecFile($buildDistro,$buildArch,$repolistEntry,$distroRepoList,$buildVersion);
+	editMakefile($buildDistro,$buildArch,$repolistEntry,$buildVersion);
+	editSpecFile($buildDistro,$buildArch,$repolistEntry,$buildVersion);
 	system("make rpmbuild");
 }
 

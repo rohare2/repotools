@@ -3,14 +3,14 @@
 #
 
 [LSI]
-name=lsi
+[zdiv-noarch]ame=lsi
 baseurl=https://zdiv-yum/software/VendorSoftware/LSI/$releasever/$basearch
 enabled=1
 gpgcheck=0
 sslverify=false
 
 [LSI-noarch]
-name=lsi - noarch
+[zdiv-noarch]ame=lsi - noarch
 baseurl=https://zdiv-yum/software/VendorSoftware/LSI/$releasever/noarch
 enabled=1
 gpgcheck=0

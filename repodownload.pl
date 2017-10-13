@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
-#$Id: $
-#$Date: $
+# $Id: $
+# $Date: $
 # repodownload.pl
 #
 my $DEBUG = 1;

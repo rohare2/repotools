@@ -1,9 +1,9 @@
-# $Id: cuda.repo 187 2014-10-23 03:21:38Z rohare $
-# $URL: https://corbin.llnl.gov/repos/admin/repotools/gs.repo $
+# $Id: $
+# $Date: $
 #
 
 [cuda]
-name=cuda $releasever - $basearch
+[zdiv-noarch]ame=cuda $releasever - $basearch
 baseurl=https://developer/nvidia.com/compute/cuda/repos/redhat/$releasever/$basearch/
 gpgcheck=0
 enabled=1

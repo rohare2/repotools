@@ -2,8 +2,8 @@
 #$HeadURL: https://corbin.llnl.gov/repos/admin/repotools/Makefile $
 #
 Name= zdiv-release
-Version= 1.3
-Package= zdiv-release-1.3-27.redhat6_workstation.x86_64
+Version= 1.5
+Package= zdiv-release-1.5-1.redhat7_workstation.x86_64
 Source= ${Package}.tgz
 BASE= $(shell pwd)
 
@@ -20,7 +20,7 @@ ETC_FILES= zdiv-release
 
 GPG_FILES= RPM-GPG-KEY-GS-FIE
 
-REPO_FILES= zdiv.repo lsi.repo redhat6_workstation_x86_64.repo splunk.repo
+REPO_FILES= zdiv.repo lsi.repo redhat7_workstation_x86_64.repo splunk.repo
 
 USR_ETC_FILES= sw_src.xml
 

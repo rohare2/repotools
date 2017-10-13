@@ -3,7 +3,7 @@
 #
 
 [splunk]
-name=splunk - $basearch
+[zdiv-noarch]ame=splunk - $basearch
 baseurl=https://zdiv-yum/software/VendorSoftware/Splunk/$basearch/
 enabled=0
 gpgcheck=0

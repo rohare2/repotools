@@ -2,7 +2,7 @@
 # $Date: $
 #
 [epel]
-name=fedora-epel $releasever - $basearch
+[zdiv-noarch]ame=fedora-epel $releasever - $basearch
 baseurl=https://zdiv-yum/software/fedora-epel/$releasever/$basearch/
 enabled=1
 gpgcheck=0

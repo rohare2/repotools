@@ -12,7 +12,7 @@
 Name: %{Name}
 Version: %{Version}
 Release: %{Release}
-Source: zdiv-release-1.5-1.redhat7_workstation.x86_64.tgz
+Source: %{Name}-%{Version}-%{Release}.tgz
 License: GPLv2
 Group: SystemEnvironment/Base
 BuildArch: noarch
@@ -45,7 +45,4 @@ exit 0
 /etc/%{Name}
 /usr/local/etc/sw_src.xml
 /etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE
-/etc/yum.repos.d/zdiv.repo
-/etc/yum.repos.d/lsi.repo
-/etc/yum.repos.d/redhat7_workstation_x86_64.repo
-/etc/yum.repos.d/splunk.repo
+/etc/yum.repos.d/ARRAY(0x107ff60)
