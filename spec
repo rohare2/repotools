@@ -6,7 +6,7 @@
 # Repo tools and release file
 #
 %define Name zdiv-release
-%define Version 1.5
+%define Version 1.4
 %define Release 1.redhat7_workstation.x86_64
 
 Name: %{Name}
@@ -20,7 +20,7 @@ URL: https://zdiv-yum
 Distribution: redhat7_workstation
 Vendor: Lawrence Livermore National Laboratory
 Packager: Rich O'Hare <ohare2@llnl.gov
-Provides: %{Name}, sw_src.xml
+Provides: %{Name}, %{Name}.repo, sw_src.xml
 Summary: YUM environment configuration
 %define _unpackaged_files_terminate_build 0
 
@@ -45,4 +45,7 @@ exit 0
 /etc/%{Name}
 /usr/local/etc/sw_src.xml
 /etc/pki/rpm-gpg/RPM-GPG-KEY-GS-FIE
-/etc/yum.repos.d/ARRAY(0x107ff60)
+/etc/yum.repos.d/zdiv.repo
+/etc/yum.repos.d/lsi.repo
+/etc/yum.repos.d/redhat7_workstation_x86_64.repo
+/etc/yum.repos.d/splunk.repo

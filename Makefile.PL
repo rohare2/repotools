@@ -75,10 +75,10 @@ sub editSpecFile {
 	my $repolistEntry = shift;
 	my $buildVersion = shift;
 	my $release = "${releaseNo}.${buildDistro}.${buildArch}";
-	my $file = 'spec';
 	my $vendor = 'Lawrence Livermore National Laboratory';
 	my $packager = 'Rich O\'Hare <ohare2@llnl.gov';
 
+	my $file = 'spec';
 	copy("${file}.template","$file") or die "Copy failed: $!";
 	open (INPUT,"<$file") or die;
 	my @input_array=<INPUT>;
@@ -98,8 +98,10 @@ sub editSpecFile {
 	close OUTPUT;
 
 	open (OUTPUT, ">> $file") or die;
-	foreach my $entry (${RepoList{$repolistEntry}}) {
-		print OUTPUT ("/etc/yum.repos.d/${entry}\n");
+	foreach my $distroArray ($RepoList{$repolistEntry}) {
+		foreach my $repo (@{$distroArray}) {
+			print OUTPUT ("/etc/yum.repos.d/${repo}\n");
+		}
 	}
 	if ($repolistEntry =~ /centos/) {
 		print OUTPUT ("\n");

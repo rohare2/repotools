@@ -16,11 +16,11 @@ Source: %{Name}-%{Version}-%{Release}.tgz
 License: GPLv2
 Group: SystemEnvironment/Base
 BuildArch: noarch
-URL: https://corbin.llnl.gov/
+URL: https://www.ohares.us
 Distribution: ???
-Vendor: Lawrence Livermore National Laboratory
+Vendor: Rich O'Hare
 Packager: Rich O'Hare <ohare2@llnl.gov>
-Provides: %{Name}, sw_src.xml
+Provides: %{Name}, %{Name}.repo, sw_src.xml
 Summary: YUM environment configuration
 %define _unpackaged_files_terminate_build 0
 

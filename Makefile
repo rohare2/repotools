@@ -2,8 +2,8 @@
 #$HeadURL: https://corbin.llnl.gov/repos/admin/repotools/Makefile $
 #
 Name= zdiv-release
-Version= 1.5
-Package= zdiv-release-1.5-1.redhat7_workstation.x86_64
+Version= 1.4
+Package= zdiv-release-1.4-1.redhat7_workstation.x86_64
 Source= ${Package}.tgz
 BASE= $(shell pwd)
 
