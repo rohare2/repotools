@@ -2,20 +2,20 @@
 <!-- $URL: https://corbin.llnl.gov/repos/admin/repotools/sw_src.xml $ -->
 <records forceCreateRepo="0">
 	<source url = "mirrors.kernel.org" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.ipa.llnl-doe.ic.gov">
-		<distro name = "centos6_i386" createRepo="1" updateRepo="1">
+		<distro name = "centos6_i386" createRepo="0" updateRepo="1">
 			<repo>centos/6/os/i386</repo>
 			<repo>centos/6/updates/i386</repo>
 			<repo>centos/6/extras/i386</repo>
 			<repo>centos/6/centosplus/i386</repo>
 			<repo>centos/6/isos/x86_64</repo>
 		</distro>
-		<distro name = "centos6_x86_64" createRepo="1" updateRepo="1">
+		<distro name = "centos6_x86_64" createRepo="0" updateRepo="1">
 			<repo>centos/6/os/x86_64</repo>
 			<repo>centos/6/updates/x86_64</repo>
 			<repo>centos/6/extras/x86_64</repo>
 			<repo>centos/6/centosplus/x86_64</repo>
 		</distro>
-		<distro name = "centos7_x86_64" createRepo="1" updateRepo="1">
+		<distro name = "centos7_x86_64" createRepo="0" updateRepo="1">
 			<repo>centos/7/centosplus/x86_64</repo>
 			<repo>centos/7/extras/x86_64</repo>
 			<repo>centos/7/fasttrack/x86_64</repo>
@@ -25,16 +25,16 @@
 		</distro>
 	</source>
 	<source url = "linux.mirrors.es.net" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.ipa.llnl-doe.ic.gov">
-		<distro name = "epel6" createRepo="1" updateRepo="1">
+		<distro name = "epel6" createRepo="0" updateRepo="1">
 			<repo>fedora-epel/6/i386</repo>
 			<repo>fedora-epel/6/x86_64</repo>
 		</distro>
-		<distro name = "epel7" createRepo="1" updateRepo="1">
+		<distro name = "epel7" createRepo="0" updateRepo="1">
 			<repo>fedora-epel/7/x86_64</repo>
 		</distro>
 	</source>
 	<source url = "download1.rpmfusion.org" hosts = "corbin.llnl.gov,jupiter.doe.ic.gov,leeloo.ipa.llnl-doe.ic.gov">
-		<distro name = "rpmfusion6" createRepo="1" updateRepo="1">
+		<distro name = "rpmfusion6" createRepo="0" updateRepo="1">
 			<repo>rpmfusion/free/el/updates/6/i386</repo>
 			<repo>rpmfusion/free/el/updates/6/x86_64</repo>
 			<repo>rpmfusion/nonfree/el/updates/6/i386</repo>
