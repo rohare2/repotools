@@ -6,6 +6,9 @@
 # Copy our FIE rpms to the webserver
 use strict;
 use File::Copy;
+use File::Path qw(make_path);
+require "repotools.conf";
+our ($org);
 
 my $debug = 0;
 my $BASE_DIR = "/var/www/html/software";
@@ -53,7 +56,10 @@ foreach my $subdir ("i386","x86_64","noarch") {
 			defined $arch or die "No arch defined for: $file";
 
 			-d $dir or die "missing destination directory";
-			$dest = $BASE_DIR . "/gs/"  . $distro . "/" . $arch;
+
+
+			$dest = $BASE_DIR . "/" . $org . "/"  . $distro . "/" . $arch;
+			-d $dest or make_path "$dest", {owner=>'apache', group=>'apache', mode=>'2775'};
 			$debug && print "install -m 644 $dir/$file $dest/$file\n";
 			`install -m 644 $dir/$file $dest/$file`;
 			! $debug && `rm $dir/$file`;
