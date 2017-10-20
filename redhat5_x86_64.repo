@@ -2,50 +2,50 @@
 # $Date: $
 
 [epel-llnl]
-[zdiv-noarch]ame=epel-llnl $releasever - $basearch
-baseurl=https://zdiv-yum/software/redhat/$releasever/$basearch/epel-llnl/
+[ohares-noarch]ame=epel-llnl $releasever - $basearch
+baseurl=https://ohares-yum/software/redhat/$releasever/$basearch/epel-llnl/
 enabled=1
 gpgcheck=0
 sslverify=false
 
 [llnl-desktop]
-[zdiv-noarch]ame=llnl-rhn-desktop $releasever - $basearch
-baseurl=https://zdiv-yum/software/redhat/$releasever/$basearch/llnl-rhn-rhel-x86_64-desktop-5/getPackage
+[ohares-noarch]ame=llnl-rhn-desktop $releasever - $basearch
+baseurl=https://ohares-yum/software/redhat/$releasever/$basearch/llnl-rhn-rhel-x86_64-desktop-5/getPackage
 enabled=1
 gpgcheck=0
 sslverify=false
 
 [rhel-client]
-[zdiv-noarch]ame=rhel-client $releasever - $basearch
-baseurl=https://zdiv-yum/software/redhat/$releasever/$basearch/rhel-x86_64-client-5/getPackage
+[ohares-noarch]ame=rhel-client $releasever - $basearch
+baseurl=https://ohares-yum/software/redhat/$releasever/$basearch/rhel-x86_64-client-5/getPackage
 enabled=1
 gpgcheck=0
 sslverify=false
 
 [rhel-thirdparty-oracle-java]
-[zdiv-noarch]ame=rhel-thirdparty-oracle-java $releasever - $basearch
-baseurl=https://zdiv-yum/software/redhat/$releasever/$basearch/rhel-x86_64-client-5-thirdparty-oracle-java/getPackage
+[ohares-noarch]ame=rhel-thirdparty-oracle-java $releasever - $basearch
+baseurl=https://ohares-yum/software/redhat/$releasever/$basearch/rhel-x86_64-client-5-thirdparty-oracle-java/getPackage
 enabled=1
 gpgcheck=0
 sslverify=false
 
 [rhel-supplementary]
-[zdiv-noarch]ame=rhel-supplementary $releasever - $basearch
-baseurl=https://zdiv-yum/software/redhat/$releasever/$basearch/rhel-x86_64-client-supplementary-5/getPackage
+[ohares-noarch]ame=rhel-supplementary $releasever - $basearch
+baseurl=https://ohares-yum/software/redhat/$releasever/$basearch/rhel-x86_64-client-supplementary-5/getPackage
 enabled=1
 gpgcheck=0
 sslverify=false
 
 [rhel-workstation]
-[zdiv-noarch]ame=rhel-workstation $releasever - $basearch
-baseurl=https://zdiv-yum/software/redhat/$releasever/$basearch/rhel-x86_64-client-workstation-5/getPackage
+[ohares-noarch]ame=rhel-workstation $releasever - $basearch
+baseurl=https://ohares-yum/software/redhat/$releasever/$basearch/rhel-x86_64-client-workstation-5/getPackage
 enabled=1
 gpgcheck=0
 sslverify=false
 
 [rhn-tools]
-[zdiv-noarch]ame=rhn-tools $releasever - $basearch
-baseurl=https://zdiv-yum/software/redhat/$releasever/$basearch/rhn-tools-rhel-x86_64-client-5/getPackage
+[ohares-noarch]ame=rhn-tools $releasever - $basearch
+baseurl=https://ohares-yum/software/redhat/$releasever/$basearch/rhn-tools-rhel-x86_64-client-5/getPackage
 enabled=1
 gpgcheck=0
 sslverify=false

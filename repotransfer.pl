@@ -11,12 +11,7 @@ my $hostname = `uname -n`;
 chomp $hostname;
 my $domainname = `host $hostname | cut -d " " -f1`;
 chomp $domainname;
-my $net;
-if ($domainname eq "corbin.llnl.gov") {
-	$net = 'zdiv';
-} else {
-	die "Must be executed from a valid yum server\n";
-}
+$domainname eq "www.ohares.us" or die "Must be executed from a valid yum server\n";
 
 print "Transfer disk mount point: ";
 my $mntPoint = <STDIN>;

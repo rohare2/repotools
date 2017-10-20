@@ -4,15 +4,15 @@
 #
 
 [rpmfusion-free-updates]
-[zdiv-noarch]ame=rpmfusion-free-updates $releasever - $basearch
-baseurl=https://zdiv-yum/software/rpmfusion/free/el/updates/$releasever/$basearch/
+[ohares-noarch]ame=rpmfusion-free-updates $releasever - $basearch
+baseurl=https://ohares-yum/software/rpmfusion/free/el/updates/$releasever/$basearch/
 enabled=1
 gpgcheck=0
 sslverify=false
 
 [rpmfusion-nonfree-updates]
-[zdiv-noarch]ame=rpmfusion-nonfree-updates $releasever - $basearch
-baseurl=https://zdiv-yum/software/rpmfusion/nonfree/el/updates/$releasever/$basearch/
+[ohares-noarch]ame=rpmfusion-nonfree-updates $releasever - $basearch
+baseurl=https://ohares-yum/software/rpmfusion/nonfree/el/updates/$releasever/$basearch/
 enabled=0
 gpgcheck=0
 sslverify=false

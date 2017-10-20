@@ -3,8 +3,8 @@
 #
 
 [splunk]
-[zdiv-noarch]ame=splunk - $basearch
-baseurl=https://zdiv-yum/software/VendorSoftware/Splunk/$basearch/
+[ohares-noarch]ame=splunk - $basearch
+baseurl=https://ohares-yum/software/VendorSoftware/Splunk/$basearch/
 enabled=0
 gpgcheck=0
 sslverify=false

@@ -3,15 +3,15 @@
 #
 
 [LSI]
-[zdiv-noarch]ame=lsi
-baseurl=https://zdiv-yum/software/VendorSoftware/LSI/$releasever/$basearch
+[ohares-noarch]ame=lsi
+baseurl=https://ohares-yum/software/VendorSoftware/LSI/$releasever/$basearch
 enabled=1
 gpgcheck=0
 sslverify=false
 
 [LSI-noarch]
-[zdiv-noarch]ame=lsi - noarch
-baseurl=https://zdiv-yum/software/VendorSoftware/LSI/$releasever/noarch
+[ohares-noarch]ame=lsi - noarch
+baseurl=https://ohares-yum/software/VendorSoftware/LSI/$releasever/noarch
 enabled=1
 gpgcheck=0
 sslverify=false

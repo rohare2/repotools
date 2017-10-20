@@ -1,9 +1,9 @@
 # $Id: $
 #$HeadURL: https://corbin.llnl.gov/repos/admin/repotools/Makefile $
 #
-Name= zdiv-release
+Name= ohares-release
 Version= 1.4
-Package= zdiv-release-1.4-1.redhat7_workstation.x86_64
+Package= ohares-release-1.4-1.redhat7_workstation.x86_64
 Source= ${Package}.tgz
 BASE= $(shell pwd)
 REPO= ???
@@ -17,11 +17,11 @@ REPO_DIR= /etc/yum.repos.d
 USR_ETC_DIR= /usr/local/etc
 USR_SBIN_DIR= /usr/local/sbin
 
-ETC_FILES= zdiv-release
+ETC_FILES= ohares-release
 
 GPG_FILES= RPM-GPG-KEY-GS-FIE
 
-REPO_FILES= lsi.repo redhat7_workstation_x86_64.repo splunk.repo zdiv.repo
+REPO_FILES= lsi.repo redhat7_workstation_x86_64.repo splunk.repo ohares.repo
 
 USR_ETC_FILES= sw_src.xml
 

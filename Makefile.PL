@@ -204,4 +204,4 @@ foreach my $repolistEntry (sort keys %{RepoList}) {
 
 # PGP sign the rpms
 print "Sign RPM packages\n";
-system("rpm --addsign $ENV{HOME}/rpmbuild/RPMS/noarch/zdiv-release*.rpm");
+system("rpm --addsign $ENV{HOME}/rpmbuild/RPMS/noarch/ohares-release*.rpm");

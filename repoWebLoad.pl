@@ -36,7 +36,7 @@ foreach my $subdir ("i386","x86_64","noarch") {
 		opendir(DIR, "$dir") or warn "Can't open $dir";
 		while (my $file = readdir(DIR)) {
 			my ($distro,$arch,$dest);
-			$file =~ /^zdiv-release-/ or next;
+			$file =~ /^ohares-release-/ or next;
 
 
 			$file =~ /\.redhat5_client\./ && ($distro = 'redhat/5Client');
