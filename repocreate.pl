@@ -5,7 +5,7 @@
 # Create repos selected from sw_src.xml
 
 use strict;
-use File::Path;
+use File::Path qw(make_path remove_tree);
 use XML::Simple;
 use Errno qw(EAGAIN);
 use POSIX "sys_wait_h";
@@ -33,8 +33,8 @@ my $domainname = `host $hostname | cut -d " " -f1`;
 chomp $domainname;
 
 my $DEST_URL;
-if ($domainname =~ /llnl.gov/) {
-	$DEST_URL = "https://corbin.llnl.gov/software";
+if ($domainname =~ /ohares.us/) {
+	$DEST_URL = "https://dvcal-yum/software";
 } else {
 	die "Unknown domainname\n";
 }
@@ -153,8 +153,20 @@ sub processRepo() {
 	my $distro  = shift @_;
 
 	if (! -d "${BASE_DIR}/${repo}") {
-		warn "Sorry you need add ${BASE_DIR}/${repo} first\n";
-		return 0;
+		if ( $list != 1 ) {
+			print "Sorry you need add ${BASE_DIR}/${repo} first\n";
+			return 0;
+		} else {
+			print "Create missing ${BASE_DIR}/${repo}? [y/n]\n";
+			my $input = <STDIN>;
+			chomp $input;
+			if ( uc "$input" eq 'Y' ) {
+				make_path("${BASE_DIR}/${repo}", { mode => 0770 });
+				chown root "${BASE_DIR}/${repo}";
+			} else {
+				return 0;
+			}
+		}
 	}
 
 	if ($repoChoice eq $repo || $repoChoice eq '') {
