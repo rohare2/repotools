@@ -5,7 +5,7 @@
 #
 # Repo tools and release file
 #
-%define Name ohares-release
+%define Name local-release
 %define Version 1.4
 %define Release 1.redhat7_workstation.x86_64
 
@@ -16,7 +16,7 @@ Source: %{Name}-%{Version}-%{Release}.tgz
 License: GPLv2
 Group: SystemEnvironment/Base
 BuildArch: noarch
-URL: https://ohares-yum
+URL: https://local-yum
 Distribution: redhat7_workstation
 Vendor: Lawrence Livermore National Laboratory
 Packager: Rich O'Hare <ohare2@llnl.gov
@@ -47,4 +47,4 @@ exit 0
 /etc/yum.repos.d/lsi.repo
 /etc/yum.repos.d/redhat7_workstation_x86_64.repo
 /etc/yum.repos.d/splunk.repo
-/etc/yum.repos.d/ohares.repo
+/etc/yum.repos.d/local.repo

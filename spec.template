@@ -5,7 +5,7 @@
 #
 # Repo tools and release file
 #
-%define Name ohares-release
+%define Name local-release
 %define Version ???
 %define Release ???
 
@@ -16,7 +16,7 @@ Source: %{Name}-%{Version}-%{Release}.tgz
 License: GPLv2
 Group: SystemEnvironment/Base
 BuildArch: noarch
-URL: https://www.ohares.us
+URL: https://local-yum
 Distribution: ???
 Vendor: Rich O'Hare
 Packager: Rich O'Hare <ohare2@llnl.gov>

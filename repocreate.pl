@@ -25,20 +25,7 @@ my $ForkCount = 0;
 my $args = '';
 my $lastUrl = '';
 my $lastDistro = '';
-
-# determine domain name
-my $hostname = `uname -n`;
-chomp $hostname;
-my $domainname = `host $hostname | cut -d " " -f1`;
-chomp $domainname;
-
-my $DEST_URL;
-if ($domainname =~ /ohares.us/) {
-	$DEST_URL = "https://dvcal-yum/software";
-} else {
-	die "Unknown domainname\n";
-}
-
+my $DEST_URL = "https://local-yum/software";
 my $BASE_DIR = "/var/www/html/software";
 my $xmlFile = "/usr/local/etc/sw_src.xml";
 my ($list,$distroChoice,$srcChoice);
@@ -96,7 +83,7 @@ sub setArgs {
 }
 
 foreach my $source (@{$sources->{'source'}}) {
-	if (defined $srcChoice && $srcChoice eq $source->{'url'} && $source->{'hosts'} =~ /\Q$domainname\E/ ) {
+	if (defined $srcChoice && $srcChoice eq $source->{'url'}) {
 		foreach my $distro (sort keys %{$source->{'distro'}}) {
 			if (defined $distroChoice && $distroChoice eq $distro) {
 				if ( $source->{'distro'}->{$distro}->{'createRepo'} eq '1' ) {
@@ -125,7 +112,7 @@ foreach my $source (@{$sources->{'source'}}) {
 				}
 			}
 		}
-	} elsif (! defined $srcChoice && $source->{'hosts'} =~ /\Q$domainname\E/) {
+	} elsif (! defined $srcChoice) {
 		foreach my $distro (sort keys %{$source->{'distro'}}) {
 			if (defined $distroChoice && $distroChoice eq $distro) {
 				if ( $source->{'distro'}->{$distro}->{'createRepo'} eq '1' ) {
@@ -162,7 +149,7 @@ sub processRepo() {
 			chomp $input;
 			if ( uc "$input" eq 'Y' ) {
 				make_path("${BASE_DIR}/${repo}", { mode => 0770 });
-				chown root "${BASE_DIR}/${repo}";
+				chown 'apache', 'webdev',"${BASE_DIR}/${repo}";
 			} else {
 				return 0;
 			}

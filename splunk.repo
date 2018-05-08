@@ -3,8 +3,8 @@
 #
 
 [splunk]
-[ohares-noarch]ame=splunk - $basearch
-baseurl=https://ohares-yum/software/VendorSoftware/Splunk/$basearch/
+[local-noarch]ame=splunk - $basearch
+baseurl=https://local-yum/software/VendorSoftware/Splunk/$basearch/
 enabled=0
 gpgcheck=0
 sslverify=false

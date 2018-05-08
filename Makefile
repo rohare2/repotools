@@ -1,9 +1,9 @@
 # $Id: $
 #$HeadURL: https://corbin.llnl.gov/repos/admin/repotools/Makefile $
 #
-Name= ohares-release
+Name= local-release
 Version= 1.4
-Package= ohares-release-1.4-1.redhat7_workstation.x86_64
+Package= local-release-1.4-1.redhat7_workstation.x86_64
 Source= ${Package}.tgz
 BASE= $(shell pwd)
 REPO= ???
@@ -17,11 +17,11 @@ REPO_DIR= /etc/yum.repos.d
 USR_ETC_DIR= /usr/local/etc
 USR_SBIN_DIR= /usr/local/sbin
 
-ETC_FILES= ohares-release
+ETC_FILES= local-release
 
 GPG_FILES= RPM-GPG-KEY-GS-FIE
 
-REPO_FILES= lsi.repo redhat7_workstation_x86_64.repo splunk.repo ohares.repo
+REPO_FILES= lsi.repo redhat7_workstation_x86_64.repo splunk.repo local.repo
 
 USR_ETC_FILES= sw_src.xml
 

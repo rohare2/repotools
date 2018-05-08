@@ -3,7 +3,7 @@
 #
 
 [cuda]
-[ohares-noarch]ame=cuda $releasever - $basearch
+[local-noarch]ame=cuda $releasever - $basearch
 baseurl=https://developer/nvidia.com/compute/cuda/repos/redhat/$releasever/$basearch/
 gpgcheck=0
 enabled=1

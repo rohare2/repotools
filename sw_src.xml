@@ -1,7 +1,7 @@
 <!-- $Id: sw_src.xml 180 2014-10-22 17:50:04Z rohare $ -->
 <!-- $URL: https://corbin.llnl.gov/repos/admin/repotools/sw_src.xml $ -->
 <records forceCreateRepo="0">
-	<source url = "mirrors.kernel.org" hosts = "www.ohares.us">
+	<source url = "mirrors.kernel.org">
 		<distro name = "centos6_i386" createRepo="0" updateRepo="1">
 			<repo>centos/6/os/i386</repo>
 			<repo>centos/6/updates/i386</repo>
@@ -24,7 +24,7 @@
 			<repo>centos/7/isos/x86_64</repo>
 		</distro>
 	</source>
-	<source url = "linux.mirrors.es.net" hosts = "www.ohares.us">
+	<source url = "linux.mirrors.es.net">
 		<distro name = "epel6" createRepo="0" updateRepo="1">
 			<repo>fedora-epel/6/i386</repo>
 			<repo>fedora-epel/6/x86_64</repo>
@@ -33,7 +33,7 @@
 			<repo>fedora-epel/7/x86_64</repo>
 		</distro>
 	</source>
-	<source url = "download1.rpmfusion.org" hosts = "www.ohares.us">
+	<source url = "download1.rpmfusion.org">
 		<distro name = "rpmfusion6" createRepo="0" updateRepo="1">
 			<repo>rpmfusion/free/el/updates/6/i386</repo>
 			<repo>rpmfusion/free/el/updates/6/x86_64</repo>
@@ -41,38 +41,38 @@
 			<repo>rpmfusion/nonfree/el/updates/6/x86_64</repo>
 		</distro>
 	</source>
-	<source url = "www.splunk.com" hosts = "www.ohares.us">
+	<source url = "www.splunk.com">
 		<distro name = "splunk" createRepo="1" updateRepo="0" args="-s sha">
 			<repo>VendorSoftware/Splunk/i386</repo>
 			<repo>VendorSoftware/Splunk/x86_64</repo>
 		</distro>
 	</source>
-     <source url = "dvcal-yum" hosts = "www.ohares.us">
-		<distro name = "dvcal-centos6" createRepo="1" updateRepo="0">
-			<repo>dvcal/centos/6/i386</repo>
-			<repo>dvcal/centos/6/noarch</repo>
-			<repo>dvcal/centos/6/x86_64</repo>
+     <source url = "local-yum">
+		<distro name = "local-centos6" createRepo="1" updateRepo="0">
+			<repo>local/centos/6/i386</repo>
+			<repo>local/centos/6/noarch</repo>
+			<repo>local/centos/6/x86_64</repo>
 		</distro>
-		<distro name = "dvcal-centos7" createRepo="1" updateRepo="0">
-			<repo>dvcal/centos/7/i386</repo>
-			<repo>dvcal/centos/7/noarch</repo>
-			<repo>dvcal/centos/7/x86_64</repo>
+		<distro name = "local-centos7" createRepo="1" updateRepo="0">
+			<repo>local/centos/7/i386</repo>
+			<repo>local/centos/7/noarch</repo>
+			<repo>local/centos/7/x86_64</repo>
 		</distro>
-		<distro name = "dvcal-redhat6" createRepo="1" updateRepo="0">
-			<repo>dvcal/redhat/6/i386</repo>
-			<repo>dvcal/redhat/6/noarch</repo>
-			<repo>dvcal/redhat/6/x86_64</repo>
+		<distro name = "local-redhat6" createRepo="1" updateRepo="0">
+			<repo>local/redhat/6/i386</repo>
+			<repo>local/redhat/6/noarch</repo>
+			<repo>local/redhat/6/x86_64</repo>
 		</distro>
-		<distro name = "dvcal-redhat7-server" createRepo="1" updateRepo="0">
-			<repo>dvcal/redhat/7Server/noarch</repo>
-			<repo>dvcal/redhat/7Server/x86_64</repo>
+		<distro name = "local-redhat7-server" createRepo="1" updateRepo="0">
+			<repo>local/redhat/7Server/noarch</repo>
+			<repo>local/redhat/7Server/x86_64</repo>
 		</distro>
-		<distro name = "dvcal-redhat7-workstation" createRepo="1" updateRepo="0">
-			<repo>dvcal/redhat/7Workstation/noarch</repo>
-			<repo>dvcal/redhat/7Workstation/x86_64</repo>
+		<distro name = "local-redhat7-workstation" createRepo="1" updateRepo="0">
+			<repo>local/redhat/7Workstation/noarch</repo>
+			<repo>local/redhat/7Workstation/x86_64</repo>
 		</distro>
 	</source>
-     <source url = "rhn" hosts = "www.ohares.us">
+     <source url = "rhn">
 		<distro name = "redhat6_workstation_x86_64" createRepo="1" updateRepo="0">
 			<repo>redhat/6Workstation/6/x86_64/rhel-6-workstation-rpms</repo>
 			<repo>redhat/6Workstation/6/x86_64/rhel-6-workstation-extras-rpms</repo>
@@ -109,7 +109,7 @@
 			<repo>redhat/7Workstation/7/x86_64/rhel-7-workstation-thirdparty-oracle-java-rpms</repo>
 		</distro>
 	</source>
-     <source url = "lsi" hosts = "www.ohares.us">
+     <source url = "lsi">
 		<distro name = "lsi6" createRepo="1" updateRepo="0">
 			<repo>VendorSoftware/LSI/6/i386</repo>
 			<repo>VendorSoftware/LSI/6/noarch</repo>

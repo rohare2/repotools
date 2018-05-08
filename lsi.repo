@@ -3,15 +3,15 @@
 #
 
 [LSI]
-[ohares-noarch]ame=lsi
-baseurl=https://ohares-yum/software/VendorSoftware/LSI/$releasever/$basearch
+[local-noarch]ame=lsi
+baseurl=https://local-yum/software/VendorSoftware/LSI/$releasever/$basearch
 enabled=1
 gpgcheck=0
 sslverify=false
 
 [LSI-noarch]
-[ohares-noarch]ame=lsi - noarch
-baseurl=https://ohares-yum/software/VendorSoftware/LSI/$releasever/noarch
+[local-noarch]ame=lsi - noarch
+baseurl=https://local-yum/software/VendorSoftware/LSI/$releasever/noarch
 enabled=1
 gpgcheck=0
 sslverify=false

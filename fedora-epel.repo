@@ -2,8 +2,8 @@
 # $Date: $
 #
 [epel]
-[ohares-noarch]ame=fedora-epel $releasever - $basearch
-baseurl=https://ohares-yum/software/fedora-epel/$releasever/$basearch/
+[local-noarch]ame=fedora-epel $releasever - $basearch
+baseurl=https://local-yum/software/fedora-epel/$releasever/$basearch/
 enabled=1
 gpgcheck=0
 sslverify=false
