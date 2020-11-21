@@ -2,49 +2,56 @@
 # $Date: $
 
 [epel-llnl]
-[ohares-noarch]ame=epel-llnl $releasever - $basearch
+[ohares-noarch]
+name=epel-llnl $releasever - $basearch
 baseurl=https://ohares-yum/software/redhat/$releasever/$basearch/epel-llnl/
 enabled=1
 gpgcheck=0
 sslverify=false
 
 [llnl-rhn-rhel-i386-desktop-5]
-[ohares-noarch]ame=llnl-rhn-rhel-i386-desktop-5 $releasever - $basearch
+[ohares-noarch]
+name=llnl-rhn-rhel-i386-desktop-5 $releasever - $basearch
 baseurl=https://ohares-yum/software/redhat/$releasever/$basearch/llnl-rhn-rhel-i386-desktop-5/getPackage
 enabled=1
 gpgcheck=0
 sslverify=false
 
 [rhel-i386-client-5]
-[ohares-noarch]ame=rhel-i386-client-5 $releasever - $basearch
+[ohares-noarch]
+name=rhel-i386-client-5 $releasever - $basearch
 baseurl=https://ohares-yum/software/redhat/$releasever/$basearch/rhel-i386-client-5/getPackage
 enabled=1
 gpgcheck=0
 sslverify=false
 
 [rhel-i386-client-5-thirdparty-oracle-java]
-[ohares-noarch]ame=rhel-i386-client-5-thirdparty-oracle-java $releasever - $basearch
+[ohares-noarch]
+name=rhel-i386-client-5-thirdparty-oracle-java $releasever - $basearch
 baseurl=https://ohares-yum/software/redhat/$releasever/$basearch/rhel-i386-client-5-thirdparty-oracle-java/getPackage
 enabled=1
 gpgcheck=0
 sslverify=false
 
 [rhel-i386-client-supplementary-5]
-[ohares-noarch]ame=rhel-i386-client-supplementary-5 $releasever - $basearch
+[ohares-noarch]
+name=rhel-i386-client-supplementary-5 $releasever - $basearch
 baseurl=https://ohares-yum/software/redhat/$releasever/$basearch/rhel-i386-client-supplementary-5/getPackage
 enabled=1
 gpgcheck=0
 sslverify=false
 
 [rhel-i386-client-workstation-5]
-[ohares-noarch]ame=rhel-i386-client-workstation-5 $releasever - $basearch
+[ohares-noarch]
+name=rhel-i386-client-workstation-5 $releasever - $basearch
 baseurl=https://ohares-yum/software/redhat/$releasever/$basearch/rhel-i386-client-workstation-5/getPackage
 enabled=1
 gpgcheck=0
 sslverify=false
 
 [rhn-tools-rhel-i386-client-5]
-[ohares-noarch]ame=rhn-tools-rhel-i386-client-5 $releasever - $basearch
+[ohares-noarch]
+name=rhn-tools-rhel-i386-client-5 $releasever - $basearch
 baseurl=https://ohares-yum/software/redhat/$releasever/$basearch/rhn-tools-rhel-i386-client-5/getPackage
 enabled=1
 gpgcheck=0

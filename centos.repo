@@ -2,7 +2,8 @@
 # $Date: $
 #
 [ohares-base]
-[ohares-noarch]ame=centos-base $releasever - $basearch
+[ohares-noarch]
+name=centos-base $releasever - $basearch
 baseurl=https://ohares-yum/software/centos/$releasever/os/$basearch/
 enabled=1
 priority=1
@@ -10,7 +11,8 @@ gpgcheck=1
 sslverify=false
 
 [ohares-updates]
-[ohares-noarch]ame=centos-updates $releasever - $basearch
+[ohares-noarch]
+name=centos-updates $releasever - $basearch
 baseurl=https://ohares-yum/software/centos/$releasever/updates/$basearch/
 enabled=1
 priority=1
@@ -18,7 +20,8 @@ gpgcheck=1
 sslverify=false
 
 [ohares-centosplus]
-[ohares-noarch]ame=centosplus $releasever - $basearch
+[ohares-noarch]
+name=centosplus $releasever - $basearch
 baseurl=https://ohares-yum/software/centos/$releasever/centosplus/$basearch/
 enabled=0
 priority=2
@@ -26,7 +29,8 @@ gpgcheck=1
 sslverify=false
 
 [ohares-extras]
-[ohares-noarch]ame=centos-extras $releasever - $basearch
+[ohares-noarch]
+name=centos-extras $releasever - $basearch
 baseurl=https://ohares-yum/software/centos/$releasever/extras/$basearch/
 enabled=1
 gpgcheck=1

@@ -3,14 +3,16 @@
 #
 
 [LSI]
-[ohares-noarch]ame=lsi
+[ohares-noarch]
+name=lsi
 baseurl=https://ohares-yum/software/VendorSoftware/LSI/$releasever/$basearch
 enabled=1
 gpgcheck=0
 sslverify=false
 
 [LSI-noarch]
-[ohares-noarch]ame=lsi - noarch
+[ohares-noarch]
+name=lsi - noarch
 baseurl=https://ohares-yum/software/VendorSoftware/LSI/$releasever/noarch
 enabled=1
 gpgcheck=0

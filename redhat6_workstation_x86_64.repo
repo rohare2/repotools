@@ -2,63 +2,72 @@
 # $URL: https://corbin.llnl.gov/repos/admin/repotools/redhat6_x86_64.repo $
 
 [GS_EPEL6_x86_64_RPMs]
-[ohares-noarch]ame=GS_EPEL6_x86_64_RPMs
+[ohares-noarch]
+name=GS_EPEL6_x86_64_RPMs
 baseurl=https://ohares-yum/software/redhat/$releasever/6/$basearch/GS_EPEL6_x86_64_RPMs/
 enabled=1
 gpgcheck=1
 sslverify=false
 
 [GS_IS6_x86_64_RPMs]
-[ohares-noarch]ame=GS_IS6_x86_64_RPMs
+[ohares-noarch]
+name=GS_IS6_x86_64_RPMs
 baseurl=https://ohares-yum/software/redhat/$releasever/6/$basearch/GS_IS6_x86_64_RPMs/
 enabled=1
 gpgcheck=1
 sslverify=false
 
 [rhel-6-workstation-extras-rpms]
-[ohares-noarch]ame=rhel-6-workstation-extras-rpms
+[ohares-noarch]
+name=rhel-6-workstation-extras-rpms
 baseurl=https://ohares-yum/software/redhat/$releasever/6/$basearch/rhel-6-workstation-extras-rpms/
 enabled=1
 gpgcheck=1
 sslverify=false
 
 [rhel-6-workstation-optional-rpms]
-[ohares-noarch]ame=rhel-6-workstation-optional-rpms
+[ohares-noarch]
+name=rhel-6-workstation-optional-rpms
 baseurl=https://ohares-yum/software/redhat/$releasever/6/$basearch/rhel-6-workstation-optional-rpms/
 enabled=1
 gpgcheck=1
 sslverify=false
 
 [rhel-6-workstation-rhn-tools-rpms]
-[ohares-noarch]ame=rhel-6-workstation-rhn-tools-rpms
+[ohares-noarch]
+name=rhel-6-workstation-rhn-tools-rpms
 baseurl=https://ohares-yum/software/redhat/$releasever/6/$basearch/rhel-6-workstation-rhn-tools-rpms/
 enabled=0
 gpgcheck=1
 sslverify=false
 
 [rhel-6-workstation-rpms]
-[ohares-noarch]ame=rhel-6-workstation-rpms
+[ohares-noarch]
+name=rhel-6-workstation-rpms
 baseurl=https://ohares-yum/software/redhat/$releasever/6/$basearch/rhel-6-workstation-rpms/
 enabled=1
 gpgcheck=1
 sslverify=false
 
 [rhel-6-workstation-satellite-tools-6.2-rpms]
-[ohares-noarch]ame=rhel-6-workstation-satellite-tools-6.2-rpms
+[ohares-noarch]
+name=rhel-6-workstation-satellite-tools-6.2-rpms
 baseurl=https://ohares-yum/software/redhat/$releasever/6/$basearch/rhel-6-workstation-satellite-tools-6.2-rpms
 enabled=0
 gpgcheck=1
 sslverify=false
 
 [rhel-6-workstation-supplementary-rpms]
-[ohares-noarch]ame=rhel-6-workstation-supplementary-rpms
+[ohares-noarch]
+name=rhel-6-workstation-supplementary-rpms
 baseurl=https://ohares-yum/software/redhat/$releasever/6/$basearch/rhel-6-workstation-supplementary-rpms/
 enabled=0
 gpgcheck=1
 sslverify=false
 
 [rhel-6-workstation-thirdparty-oracle-java-rpms]
-[ohares-noarch]ame=rhel-6-workstation-thirdparty-oracle-java-rpms
+[ohares-noarch]
+name=rhel-6-workstation-thirdparty-oracle-java-rpms
 baseurl=https://ohares-yum/software/redhat/$releasever/6/$basearch/rhel-6-workstation-thirdparty-oracle-java-rpms/
 enabled=0
 gpgcheck=1

@@ -2,56 +2,64 @@
 # $URL: file:///usr/local/svn/admin/repotools/redhat6_x86_64.repo $
 
 [epel-llnl]
-[ohares-noarch]ame=epel-llnl $releasever - $basearch
+[ohares-noarch]
+name=epel-llnl $releasever - $basearch
 baseurl=https://ohares-yum/software/redhat/$releasever/$basearch/epel-llnl/
 enabled=1
 gpgcheck=0
 sslverify=false
 
 [llnl-prod]
-[ohares-noarch]ame=llnl-prod $releasever - $basearch
+[ohares-noarch]
+name=llnl-prod $releasever - $basearch
 baseurl=https://ohares-yum/software/redhat/$releasever/$basearch/llnl-prod/
 enabled=1
 gpgcheck=0
 sslverify=false
 
 [llnl-prod-noarch]
-[ohares-noarch]ame=llnl-prod-noarch $releasever - $basearch
+[ohares-noarch]
+name=llnl-prod-noarch $releasever - $basearch
 baseurl=https://ohares-yum/software/redhat/$releasever/$basearch/llnl-prod-noarch/
 enabled=1
 gpgcheck=0
 sslverify=false
 
 [llnl-test-noarch]
-[ohares-noarch]ame=llnl-test-noarch $releasever - $basearch
+[ohares-noarch]
+name=llnl-test-noarch $releasever - $basearch
 baseurl=https://ohares-yum/software/redhat/$releasever/$basearch/llnl-test-noarch/
 enabled=0
 gpgcheck=0
 sslverify=false
 
 [rhel6-workstation]
-[ohares-noarch]ame=rhel6-workstation $releasever - $basearch
+[ohares-noarch]
+name=rhel6-workstation $releasever - $basearch
 baseurl=https://ohares-yum/software/redhat/$releasever/$basearch/rhel-x86_64-workstation-6/getPackage
 enabled=1
 gpgcheck=0
 sslverify=false
 
 [rhel6-optional]
-[ohares-noarch]ame=rhel6-optional $releasever - $basearch
+[ohares-noarch]
+name=rhel6-optional $releasever - $basearch
 baseurl=https://ohares-yum/software/redhat/$releasever/$basearch/rhel-x86_64-workstation-optional-6/getPackage
 enabled=1
 gpgcheck=0
 sslverify=false
 
 [rhel6-supplementary]
-[ohares-noarch]ame=rhel6-supplementary $releasever - $basearch
+[ohares-noarch]
+name=rhel6-supplementary $releasever - $basearch
 baseurl=https://ohares-yum/software/redhat/$releasever/$basearch/rhel-x86_64-workstation-supplementary-6/getPackage
 enabled=1
 gpgcheck=0
 sslverify=false
 
 [rhn-tools]
-[ohares-noarch]ame=rhn-tools $releasever - $basearch
+[ohares-noarch]
+name=rhn-tools $releasever - $basearch
 baseurl=https://ohares-yum/software/redhat/$releasever/$basearch/rhn-tools-rhel-x86_64-workstation-6/getPackage
 enabled=1
 gpgcheck=0
